@@ -6,7 +6,10 @@ const PORTRAIT_SRC =
 
 export function HeroSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#F7F6F2] dark:bg-surface text-[#071B33] dark:text-on-surface pt-12 pb-24 lg:pt-16 lg:pb-32 border-b border-[#071B33]/10 dark:border-primary-container/40">
+    <section
+      id="top"
+      className="section-anchor relative w-full overflow-hidden bg-[#F7F6F2] dark:bg-surface text-[#071B33] dark:text-on-surface pt-12 pb-24 lg:pt-16 lg:pb-32 border-b border-[#071B33]/10 dark:border-primary-container/40"
+    >
       <div className="absolute -top-32 -left-32 w-[650px] h-[650px] bg-[#123B65]/5 dark:bg-primary-container/20 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-1/2 -right-48 w-[500px] h-[500px] bg-[#245B91]/5 dark:bg-secondary-container/15 rounded-full blur-[140px] pointer-events-none" />
       <div className="max-w-7xl mx-auto px-margin-mobile lg:px-gutter relative z-10">
@@ -15,7 +18,7 @@ export function HeroSection() {
             <div className="inline-flex items-center gap-3 w-fit mb-6 px-3 py-1.5 bg-white dark:bg-surface-container border border-[#071B33]/15 dark:border-primary-container shadow-sm">
               <span className="w-2 h-2 rounded-full bg-[#123B65] dark:bg-primary animate-pulse" />
               <span className="font-label-sm text-label-sm uppercase tracking-widest text-[#123B65] dark:text-primary font-medium">
-                Structured Pedagogy &amp; Mentorship
+                Cambridge-aligned pedagogy
               </span>
               <span className="text-[#94A3B8] dark:text-outline-variant font-label-sm">/</span>
               <span className="font-label-sm text-label-sm tracking-wider text-[#475569] dark:text-on-surface-variant font-medium">
@@ -23,60 +26,59 @@ export function HeroSection() {
               </span>
             </div>
             <h1 className="font-display-hero text-headline-xl lg:text-headline-xl uppercase tracking-tight text-[#071B33] dark:text-on-surface leading-[1.08] mb-6">
-              MAKING LEARNING CLEARER.
+              CLARITY FIRST.
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#123B65] via-[#245B91] to-[#071B33] dark:from-primary dark:via-secondary-fixed dark:to-primary">
-                BUILDING CONFIDENCE THROUGH UNDERSTANDING.
+                CONFIDENCE THROUGH UNDERSTANDING.
               </span>
             </h1>
             <p className="font-body-lg text-body-md lg:text-body-lg text-[#334155] dark:text-on-surface-variant max-w-2xl font-normal mb-8 leading-relaxed">
-              Explore carefully structured lectures, comprehensive study materials,
-              and guided resources designed to make challenging concepts intuitive,
-              approachable, and enduring.
+              A digital home for <strong className="font-semibold text-[#071B33] dark:text-on-surface">Cambridge Islamiyat (2058)</strong> and Islamic Studies study paths — structured video, notes, and assessments. Browse the catalogue here; enrollment and access are fulfilled through{" "}
+              <strong className="font-semibold">Aark Academy&apos;s LMS</strong> when connected.
             </p>
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10">
               <Link
                 className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#071B33] dark:bg-primary text-white dark:text-on-primary font-label-lg text-label-lg uppercase tracking-wider font-semibold hover:bg-[#123B65] dark:hover:bg-secondary-fixed transition-all duration-200 shadow-md shadow-[#071B33]/10 dark:shadow-surface-container-lowest/60"
-                href="#cohorts"
+                href="/store"
               >
-                <span>Explore Courses &amp; Lectures</span>
+                <span>Open course catalogue</span>
                 <span className="material-symbols-outlined text-lg transition-transform duration-200 group-hover:translate-x-1">
                   arrow_forward
                 </span>
               </Link>
               <Link
                 className="inline-flex items-center justify-center gap-3 px-6 py-4 bg-white dark:bg-surface-container/60 hover:bg-[#EDEAE1] dark:hover:bg-surface-container border border-[#071B33]/15 dark:border-outline-variant/30 text-[#071B33] dark:text-on-surface font-label-md text-label-md uppercase tracking-wider transition-all shadow-sm"
-                href="#resources"
+                href="/resources"
               >
                 <span className="material-symbols-outlined text-[18px] text-[#123B65] dark:text-primary">
                   menu_book
                 </span>
-                <span>Browse Study Materials</span>
+                <span>Notes &amp; worksheets</span>
               </Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 border-t border-[#071B33]/10 dark:border-primary-container/40">
               <div>
                 <div className="font-headline-sm text-headline-sm font-bold text-[#071B33] dark:text-on-surface">
-                  [Structured Curricula]
+                  SKH &amp; teaching practice
                 </div>
                 <div className="font-label-sm text-label-sm uppercase tracking-wider text-[#475569] dark:text-on-surface-variant mt-1 font-medium">
-                  Modular Video &amp; Studio Paths
+                  Public focus: O Level Islamiyat leadership
                 </div>
               </div>
               <div>
                 <div className="font-headline-sm text-headline-sm font-bold text-[#071B33] dark:text-on-surface">
-                  Concept-First Clarity
+                  Concept-first clarity
                 </div>
                 <div className="font-label-sm text-label-sm uppercase tracking-wider text-[#475569] dark:text-on-surface-variant mt-1 font-medium">
-                  Foundational Understanding
+                  Understanding before memorisation
                 </div>
               </div>
               <div>
                 <div className="font-headline-sm text-headline-sm font-bold text-[#071B33] dark:text-on-surface">
-                  [Student Support]
+                  Digital platform
                 </div>
                 <div className="font-label-sm text-label-sm uppercase tracking-wider text-[#475569] dark:text-on-surface-variant mt-1 font-medium">
-                  Diagnostic Guidance &amp; Feedback
+                  Catalogue here · LMS access via Aark
                 </div>
               </div>
             </div>
@@ -116,8 +118,8 @@ export function HeroSection() {
                     </span>
                   </div>
                   <div className="mt-2 pt-2 border-t border-[#071B33]/10 dark:border-outline-variant/20 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-[#475569] dark:text-on-surface-variant font-label-sm text-[11px]">
-                    <span>[Teaching Subjects / Mathematics &amp; Sciences]</span>
-                    <span>Online &amp; Studio Programs</span>
+                    <span>Islamiyat (2058) · Islamic Studies resources</span>
+                    <span>Online programmes · SKH Karachi (in-person)</span>
                   </div>
                 </div>
               </div>

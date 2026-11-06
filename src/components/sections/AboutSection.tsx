@@ -6,7 +6,7 @@ const STUDIO_IMG =
 export function AboutSection() {
   return (
     <section
-      className="w-full bg-[#F7F6F2] dark:bg-surface text-[#071B33] dark:text-on-surface py-24 lg:py-32 border-b border-[#071B33]/10 dark:border-primary-container/40"
+      className="section-anchor w-full bg-[#F7F6F2] dark:bg-surface text-[#071B33] dark:text-on-surface py-24 lg:py-32 border-b border-[#071B33]/10 dark:border-primary-container/40"
       id="about"
     >
       <div className="max-w-7xl mx-auto px-margin-mobile lg:px-gutter">
@@ -44,7 +44,15 @@ export function AboutSection() {
                 idea, intimidation turns into curiosity, and learning becomes natural.&quot;
               </p>
               <div className="mt-4 font-label-sm text-label-sm uppercase tracking-widest text-[#123B65] dark:text-primary font-semibold">
-                — Sir Khurram Hussain
+                — Sir Khurram Hussain ·{" "}
+                <a
+                  className="normal-case tracking-normal font-medium underline-offset-2 hover:underline"
+                  href="https://timesofyouth.com/exclusive-interview-of-khurram-hussain/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Times of Youth (interview)
+                </a>
               </div>
             </div>
           </div>
@@ -54,16 +62,25 @@ export function AboutSection() {
                 A Dedication to Clear, Inspiring Education.
               </h2>
               <p className="font-body-xl text-body-lg lg:text-body-xl text-[#334155] dark:text-on-surface-variant leading-relaxed">
-                Sir Khurram Hussain is a dedicated educator who believes that meaningful learning
-                goes beyond memorizing information. With a focus on clarity, patient guidance, and
-                fostering intellectual confidence, his approach breaks down intimidating concepts
-                into intuitive building blocks.
+                Sir Khurram Hussain is known publicly as the founder and academic face of{" "}
+                <strong className="font-semibold text-[#071B33] dark:text-on-surface">SKH Solutions</strong>{" "}
+                — an O/A Level coaching network in Karachi that publishes Cambridge-aligned teaching,
+                weekly written practice, and multi-campus support (see{" "}
+                <a
+                  className="text-[#123B65] dark:text-primary underline underline-offset-2"
+                  href="https://www.skh.com.pk/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  skh.com.pk
+                </a>
+                ). On SKH&apos;s public faculty listing he appears under{" "}
+                <strong className="font-semibold">Islamiyat</strong> with long-form classroom experience.
               </p>
             </div>
             <p className="font-body-md text-body-md text-[#475569] dark:text-on-surface-variant leading-relaxed">
-              Through structured video courses, carefully crafted problem sets, and diagnostic
-              learning companions, Sir Khurram helps students build enduring academic mastery and
-              genuine enthusiasm for problem-solving across secondary and higher-level curricula.
+              This Academic Studio site extends that work digitally: structured video, notes, and LMS
+              enrolment for students who learn online — without replacing SKH admissions, timetables, or campus placements.
             </p>
             <div className="space-y-6 pt-6 border-t border-[#071B33]/10 dark:border-primary-container/40">
               <span className="font-label-sm text-label-sm uppercase tracking-widest text-[#123B65] dark:text-primary font-semibold block">
@@ -75,11 +92,10 @@ export function AboutSection() {
                 </span>
                 <div>
                   <h4 className="font-label-lg text-label-lg uppercase text-[#071B33] dark:text-on-surface font-semibold">
-                    [Pedagogical Inception]
+                    SKH Solutions · Karachi
                   </h4>
                   <p className="font-body-sm text-body-sm text-[#475569] dark:text-on-surface-variant">
-                    Established personal teaching methodology focused on foundational understanding
-                    and first-principles reasoning.
+                    Public-facing coaching network emphasising Cambridge syllabus coverage, written practice, and mentor support across five city campuses.
                   </p>
                 </div>
               </div>
@@ -89,11 +105,10 @@ export function AboutSection() {
                 </span>
                 <div>
                   <h4 className="font-label-lg text-label-lg uppercase text-[#071B33] dark:text-on-surface font-semibold">
-                    [Digital Lecture Library]
+                    Digital studio (this site)
                   </h4>
                   <p className="font-body-sm text-body-sm text-[#475569] dark:text-on-surface-variant">
-                    Launch of structured modular video courses allowing students to learn at their
-                    own pace with comprehensive walkthroughs.
+                    LMS-backed video and resource tracks for students who study online — catalogue and access through Aark Academy when integration is complete.
                   </p>
                 </div>
               </div>
@@ -103,11 +118,10 @@ export function AboutSection() {
                 </span>
                 <div>
                   <h4 className="font-label-lg text-label-lg uppercase text-[#071B33] dark:text-on-surface font-semibold">
-                    [Learning Resource Portal]
+                    Published study companions
                   </h4>
                   <p className="font-body-sm text-body-sm text-[#475569] dark:text-on-surface-variant">
-                    Comprehensive compendiums and worksheets made accessible for independent
-                    revision and classroom support.
+                    SKH lists structured book &amp; note titles for Islamic Studies — digital fulfilment will mirror LMS products once connected.
                   </p>
                 </div>
               </div>

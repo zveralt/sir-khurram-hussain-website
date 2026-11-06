@@ -158,10 +158,18 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   html,
   body {
     margin: 0;
     padding: 0;
+  }
+
+  .section-anchor {
+    scroll-margin-top: 5rem;
   }
 
   body {

@@ -1,13 +1,9 @@
-"use client";
+import Link from "next/link";
 
 export function ResourcesSection() {
-  const handlePlaceholder = (message: string) => {
-    window.alert(message);
-  };
-
   return (
     <section
-      className="w-full bg-white dark:bg-[#081c34] text-[#172536] dark:text-on-surface py-24 lg:py-32 border-b border-[#071B33]/10 dark:border-primary-container/40"
+      className="section-anchor w-full bg-white dark:bg-[#081c34] text-[#172536] dark:text-on-surface py-24 lg:py-32 border-b border-[#071B33]/10 dark:border-primary-container/40"
       id="resources"
     >
       <div className="max-w-7xl mx-auto px-margin-mobile lg:px-gutter">
@@ -24,11 +20,16 @@ export function ResourcesSection() {
             </h2>
           </div>
           <p className="font-body-md text-body-md text-[#4A5D73] dark:text-on-surface-variant max-w-md">
-            Comprehensive study notes, downloadable worksheets, formula compendiums, and revision
-            blueprints designed as supportive learning companions for classroom and independent
-            study.
+            Sir Khurram&apos;s public resources include structured study companions for Islamic Studies topics (see the book &amp; notes index on SKH). Digital PDFs and worksheet delivery on this site route through the LMS storefront when products are configured.
           </p>
         </div>
+
+        <p className="font-label-sm text-label-sm text-[#64748B] dark:text-outline uppercase tracking-wider mb-10 max-w-3xl">
+          Looking for the full searchable catalogue (fixtures labelled until LMS sync)? →{" "}
+          <Link href="/store" className="text-[#123B65] dark:text-primary font-semibold">
+            Open /store
+          </Link>
+        </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="bg-[#F7F6F2] dark:bg-surface-container p-8 border border-[#071B33]/10 dark:border-primary-container/60 hover:border-[#123B65] dark:hover:border-primary transition-all flex flex-col justify-between shadow-sm">
@@ -42,25 +43,25 @@ export function ResourcesSection() {
                 </span>
               </div>
               <h3 className="font-headline-sm text-headline-sm uppercase font-bold text-[#172536] dark:text-on-surface mb-3">
-                Comprehensive Concept Compendium [Subject Edition]
+                Study compendiums (public index)
               </h3>
               <p className="font-body-md text-body-md text-[#4A5D73] dark:text-on-surface-variant mb-6 leading-relaxed">
-                Downloadable PDF notes containing step-by-step conceptual definitions, mathematical
-                proofs, key formulas, and common pitfalls explained with thorough clarity.
+                SKH publishes a structured index of titles covering Qur&apos;anic passages, seerah, hadith, pillars, and review companions — confirm availability and format with admissions.
               </p>
             </div>
             <div className="pt-6 border-t border-[#172536]/10 dark:border-primary-container/40 flex items-center justify-between gap-4">
               <span className="font-label-sm text-label-sm uppercase text-[#64748B] dark:text-on-surface-variant">
-                Downloadable PDF Notes
+                Source · SKH
               </span>
-              <button
-                type="button"
+              <a
+                href="https://www.skh.com.pk/booksnotes/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 font-label-md text-label-md uppercase tracking-wider text-[#123B65] dark:text-primary font-bold hover:translate-x-1 transition-transform"
-                onClick={() => handlePlaceholder("Downloading Concept Compendium Notes...")}
               >
-                <span>Download PDF</span>
-                <span className="material-symbols-outlined text-[16px]">download</span>
-              </button>
+                <span>View index</span>
+                <span className="material-symbols-outlined text-[16px]">open_in_new</span>
+              </a>
             </div>
           </div>
 
@@ -71,29 +72,27 @@ export function ResourcesSection() {
                   VOL. 02 / WORKSHEETS
                 </span>
                 <span className="px-2 py-0.5 bg-white dark:bg-surface-container-high font-label-sm text-[11px] text-[#4A5D73] dark:text-secondary font-mono border border-[#071B33]/10 dark:border-outline-variant/30">
-                  INTERACTIVE SHEETS
+                  FIXTURE PDP
                 </span>
               </div>
               <h3 className="font-headline-sm text-headline-sm uppercase font-bold text-[#172536] dark:text-on-surface mb-3">
-                Topical Practice Worksheets &amp; Annotated Solutions
+                Topical worksheet packs (LMS)
               </h3>
               <p className="font-body-md text-body-md text-[#4A5D73] dark:text-on-surface-variant mb-6 leading-relaxed">
-                Targeted question worksheets arranged systematically by sub-topic, featuring
-                detailed step-by-step annotated solutions to reinforce independent practice.
+                Development fixture for storefront UX — purchase and download mechanics will follow Learn360 product configuration.
               </p>
             </div>
             <div className="pt-6 border-t border-[#172536]/10 dark:border-primary-container/40 flex items-center justify-between gap-4">
               <span className="font-label-sm text-label-sm uppercase text-[#64748B] dark:text-on-surface-variant">
-                Interactive Worksheets
+                Fixture
               </span>
-              <button
-                type="button"
+              <Link
+                href="/store/topical-worksheets-pack"
                 className="inline-flex items-center gap-2 font-label-md text-label-md uppercase tracking-wider text-[#123B65] dark:text-primary font-bold hover:translate-x-1 transition-transform"
-                onClick={() => handlePlaceholder("Accessing Practice Worksheets...")}
               >
-                <span>View Worksheets</span>
-                <span className="material-symbols-outlined text-[16px]">open_in_new</span>
-              </button>
+                <span>Open listing</span>
+                <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+              </Link>
             </div>
           </div>
 
@@ -104,29 +103,27 @@ export function ResourcesSection() {
                   VOL. 03 / BLUEPRINT
                 </span>
                 <span className="px-2 py-0.5 bg-white dark:bg-surface-container-high font-label-sm text-[11px] text-[#4A5D73] dark:text-secondary font-mono border border-[#071B33]/10 dark:border-outline-variant/30">
-                  STUDY GUIDE
+                  FIXTURE PDP
                 </span>
               </div>
               <h3 className="font-headline-sm text-headline-sm uppercase font-bold text-[#172536] dark:text-on-surface mb-3">
-                Revision Architecture &amp; Study Guide Blueprint
+                Revision architecture (LMS)
               </h3>
               <p className="font-body-md text-body-md text-[#4A5D73] dark:text-on-surface-variant mb-6 leading-relaxed">
-                A practical revision roadmap organizing examination topics into manageable review
-                cycles, self-check rubrics, and strategic time-management strategies.
+                Illustrative product card for exam technique resources; scope and pricing to be defined in the LMS catalogue.
               </p>
             </div>
             <div className="pt-6 border-t border-[#172536]/10 dark:border-primary-container/40 flex items-center justify-between gap-4">
               <span className="font-label-sm text-label-sm uppercase text-[#64748B] dark:text-on-surface-variant">
-                Revision Materials
+                Fixture
               </span>
-              <button
-                type="button"
+              <Link
+                href="/store/concept-compendium-notes"
                 className="inline-flex items-center gap-2 font-label-md text-label-md uppercase tracking-wider text-[#123B65] dark:text-primary font-bold hover:translate-x-1 transition-transform"
-                onClick={() => handlePlaceholder("Accessing Study Guide Blueprint...")}
               >
-                <span>View Blueprint</span>
-                <span className="material-symbols-outlined text-[16px]">description</span>
-              </button>
+                <span>Open listing</span>
+                <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+              </Link>
             </div>
           </div>
         </div>

@@ -47,23 +47,14 @@ export const metadata: Metadata = {
     siteName: `${siteName} Academic Studio`,
     title: `${siteName} — Academic Studio`,
     description: defaultDescription,
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: `${siteName} — personal educational platform`,
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteName} — Academic Studio`,
     description: defaultDescription,
-    images: ["/og.png"],
   },
   icons: {
-    icon: [{ url: "/og.png", type: "image/png" }],
+    icon: [{ url: "/favicon.ico" }],
   },
   alternates: {
     canonical: siteUrl,

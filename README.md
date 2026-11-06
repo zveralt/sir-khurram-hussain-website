@@ -75,15 +75,23 @@ vercel --prod
 
 ## Project layout
 
-- `src/app/` — App Router: `layout.tsx`, `page.tsx`, `globals.css`, `robots.ts`, `sitemap.ts`
-- `src/components/layout/` — Header and footer
-- `src/components/sections/` — Page sections (hero, courses, resources, etc.)
+- `src/app/` — App Router: root `layout.tsx`, route groups `(marketing)`, `portal`, `globals.css`, `robots.ts`, `sitemap.ts`, `opengraph-image.tsx`
+- `src/app/api/` — Enquiry, newsletter, auth fixture, LMS health stub
+- `src/components/layout/` — Header, footer, `MarketingShell`
+- `src/components/sections/` — Home sections (hero, philosophy, cohorts, etc.)
+- `src/components/store/` — Catalogue toolbar
 - `src/components/providers/` — Theme provider
-- `src/lib/site.ts` — Site URL and copy constants
-- `public/` — Static assets (`og.png` for social sharing)
-- `stitch-export/` — Original Stitch export (`code.html`, `DESIGN.md`, `screen.png`)
+- `src/lib/site.ts` — Site URL, SKH public contact, LMS link-out
+- `src/lib/catalog/` — Typed fixtures until LMS catalogue API is connected
+- `src/lib/lms/` — Server-only LMS client placeholder (no undocumented endpoints)
+- `public/` — Static assets
+- `stitch-export/` — Original Stitch export (`code.html`, `DESIGN.md`)
+- `SIR_KHURRAM_PROFILE.md` — Research memo with sources
 
 ## Scope notes
 
-- Enrollment and resource download actions are **frontend-only** (placeholders / local success state) until backend or LMS integration exists.
+- **Enquiries**: `POST /api/enquiry` — set `ENQUIRY_WEBHOOK_URL` (+ optional secret) in production or the route returns 503.
+- **Newsletter**: `POST /api/newsletter` — same pattern with `NEWSLETTER_WEBHOOK_URL`.
+- **Storefront**: fixtures under `src/lib/catalog/fixtures.ts` are **explicitly labelled** until LMS data replaces them.
+- **Student auth**: production learners use **Learn360**; dev-only cookie session previews the dashboard UI.
 - Remote images use Google-hosted URLs from the Stitch export; `next.config.ts` allows `lh3.googleusercontent.com`.

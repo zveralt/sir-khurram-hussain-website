@@ -1,7 +1,7 @@
 export function ManifestoSection() {
   return (
     <section
-      className="w-full bg-white dark:bg-[#081c34] text-[#172536] dark:text-on-surface py-24 lg:py-32 border-b border-[#071B33]/10 dark:border-primary-container/40"
+      className="section-anchor w-full bg-white dark:bg-[#081c34] text-[#172536] dark:text-on-surface py-24 lg:py-32 border-b border-[#071B33]/10 dark:border-primary-container/40"
       id="manifesto"
     >
       <div className="max-w-7xl mx-auto px-margin-mobile lg:px-gutter">
@@ -22,14 +22,22 @@ export function ManifestoSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           <div className="lg:col-span-5 space-y-6">
             <p className="font-body-lg text-body-lg text-[#2A3B4D] dark:text-on-surface-variant leading-relaxed">
-              Meaningful learning moves far beyond memorizing formulas and cramming past exams.
-              When students only memorize steps, even minor shifts in question wording can cause
-              hesitation and confusion.
+              In Cambridge Islamiyat and Islamic Studies, meaning comes from understanding
+              sources, contexts, and how examiners expect arguments to be framed — not from
+              copying model answers without grasping why they earn marks.
             </p>
             <p className="font-body-md text-body-md text-[#4A5D73] dark:text-on-surface-variant/80 leading-relaxed">
-              At our studio, every topic is explored from its foundational principles. By
-              understanding why a method exists and how it connects to real problems, students
-              develop an intuitive analytical framework that stays with them.
+              The studio prioritises concept-first teaching: students learn to read texts closely,
+              connect themes across the syllabus, and express ideas with the clarity examiners
+              reward. For a direct statement of Sir Khurram&apos;s broader philosophy of
+              education, see the{" "}
+              <a
+                className="text-[#123B65] dark:text-primary underline underline-offset-2"
+                href="/teaching-philosophy"
+              >
+                teaching philosophy
+              </a>{" "}
+              page (includes a attributed quote from a public interview).
             </p>
             <div className="p-6 bg-[#F7F6F2] dark:bg-surface-container border-l-4 border-[#123B65] dark:border-primary mt-8 shadow-sm">
               <span className="font-label-sm text-label-sm uppercase tracking-widest text-[#123B65] dark:text-primary font-semibold block mb-2">

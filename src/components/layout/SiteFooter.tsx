@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FooterNewsletterForm } from "@/components/layout/FooterNewsletterForm";
+import { skhContact } from "@/lib/site";
 
 const LOGO_SRC =
   "https://lh3.googleusercontent.com/aida/ALJJyrAnLQVarzRJwvXBzj2hlCK5mxAXKGn4a2jEMQDlNZTFvWqJ7Z6j38xIOOq0N5YkrsBcJpiHvFNEGYOQikzmTgOi1L7R_gdlN4P6rAH1-ORlbdoUuzlQXb0owvPMSKbj2Fij4P79MEtT2WUtOUPlLx0KIKZ7UXyjRzsGpaXISjmhz1ql_-Q6p_BEtnOMK4HZxrlTIS3rZz-bBqk5eYnm0k8ApUiMH5JaMn-T0XjDNLNAlA";
@@ -37,7 +38,7 @@ export function SiteFooter() {
             </div>
             <div className="pt-space-md">
               <div className="inline-block border border-outline-variant px-space-sm py-space-xs font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">
-                Imprint • Ref. Khurram-2025-ED
+                Publication • Reviewed against public SKH sources
               </div>
             </div>
           </div>
@@ -47,36 +48,49 @@ export function SiteFooter() {
             </div>
             <ul className="space-y-space-xs font-label-md text-label-md">
               <li className="flex items-center justify-between text-on-surface-variant hover:text-on-surface">
-                <Link data-path="courses" href="#cohorts">
-                  Advanced Economics
+                <Link data-path="about" href="/about">
+                  About
                 </Link>
                 <span className="font-label-sm text-label-sm text-outline">01</span>
               </li>
               <li className="flex items-center justify-between text-on-surface-variant hover:text-on-surface">
-                <Link data-path="courses" href="#cohorts">
-                  Commerce &amp; Finance
+                <Link data-path="store" href="/store">
+                  Course catalogue
                 </Link>
                 <span className="font-label-sm text-label-sm text-outline">02</span>
               </li>
               <li className="flex items-center justify-between text-on-surface-variant hover:text-on-surface">
-                <Link data-path="courses" href="#cohorts">
-                  Business Syllabi
+                <Link data-path="resources" href="/resources">
+                  Resources
                 </Link>
                 <span className="font-label-sm text-label-sm text-outline">03</span>
               </li>
               <li className="flex items-center justify-between text-on-surface-variant hover:text-on-surface">
-                <Link data-path="resources" href="#resources">
-                  Scholarly Archives
+                <Link data-path="contact" href="/contact">
+                  Contact
                 </Link>
                 <span className="font-label-sm text-label-sm text-outline">04</span>
               </li>
               <li className="flex items-center justify-between text-on-surface-variant hover:text-on-surface">
-                <Link data-path="student-portal" href="#enroll">
-                  Portal Gateway
+                <Link data-path="student-portal" href="/portal/login">
+                  Student portal
                 </Link>
                 <span className="font-label-sm text-label-sm text-outline">05</span>
               </li>
             </ul>
+            <div className="pt-space-sm font-label-sm text-label-sm text-on-surface-variant space-y-space-xs">
+              <p>
+                SKH admissions:{" "}
+                <a className="text-primary hover:underline" href={`mailto:${skhContact.email}`}>
+                  {skhContact.email}
+                </a>
+              </p>
+              <p>
+                <a className="text-primary hover:underline" href={`tel:${skhContact.phoneTel}`}>
+                  {skhContact.phoneDisplay}
+                </a>
+              </p>
+            </div>
           </div>
           <div className="md:col-span-4 space-y-space-md">
             <div className="font-label-sm text-label-sm uppercase tracking-widest text-primary border-b border-[#123B65]/40 pb-space-xs font-semibold">

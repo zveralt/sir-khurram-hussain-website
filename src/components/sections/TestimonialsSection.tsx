@@ -1,102 +1,66 @@
 export function TestimonialsSection() {
   return (
-    <section className="w-full bg-white dark:bg-surface-container-lowest text-[#071B33] dark:text-on-surface py-24 lg:py-32 border-b border-[#071B33]/10 dark:border-primary-container/40">
+    <section className="section-anchor w-full bg-white dark:bg-surface-container-lowest text-[#071B33] dark:text-on-surface py-24 lg:py-32 border-b border-[#071B33]/10 dark:border-primary-container/40">
       <div className="max-w-7xl mx-auto px-margin-mobile lg:px-gutter">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 mb-16 border-b border-[#071B33]/15 dark:border-primary-container/40">
           <div>
             <div className="flex items-center gap-3 mb-2">
               <span className="w-2.5 h-2.5 bg-[#123B65] dark:bg-primary" />
               <span className="font-label-md text-label-md uppercase tracking-widest text-[#123B65] dark:text-primary font-semibold">
-                05 / Student Perspectives
+                05 / How students are supported
               </span>
             </div>
             <h2 className="font-headline-xl text-headline-lg lg:text-headline-xl uppercase font-bold text-[#071B33] dark:text-on-surface tracking-tight">
-              Clarity &amp; Academic Growth.
+              Principles, not anonymous quotations.
             </h2>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="font-label-sm text-label-sm uppercase tracking-wider text-[#64748B] dark:text-outline font-medium">
-              Student Experiences
-            </span>
-          </div>
+          <p className="font-body-sm text-body-sm text-[#64748B] dark:text-outline max-w-md">
+            We do not publish named student testimonials here without verified consent and sourcing.
+            Instead, the sections below state practices that align with SKH&apos;s public positioning
+            and Sir Khurram&apos;s published interview on education.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="bg-[#F7F6F2] dark:bg-surface-container border border-[#071B33]/10 dark:border-primary-container/60 p-8 flex flex-col justify-between hover:border-[#123B65] dark:hover:border-primary transition-all shadow-sm">
             <div className="space-y-4">
-              <div className="flex items-center justify-between gap-2">
-                <span className="px-2.5 py-0.5 bg-[#123B65]/10 dark:bg-primary-container text-[#123B65] dark:text-primary font-label-sm text-[11px] uppercase tracking-wider font-semibold border border-[#123B65]/20 dark:border-primary/30">
-                  Conceptual Clarity
-                </span>
-                <span className="text-[#64748B] dark:text-outline font-label-sm text-[11px] font-mono shrink-0">
-                  STUDENT REFLECTION
-                </span>
-              </div>
+              <span className="px-2.5 py-0.5 bg-[#123B65]/10 dark:bg-primary-container text-[#123B65] dark:text-primary font-label-sm text-[11px] uppercase tracking-wider font-semibold border border-[#123B65]/20 dark:border-primary/30 w-fit">
+                Concept before technique
+              </span>
               <p className="font-body-md text-body-md text-[#334155] dark:text-on-surface-variant leading-relaxed">
-                &quot;Before these lectures, formulas felt like arbitrary rules to memorize.
-                Understanding the geometric and logical intuition behind each concept completely
-                eliminated the anxiety I used to feel during exams.&quot;
+                Students are guided to understand sources and examiner expectations before drilling past papers — reducing anxiety that comes from memorising answers without meaning.
               </p>
             </div>
-            <div className="pt-6 border-t border-[#071B33]/10 dark:border-primary-container/40 mt-6">
-              <h4 className="font-headline-sm text-headline-sm text-[#071B33] dark:text-on-surface font-bold tracking-tight">
-                [Student Perspective]
-              </h4>
-              <span className="font-label-sm text-label-sm uppercase tracking-wider text-[#123B65] dark:text-primary block mt-0.5 font-semibold">
-                [A-Level Cohort]
-              </span>
+            <div className="pt-6 border-t border-[#071B33]/10 dark:border-primary-container/40 mt-6 font-label-sm text-[11px] uppercase tracking-wider text-[#64748B] dark:text-outline">
+              Echoes Times of Youth interview themes
             </div>
           </div>
 
           <div className="bg-[#F7F6F2] dark:bg-surface-container border border-[#071B33]/10 dark:border-primary-container/60 p-8 flex flex-col justify-between hover:border-[#123B65] dark:hover:border-primary transition-all shadow-sm">
             <div className="space-y-4">
-              <div className="flex items-center justify-between gap-2">
-                <span className="px-2.5 py-0.5 bg-[#123B65]/10 dark:bg-primary-container text-[#123B65] dark:text-primary font-label-sm text-[11px] uppercase tracking-wider font-semibold border border-[#123B65]/20 dark:border-primary/30">
-                  Structured Practice
-                </span>
-                <span className="text-[#64748B] dark:text-outline font-label-sm text-[11px] font-mono shrink-0">
-                  STUDENT REFLECTION
-                </span>
-              </div>
+              <span className="px-2.5 py-0.5 bg-[#123B65]/10 dark:bg-primary-container text-[#123B65] dark:text-primary font-label-sm text-[11px] uppercase tracking-wider font-semibold border border-[#123B65]/20 dark:border-primary/30 w-fit">
+                Written practice discipline
+              </span>
               <p className="font-body-md text-body-md text-[#334155] dark:text-on-surface-variant leading-relaxed">
-                &quot;The modular progression and annotated walkthroughs make even difficult problem
-                sets manageable. Working through the worksheets step-by-step helped me spot small
-                algebra errors before they became habits.&quot;
+                SKH&apos;s public materials emphasise regular written work, composition, and time management — habits that transfer directly to digital tracks with LMS assignments.
               </p>
             </div>
-            <div className="pt-6 border-t border-[#071B33]/10 dark:border-primary-container/40 mt-6">
-              <h4 className="font-headline-sm text-headline-sm text-[#071B33] dark:text-on-surface font-bold tracking-tight">
-                [Student Perspective]
-              </h4>
-              <span className="font-label-sm text-label-sm uppercase tracking-wider text-[#123B65] dark:text-primary block mt-0.5 font-semibold">
-                [Foundation Cohort]
-              </span>
+            <div className="pt-6 border-t border-[#071B33]/10 dark:border-primary-container/40 mt-6 font-label-sm text-[11px] uppercase tracking-wider text-[#64748B] dark:text-outline">
+              Source · skh.com.pk positioning
             </div>
           </div>
 
           <div className="bg-[#F7F6F2] dark:bg-surface-container border border-[#071B33]/10 dark:border-primary-container/60 p-8 flex flex-col justify-between hover:border-[#123B65] dark:hover:border-primary transition-all shadow-sm">
             <div className="space-y-4">
-              <div className="flex items-center justify-between gap-2">
-                <span className="px-2.5 py-0.5 bg-[#123B65]/10 dark:bg-primary-container text-[#123B65] dark:text-primary font-label-sm text-[11px] uppercase tracking-wider font-semibold border border-[#123B65]/20 dark:border-primary/30">
-                  Intellectual Confidence
-                </span>
-                <span className="text-[#64748B] dark:text-outline font-label-sm text-[11px] font-mono shrink-0">
-                  STUDENT REFLECTION
-                </span>
-              </div>
+              <span className="px-2.5 py-0.5 bg-[#123B65]/10 dark:bg-primary-container text-[#123B65] dark:text-primary font-label-sm text-[11px] uppercase tracking-wider font-semibold border border-[#123B65]/20 dark:border-primary/30 w-fit">
+                Transparent publishing
+              </span>
               <p className="font-body-md text-body-md text-[#334155] dark:text-on-surface-variant leading-relaxed">
-                &quot;Sir Khurram&apos;s teaching prioritizes genuine understanding over quick
-                shortcuts. Once you know why an idea works, solving unfamiliar examination questions
-                feels natural and methodical.&quot;
+                SKH states that results and quotations are published only with appropriate checks. This site follows the same standard: no invented grades or reviews.
               </p>
             </div>
-            <div className="pt-6 border-t border-[#071B33]/10 dark:border-primary-container/40 mt-6">
-              <h4 className="font-headline-sm text-headline-sm text-[#071B33] dark:text-on-surface font-bold tracking-tight">
-                [Student Perspective]
-              </h4>
-              <span className="font-label-sm text-label-sm uppercase tracking-wider text-[#123B65] dark:text-primary block mt-0.5 font-semibold">
-                [Advanced Problem-Solving]
-              </span>
+            <div className="pt-6 border-t border-[#071B33]/10 dark:border-primary-container/40 mt-6 font-label-sm text-[11px] uppercase tracking-wider text-[#64748B] dark:text-outline">
+              Source · SKH “what we publish” copy
             </div>
           </div>
         </div>
