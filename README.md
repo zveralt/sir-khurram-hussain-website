@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sir Khurram Hussain — Academic Studio
 
-## Getting Started
+Production-ready marketing site for **Sir Khurram Hussain**’s personal educational platform, ported from the Google Stitch export while preserving layout, typography, and light/dark theming. Developed by **Istiqeme Technologies**.
 
-First, run the development server:
+## Stack
+
+- **Next.js** (App Router) + **React** + **TypeScript**
+- **Tailwind CSS v4** (Stitch design tokens in `src/app/globals.css`)
+- **next-themes** (system default, persisted `localStorage`, no flash script in root layout)
+
+Original Stitch assets and `code.html` are kept under `stitch-export/` for reference.
+
+## Prerequisites
+
+- Node.js 20+ (LTS recommended)
+- npm
+
+## Environment
+
+Copy `.env.example` to `.env.local` and set the public site URL for production metadata (Open Graph, canonical URL, sitemap):
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env.local
+# Edit NEXT_PUBLIC_SITE_URL to your real domain (no trailing slash)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Local development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+| Command       | Description              |
+| ------------- | ------------------------ |
+| `npm run dev` | Development server       |
+| `npm run build` | Production build       |
+| `npm run start` | Start production server |
+| `npm run lint`  | ESLint                   |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## GitHub
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Initialize is already done in this folder’s `.git` from `create-next-app`. To publish under the name `sir-khurram-hussain-website`:
 
-## Deploy on Vercel
+```bash
+gh repo create sir-khurram-hussain-website --private --source=. --remote=origin --push
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+(Use `--public` if you prefer a public repo.) If `gh` is not installed or logged in, create the repository on GitHub and:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+git remote add origin https://github.com/<your-account>/sir-khurram-hussain-website.git
+git branch -M main
+git push -u origin main
+```
+
+## Vercel
+
+1. Import the GitHub repository in the [Vercel dashboard](https://vercel.com/new).
+2. Framework preset: **Next.js** (default).
+3. Add environment variable `NEXT_PUBLIC_SITE_URL` to your production URL.
+4. Deploy.
+
+With the [Vercel CLI](https://vercel.com/docs/cli) (logged in):
+
+```bash
+vercel link
+vercel env add NEXT_PUBLIC_SITE_URL
+vercel --prod
+```
+
+## Project layout
+
+- `src/app/` — App Router: `layout.tsx`, `page.tsx`, `globals.css`, `robots.ts`, `sitemap.ts`
+- `src/components/layout/` — Header and footer
+- `src/components/sections/` — Page sections (hero, courses, resources, etc.)
+- `src/components/providers/` — Theme provider
+- `src/lib/site.ts` — Site URL and copy constants
+- `public/` — Static assets (`og.png` for social sharing)
+- `stitch-export/` — Original Stitch export (`code.html`, `DESIGN.md`, `screen.png`)
+
+## Scope notes
+
+- Enrollment and resource download actions are **frontend-only** (placeholders / local success state) until backend or LMS integration exists.
+- Remote images use Google-hosted URLs from the Stitch export; `next.config.ts` allows `lh3.googleusercontent.com`.
