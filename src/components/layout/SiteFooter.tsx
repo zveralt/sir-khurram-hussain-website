@@ -1,117 +1,79 @@
-import Image from "next/image";
 import Link from "next/link";
-import { FooterNewsletterForm } from "@/components/layout/FooterNewsletterForm";
-import { skhContact } from "@/lib/site";
+import { aarkLmsPublicUrl, skhContact } from "@/lib/site";
 
-const LOGO_SRC =
-  "https://lh3.googleusercontent.com/aida/ALJJyrAnLQVarzRJwvXBzj2hlCK5mxAXKGn4a2jEMQDlNZTFvWqJ7Z6j38xIOOq0N5YkrsBcJpiHvFNEGYOQikzmTgOi1L7R_gdlN4P6rAH1-ORlbdoUuzlQXb0owvPMSKbj2Fij4P79MEtT2WUtOUPlLx0KIKZ7UXyjRzsGpaXISjmhz1ql_-Q6p_BEtnOMK4HZxrlTIS3rZz-bBqk5eYnm0k8ApUiMH5JaMn-T0XjDNLNAlA";
+const columns = [
+  {
+    title: "Studio",
+    links: [
+      { href: "/about", label: "About" },
+      { href: "/teaching-philosophy", label: "Teaching philosophy" },
+      { href: "/expertise", label: "Expertise" },
+    ],
+  },
+  {
+    title: "Learn",
+    links: [
+      { href: "/store", label: "Course catalogue" },
+      { href: "/resources", label: "Library & resources" },
+      { href: "/portal/login", label: "Student portal" },
+    ],
+  },
+];
 
 export function SiteFooter() {
   return (
-    <footer className="w-full bg-[#071B33] text-on-surface border-t border-[#123B65]/40 mt-space-xl">
-      <div className="max-w-7xl mx-auto px-margin-mobile lg:px-gutter pt-space-xl pb-margin">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-space-lg mb-space-xl">
-          <div className="md:col-span-5 flex flex-col justify-between pr-0 md:pr-space-md">
-            <div className="space-y-space-md">
-              <div className="flex items-center gap-4">
-                <Image
-                  alt="Sir Khurram Hussain Monogram Logo"
-                  className="h-8 w-auto object-contain"
-                  src={LOGO_SRC}
-                  width={120}
-                  height={32}
-                />
-                <div className="flex flex-col">
-                  <span className="font-headline-sm text-headline-sm uppercase text-on-surface font-bold">
-                    Sir Khurram Hussain
-                  </span>
-                  <span className="font-label-sm text-label-sm tracking-widest text-on-surface-variant uppercase">
-                    Academic Studio
-                  </span>
-                </div>
-              </div>
-              <p className="font-body-md text-body-md text-on-surface-variant max-w-md">
-                Pioneering advanced pedagogy, rigorous scholarship, and intellectual
-                mastery. An architectural approach to curriculum and higher secondary
-                academic excellence.
-              </p>
-            </div>
-            <div className="pt-space-md">
-              <div className="inline-block border border-outline-variant px-space-sm py-space-xs font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">
-                Publication • Reviewed against public SKH sources
-              </div>
-            </div>
-          </div>
-          <div className="md:col-span-3 space-y-space-md">
-            <div className="font-label-sm text-label-sm uppercase tracking-widest text-primary border-b border-[#123B65]/40 pb-space-xs font-semibold">
-              Directory Index
-            </div>
-            <ul className="space-y-space-xs font-label-md text-label-md">
-              <li className="flex items-center justify-between text-on-surface-variant hover:text-on-surface">
-                <Link data-path="about" href="/about">
-                  About
-                </Link>
-                <span className="font-label-sm text-label-sm text-outline">01</span>
-              </li>
-              <li className="flex items-center justify-between text-on-surface-variant hover:text-on-surface">
-                <Link data-path="store" href="/store">
-                  Course catalogue
-                </Link>
-                <span className="font-label-sm text-label-sm text-outline">02</span>
-              </li>
-              <li className="flex items-center justify-between text-on-surface-variant hover:text-on-surface">
-                <Link data-path="resources" href="/resources">
-                  Resources
-                </Link>
-                <span className="font-label-sm text-label-sm text-outline">03</span>
-              </li>
-              <li className="flex items-center justify-between text-on-surface-variant hover:text-on-surface">
-                <Link data-path="contact" href="/contact">
-                  Contact
-                </Link>
-                <span className="font-label-sm text-label-sm text-outline">04</span>
-              </li>
-              <li className="flex items-center justify-between text-on-surface-variant hover:text-on-surface">
-                <Link data-path="student-portal" href="/portal/login">
-                  Student portal
-                </Link>
-                <span className="font-label-sm text-label-sm text-outline">05</span>
-              </li>
-            </ul>
-            <div className="pt-space-sm font-label-sm text-label-sm text-on-surface-variant space-y-space-xs">
-              <p>
-                SKH admissions:{" "}
-                <a className="text-primary hover:underline" href={`mailto:${skhContact.email}`}>
-                  {skhContact.email}
-                </a>
-              </p>
-              <p>
-                <a className="text-primary hover:underline" href={`tel:${skhContact.phoneTel}`}>
-                  {skhContact.phoneDisplay}
-                </a>
-              </p>
-            </div>
-          </div>
-          <div className="md:col-span-4 space-y-space-md">
-            <div className="font-label-sm text-label-sm uppercase tracking-widest text-primary border-b border-[#123B65]/40 pb-space-xs font-semibold">
-              Newsletter Inscription
-            </div>
-            <p className="font-body-sm text-body-sm text-on-surface-variant">
-              Receive archival lecture releases, monograph publications, and academic
-              session timetables.
+    <footer className="band-midnight">
+      <div className="shell pt-24 pb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14">
+          <div className="lg:col-span-6">
+            <p className="font-display text-h2 text-white max-w-xl">
+              Clarity first.{" "}
+              <span className="text-accent-hot">Confidence</span> through understanding.
             </p>
-            <FooterNewsletterForm />
+            <div className="mt-10 flex flex-wrap gap-3">
+              <Link href="/store" className="btn btn-primary">
+                Explore the catalogue <span className="arrow">→</span>
+              </Link>
+              <Link href="/contact" className="btn border border-white/20 text-white hover:border-accent-hot hover:text-accent-hot">
+                Make an enquiry
+              </Link>
+            </div>
+          </div>
+
+          {columns.map((c) => (
+            <div key={c.title} className="lg:col-span-2">
+              <p className="eyebrow !text-ice/70">{c.title}</p>
+              <ul className="mt-6 space-y-3 text-[0.9375rem]">
+                {c.links.map((l) => (
+                  <li key={l.href}>
+                    <Link href={l.href} className="link-u text-white/80 hover:text-white">
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          <div className="lg:col-span-2">
+            <p className="eyebrow !text-ice/70">SKH admissions</p>
+            <ul className="mt-6 space-y-3 text-[0.9375rem] text-white/80">
+              <li><a className="link-u hover:text-white" href={`tel:${skhContact.phoneTel}`}>{skhContact.phoneDisplay}</a></li>
+              <li><a className="link-u hover:text-white" href={`mailto:${skhContact.email}`}>{skhContact.email}</a></li>
+              <li><a className="link-u hover:text-white" href={skhContact.web} target="_blank" rel="noopener noreferrer">skh.com.pk ↗</a></li>
+              <li><a className="link-u hover:text-white" href={aarkLmsPublicUrl} target="_blank" rel="noopener noreferrer">Aark Academy LMS ↗</a></li>
+            </ul>
           </div>
         </div>
-        <div className="pt-space-md border-t border-[#123B65]/30 flex flex-col md:flex-row items-center justify-between gap-space-md font-label-sm text-label-sm text-on-surface-variant">
-          <div className="flex items-center gap-space-md">
-            <span>© 2025 Sir Khurram Hussain Academic Studio. All rights reserved.</span>
-          </div>
-          <div className="flex items-center gap-space-md text-center md:text-right">
-            <span>Editorial Archival System</span>
-            <span className="text-outline">•</span>
-            <span>Coordinate 24.8607° N, 67.0011° E</span>
-          </div>
+
+        <div className="mt-24 border-t border-white/10 pt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between text-xs text-ice/60 font-mono">
+          <p>© 2026 Sir Khurram Hussain · Academic Studio</p>
+          <p>
+            Designed &amp; built by{" "}
+            <a className="link-u text-ice/80 hover:text-white" href="https://www.istiqeme.net/technologies" target="_blank" rel="noopener noreferrer">
+              Istiqeme Technologies
+            </a>
+          </p>
         </div>
       </div>
     </footer>

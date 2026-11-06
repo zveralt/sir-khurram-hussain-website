@@ -1,131 +1,71 @@
+import Link from "next/link";
+
+const tenets = [
+  {
+    n: "01",
+    title: "Understanding before examination language",
+    body: "Islamiyat rewards close reading of sources, context, and argument — not memorised model paragraphs. Students learn why an answer earns marks before they practise writing it.",
+  },
+  {
+    n: "02",
+    title: "Steady, structured progression",
+    body: "Video lessons, notes, and guided practice are meant to move in sequence: concept, then composition, then timed work. Pace is the student’s; sequence is the studio’s.",
+  },
+  {
+    n: "03",
+    title: "Written practice as discipline",
+    body: "SKH’s public teaching culture emphasises regular written work, composition, and time. The same habit is intended for digital tracks once they are live on the LMS.",
+  },
+];
+
 export function ManifestoSection() {
   return (
-    <section
-      className="section-anchor w-full bg-white dark:bg-[#081c34] text-[#172536] dark:text-on-surface py-24 lg:py-32 border-b border-[#071B33]/10 dark:border-primary-container/40"
-      id="manifesto"
-    >
-      <div className="max-w-7xl mx-auto px-margin-mobile lg:px-gutter">
-        <div className="flex items-center justify-between pb-6 mb-12 border-b border-[#071B33]/15 dark:border-primary-container/40">
-          <div className="flex items-center gap-3">
-            <span className="w-2.5 h-2.5 bg-[#123B65] dark:bg-primary" />
-            <span className="font-label-md text-label-md uppercase tracking-widest font-semibold text-[#123B65] dark:text-primary">
-              01 / The Pedagogy
-            </span>
-          </div>
-          <span className="font-label-sm text-label-sm uppercase tracking-widest text-[#64748B] dark:text-on-surface-variant">
-            Philosophy &amp; Teaching Method
-          </span>
-        </div>
-        <h2 className="font-headline-xl text-headline-lg lg:text-headline-xl uppercase font-bold tracking-tight text-[#071B33] dark:text-on-surface max-w-4xl mb-16 leading-[1.1]">
-          Understanding the Genesis of Every Concept.
-        </h2>
+    <section id="manifesto" className="section-anchor border-t border-line">
+      <div className="shell py-20 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          <div className="lg:col-span-5 space-y-6">
-            <p className="font-body-lg text-body-lg text-[#2A3B4D] dark:text-on-surface-variant leading-relaxed">
-              In Cambridge Islamiyat and Islamic Studies, meaning comes from understanding
-              sources, contexts, and how examiners expect arguments to be framed — not from
-              copying model answers without grasping why they earn marks.
-            </p>
-            <p className="font-body-md text-body-md text-[#4A5D73] dark:text-on-surface-variant/80 leading-relaxed">
-              The studio prioritises concept-first teaching: students learn to read texts closely,
-              connect themes across the syllabus, and express ideas with the clarity examiners
-              reward. For a direct statement of Sir Khurram&apos;s broader philosophy of
-              education, see the{" "}
-              <a
-                className="text-[#123B65] dark:text-primary underline underline-offset-2"
-                href="/teaching-philosophy"
-              >
-                teaching philosophy
-              </a>{" "}
-              page (includes a attributed quote from a public interview).
-            </p>
-            <div className="p-6 bg-[#F7F6F2] dark:bg-surface-container border-l-4 border-[#123B65] dark:border-primary mt-8 shadow-sm">
-              <span className="font-label-sm text-label-sm uppercase tracking-widest text-[#123B65] dark:text-primary font-semibold block mb-2">
-                Teaching Philosophy
-              </span>
-              <p className="font-body-md text-body-md italic text-[#172536] dark:text-on-surface">
-                &quot;When a student genuinely understands the foundational principles behind an
-                idea, intimidation turns into curiosity, and learning becomes natural.&quot;
+          <div className="lg:col-span-5" data-reveal>
+            <p className="eyebrow eyebrow-accent">Teaching</p>
+            <h2 className="mt-5 font-heading text-h2 font-semibold text-fg max-w-[13ch]">
+              Education as an art of understanding.
+            </h2>
+            <blockquote className="mt-10 border-l-2 border-accent-hot pl-6">
+              <p className="font-heading text-h3 font-medium text-fg leading-snug">
+                “Education is not just about studying and exams. Education is an art; the art of
+                learning, the art of implementing, the art of understanding.”
               </p>
-              <span className="font-label-sm text-label-sm text-[#64748B] dark:text-on-surface-variant mt-2 block font-medium">
-                — Sir Khurram Hussain
-              </span>
-            </div>
+              <footer className="mt-4 text-sm text-muted">
+                — Sir Khurram Hussain,{" "}
+                <a
+                  href="https://timesofyouth.com/exclusive-interview-of-khurram-hussain/"
+                  className="link-u text-fg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Times of Youth
+                </a>
+              </footer>
+            </blockquote>
+            <Link href="/teaching-philosophy" className="mt-10 inline-flex btn btn-ghost">
+              Read the philosophy <span className="arrow">→</span>
+            </Link>
           </div>
-          <div className="lg:col-span-7 flex flex-col divide-y divide-[#172536]/10 dark:divide-primary-container/40">
-            <div className="py-8 first:pt-0 group hover:bg-[#F7F6F2]/80 dark:hover:bg-surface-container/60 transition-colors p-4 rounded-none">
-              <div className="flex items-start gap-6">
-                <span className="font-headline-md text-headline-md font-bold text-[#64748B] dark:text-outline group-hover:text-[#123B65] dark:group-hover:text-primary transition-colors">
-                  01
-                </span>
-                <div className="space-y-2">
-                  <h3 className="font-headline-sm text-headline-sm uppercase font-bold text-[#172536] dark:text-on-surface tracking-tight">
-                    Foundational Conceptual Comprehension
-                  </h3>
-                  <p className="font-body-md text-body-md text-[#4A5D73] dark:text-on-surface-variant leading-relaxed">
-                    Every concept, derivation, and model is broken down into clear, intuitive
-                    building blocks. Students understand the logical basis before attempting
-                    complex numerical applications.
-                  </p>
-                  <div className="pt-2 flex flex-wrap items-center gap-3 font-label-sm text-[11px] uppercase tracking-wider text-[#123B65] dark:text-primary font-semibold">
-                    <span>Conceptual Genesis</span>
-                    <span>•</span>
-                    <span>Intuitive Visualization</span>
-                    <span>•</span>
-                    <span>No Blind Rote Memorization</span>
-                  </div>
+
+          <ol className="lg:col-span-7 divide-y divide-line">
+            {tenets.map((t, i) => (
+              <li
+                key={t.n}
+                className="py-8 first:pt-0 last:pb-0 grid grid-cols-[auto_1fr] gap-6"
+                data-reveal
+                style={{ ["--reveal-delay" as string]: `${i * 80}ms` }}
+              >
+                <span className="font-mono text-sm text-accent-hot leading-none pt-1">{t.n}</span>
+                <div>
+                  <h3 className="font-heading text-h3 font-semibold text-fg">{t.title}</h3>
+                  <p className="mt-3 text-[1.05rem] leading-relaxed text-soft max-w-prose">{t.body}</p>
                 </div>
-              </div>
-            </div>
-            <div className="py-8 group hover:bg-[#F7F6F2]/80 dark:hover:bg-surface-container/60 transition-colors p-4 rounded-none">
-              <div className="flex items-start gap-6">
-                <span className="font-headline-md text-headline-md font-bold text-[#64748B] dark:text-outline group-hover:text-[#123B65] dark:group-hover:text-primary transition-colors">
-                  02
-                </span>
-                <div className="space-y-2">
-                  <h3 className="font-headline-sm text-headline-sm uppercase font-bold text-[#172536] dark:text-on-surface tracking-tight">
-                    Structured Progression at Your Own Pace
-                  </h3>
-                  <p className="font-body-md text-body-md text-[#4A5D73] dark:text-on-surface-variant leading-relaxed">
-                    Work through modular video lessons, guided practice sets, and organized notes
-                    that scaffold difficulty incrementally—reinforcing core confidence before
-                    advanced problem sets.
-                  </p>
-                  <div className="pt-2 flex flex-wrap items-center gap-3 font-label-sm text-[11px] uppercase tracking-wider text-[#123B65] dark:text-primary font-semibold">
-                    <span>Modular Lessons</span>
-                    <span>•</span>
-                    <span>Incremental Difficulty</span>
-                    <span>•</span>
-                    <span>Active Problem-Solving</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="py-8 last:pb-0 group hover:bg-[#F7F6F2]/80 dark:hover:bg-surface-container/60 transition-colors p-4 rounded-none">
-              <div className="flex items-start gap-6">
-                <span className="font-headline-md text-headline-md font-bold text-[#64748B] dark:text-outline group-hover:text-[#123B65] dark:group-hover:text-primary transition-colors">
-                  03
-                </span>
-                <div className="space-y-2">
-                  <h3 className="font-headline-sm text-headline-sm uppercase font-bold text-[#172536] dark:text-on-surface tracking-tight">
-                    Targeted Problem-Solving &amp; Diagnostic Feedback
-                  </h3>
-                  <p className="font-body-md text-body-md text-[#4A5D73] dark:text-on-surface-variant leading-relaxed">
-                    Clear, annotated solution walkthroughs and targeted diagnostic assessments help
-                    pinpoint misunderstandings early, providing exact clarity on where and how to
-                    adjust.
-                  </p>
-                  <div className="pt-2 flex flex-wrap items-center gap-3 font-label-sm text-[11px] uppercase tracking-wider text-[#123B65] dark:text-primary font-semibold">
-                    <span>Step-by-Step Walkthroughs</span>
-                    <span>•</span>
-                    <span>Diagnostic Audits</span>
-                    <span>•</span>
-                    <span>Constructive Feedback</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>

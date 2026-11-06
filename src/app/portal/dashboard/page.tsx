@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { DashboardContent } from "@/app/portal/dashboard/DashboardContent";
+import { PageHeader } from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -9,13 +10,22 @@ export const metadata: Metadata = {
 
 export default function PortalDashboardPage() {
   return (
-    <main id="main-content" className="max-w-7xl mx-auto px-margin-mobile lg:px-gutter pb-24">
-      <h1 className="font-headline-xl text-headline-lg uppercase font-bold tracking-tight mb-4">
-        Dashboard
-      </h1>
-      <Suspense fallback={<p className="font-body-md text-[#475569] dark:text-on-surface-variant">Loading…</p>}>
-        <DashboardContent />
-      </Suspense>
-    </main>
+    <>
+      <PageHeader
+        eyebrow="Dashboard"
+        title={
+          <>
+            Your studio{" "}
+            <em className="italic">preview.</em>
+          </>
+        }
+        lede="Enrolments and files will appear here from Learn360. Until then, this is layout only."
+      />
+      <section className="shell pb-24 lg:pb-32">
+        <Suspense fallback={<p className="text-muted">Loading…</p>}>
+          <DashboardContent />
+        </Suspense>
+      </section>
+    </>
   );
 }

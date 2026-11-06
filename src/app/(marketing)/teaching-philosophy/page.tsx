@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MarketingShell } from "@/components/layout/MarketingShell";
+import { PageHeader } from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
   title: "Teaching philosophy",
@@ -11,53 +12,54 @@ export const metadata: Metadata = {
 export default function TeachingPhilosophyPage() {
   return (
     <MarketingShell>
-      <main
-        id="main-content"
-        className="w-full bg-white dark:bg-[#081c34] text-[#172536] dark:text-on-surface min-h-[calc(100vh-20rem)]"
-      >
-        <section className="max-w-7xl mx-auto px-margin-mobile lg:px-gutter py-24 lg:py-32">
-          <p className="font-label-md text-label-md uppercase tracking-widest text-[#123B65] dark:text-primary mb-4">
-            Teaching philosophy
+      <PageHeader
+        eyebrow="Philosophy"
+        title={
+          <>
+            Education as understanding —{" "}
+            <span className="text-accent-hot">not only scores.</span>
+          </>
+        }
+      />
+      <article className="shell pb-24 lg:pb-32">
+        <div className="max-w-2xl space-y-8 text-[1.1rem] leading-[1.75] text-soft">
+          <p>
+            In a published interview, Khurram Hussain described education as involving mental,
+            spiritual, and personal growth — broader than chasing grades alone. The conversation
+            also records his early desire to teach and the influence of a university mentor.
           </p>
-          <h1 className="font-headline-xl text-headline-lg lg:text-headline-xl uppercase font-bold tracking-tight mb-10">
-            Education as understanding — not only scores
-          </h1>
-          <div className="max-w-3xl space-y-8 font-body-lg text-body-md text-[#334155] dark:text-on-surface-variant leading-relaxed">
-            <p>
-              In a published interview, Khurram Hussain described education as involving mental, spiritual, and personal
-              growth — broader than chasing grades alone. The full conversation provides additional context on his
-              background and motivations.
+          <blockquote className="my-12 border-l-2 border-accent-hot pl-6">
+            <p className="font-heading text-h3 font-medium text-fg leading-snug">
+              “To me, education is not just about studying and exams. Education is an art; the art
+              of learning, the art of implementing, the art of understanding.”
             </p>
-            <blockquote className="border-l-4 border-[#123B65] dark:border-primary pl-6 py-2 bg-[#F7F6F2] dark:bg-surface-container/60">
-              <p className="italic">
-                &quot;To me, education is not just about studying and exams. Education is an art; the art of learning,
-                the art of implementing, the art of understanding.&quot;
-              </p>
-              <footer className="mt-3 font-label-sm text-label-sm uppercase tracking-wider text-[#123B65] dark:text-primary not-italic">
-                — From{" "}
-                <a
-                  href="https://timesofyouth.com/exclusive-interview-of-khurram-hussain/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline underline-offset-2"
-                >
-                  Times of Youth
-                </a>
-              </footer>
-            </blockquote>
-            <p>
-              For Islamiyat and Islamic Studies, that philosophy translates into reading sources carefully, connecting syllabus themes, and answering examination prompts with clear reasoning — not memorising disconnected “model paragraphs.”
-            </p>
-            <Link
-              href="/#manifesto"
-              className="font-label-md text-[#123B65] dark:text-primary uppercase tracking-wider inline-flex items-center gap-2"
-            >
-              <span className="material-symbols-outlined text-[18px]">arrow_back</span>
-              Related section on the home page
-            </Link>
-          </div>
-        </section>
-      </main>
+            <footer className="mt-4 text-sm text-muted not-italic">
+              — From{" "}
+              <a
+                href="https://timesofyouth.com/exclusive-interview-of-khurram-hussain/"
+                className="link-u text-fg"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Times of Youth
+              </a>
+            </footer>
+          </blockquote>
+          <p>
+            For Islamiyat and Islamic Studies, that philosophy becomes close reading of sources,
+            connecting syllabus themes, and answering examination prompts with clear reasoning —
+            rather than memorising disconnected model paragraphs.
+          </p>
+          <p>
+            SKH’s public materials add a second, practical layer: complete Cambridge coverage,
+            regular written practice, composition, and time. The studio intends the same sequence
+            for digital programmes once they are live on the LMS.
+          </p>
+          <Link href="/#manifesto" className="inline-flex btn btn-ghost mt-4">
+            ← Related home section
+          </Link>
+        </div>
+      </article>
     </MarketingShell>
   );
 }

@@ -1,24 +1,27 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { aarkLmsPublicUrl } from "@/lib/site";
 
 export default function PortalLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <SiteHeader />
-      <div className="pt-20 min-h-screen bg-[#F7F6F2] dark:bg-surface text-[#071B33] dark:text-on-surface">
-        <div className="max-w-7xl mx-auto px-margin-mobile lg:px-gutter py-4 flex justify-end">
+      <main id="main-content" className="pt-16 md:pt-[4.5rem] min-h-dvh">
+        <div className="shell py-4 flex justify-end border-b border-line">
           <Link
-            href="https://aark-academy.learn360lms.com/"
+            href={aarkLmsPublicUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-label-sm text-label-sm uppercase tracking-wider text-[#123B65] dark:text-primary border border-[#123B65]/30 px-3 py-1.5"
+            className="eyebrow link-u"
           >
-            Open LMS ↗
+            Official LMS ↗
           </Link>
         </div>
         {children}
-      </div>
+      </main>
+      <SiteFooter />
     </>
   );
 }

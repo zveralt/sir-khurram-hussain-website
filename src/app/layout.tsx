@@ -1,32 +1,35 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Space_Grotesk, Syne } from "next/font/google";
+import { IBM_Plex_Mono, Inter, Sora, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import {
-  defaultDescription,
-  siteName,
-  siteUrl,
-} from "@/lib/site";
-
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-syne",
-  weight: ["600", "700", "800"],
-  display: "swap",
-});
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-manrope",
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
+import { RevealObserver } from "@/components/RevealObserver";
+import { defaultDescription, siteName, siteUrl } from "@/lib/site";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
   weight: ["500", "600", "700"],
+  display: "swap",
+});
+
+const sora = Sora({
+  subsets: ["latin"],
+  variable: "--font-sora",
+  weight: ["600", "700"],
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  weight: ["400", "500", "600"],
+  display: "swap",
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  variable: "--font-ibm-plex-mono",
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -53,22 +56,15 @@ export const metadata: Metadata = {
     title: `${siteName} — Academic Studio`,
     description: defaultDescription,
   },
-  icons: {
-    icon: [{ url: "/favicon.ico" }],
-  },
-  alternates: {
-    canonical: siteUrl,
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  icons: { icon: [{ url: "/favicon.ico" }] },
+  alternates: { canonical: siteUrl },
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F7F6F2" },
-    { media: "(prefers-color-scheme: dark)", color: "#071B33" },
+    { media: "(prefers-color-scheme: light)", color: "#142b8c" },
+    { media: "(prefers-color-scheme: dark)", color: "#080f2d" },
   ],
 };
 
@@ -76,35 +72,35 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${syne.variable} ${manrope.variable} ${spaceGrotesk.variable} h-full`}
+      className={`${spaceGrotesk.variable} ${sora.variable} ${inter.variable} ${ibmPlexMono.variable} h-full`}
       suppressHydrationWarning
     >
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-      </head>
-      <body className="min-h-screen bg-[#F7F6F2] font-body-md text-[#172536] antialiased selection:bg-[#123B65] selection:text-white dark:bg-surface dark:text-on-surface dark:selection:bg-secondary-container dark:selection:text-on-secondary-container">
+      <body className="min-h-screen antialiased">
         <Script
           id="theme-no-flash"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(){
+  var d = document.documentElement;
+  d.classList.add('js-reveal');
   try {
     var saved = localStorage.getItem('theme');
     var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    var dark =
-      saved === 'dark' ||
-      ((saved === 'system' || !saved) && prefersDark);
-    document.documentElement.classList.toggle('dark', dark);
+    var dark = saved === 'dark' || ((saved === 'system' || !saved) && prefersDark);
+    d.classList.toggle('dark', dark);
+    d.style.colorScheme = dark ? 'dark' : 'light';
   } catch (e) {}
 })();`,
           }}
         />
-        <ThemeProvider>{children}</ThemeProvider>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-fg focus:text-bg focus:px-4 focus:py-2"
+        >
+          Skip to content
+        </a>
+        {children}
+        <RevealObserver />
       </body>
     </html>
   );

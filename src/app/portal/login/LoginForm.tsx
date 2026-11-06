@@ -2,7 +2,7 @@
 
 import { type FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { aarkLmsPublicUrl } from "@/lib/site";
 
 export function LoginForm() {
   const router = useRouter();
@@ -39,44 +39,28 @@ export function LoginForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4 max-w-md">
+    <form onSubmit={onSubmit} className="space-y-8 max-w-md">
       <div>
-        <label htmlFor="email" className="block font-label-sm text-[11px] uppercase tracking-wider text-[#64748B] dark:text-outline mb-1">
+        <label htmlFor="email" className="eyebrow">
           Email
         </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          required
-          autoComplete="email"
-          className="w-full bg-white dark:bg-surface-container border-b-2 border-[#071B33]/20 dark:border-primary-container/70 px-3 py-2.5 font-body-sm"
-        />
+        <input id="email" name="email" type="email" required autoComplete="email" className="field mt-2" />
       </div>
       <div>
-        <label htmlFor="displayName" className="block font-label-sm text-[11px] uppercase tracking-wider text-[#64748B] dark:text-outline mb-1">
+        <label htmlFor="displayName" className="eyebrow">
           Display name
         </label>
-        <input
-          id="displayName"
-          name="displayName"
-          type="text"
-          className="w-full bg-white dark:bg-surface-container border-b-2 border-[#071B33]/20 dark:border-primary-container/70 px-3 py-2.5 font-body-sm"
-        />
+        <input id="displayName" name="displayName" type="text" className="field mt-2" />
       </div>
-      {message ? <p className="font-body-sm text-red-600 dark:text-red-300">{message}</p> : null}
-      <button
-        type="submit"
-        disabled={status === "loading"}
-        className="w-full py-3 bg-[#071B33] dark:bg-primary text-white dark:text-on-primary font-label-md uppercase tracking-wider border border-[#071B33] dark:border-[#245B91] disabled:opacity-60"
-      >
+      {message ? <p className="text-sm text-red-700 dark:text-red-300">{message}</p> : null}
+      <button type="submit" disabled={status === "loading"} className="btn btn-ghost">
         {status === "loading" ? "Signing in…" : "Dev sign-in"}
       </button>
-      <p className="font-label-sm text-[10px] text-[#64748B] dark:text-outline uppercase tracking-wider">
-        Production: use the Learn360 login.{" "}
-        <Link href="https://aark-academy.learn360lms.com/" className="text-[#123B65] dark:text-primary underline" target="_blank" rel="noopener noreferrer">
+      <p className="text-xs text-muted">
+        Production:{" "}
+        <a href={aarkLmsPublicUrl} className="link-u text-fg" target="_blank" rel="noopener noreferrer">
           Open LMS
-        </Link>
+        </a>
       </p>
     </form>
   );

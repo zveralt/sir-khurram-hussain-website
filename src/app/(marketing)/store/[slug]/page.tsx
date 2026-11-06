@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MarketingShell } from "@/components/layout/MarketingShell";
+import { Cover } from "@/components/ui/Cover";
+import { FixtureMark } from "@/components/ui/FixtureMark";
 import {
   FIXTURE_CATEGORIES,
   getAllCatalogProducts,
@@ -18,10 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const p = getProductBySlug(slug);
   if (!p) return { title: "Not found" };
-  return {
-    title: p.title,
-    description: p.shortDescription,
-  };
+  return { title: p.title, description: p.shortDescription };
 }
 
 export default async function ProductPage({ params }: Props) {
@@ -30,85 +29,89 @@ export default async function ProductPage({ params }: Props) {
   if (!p) notFound();
 
   const cats = FIXTURE_CATEGORIES.filter((c) => p.categories.includes(c.id));
+  const displayTitle = p.title.replace(" (fixture)", "");
 
   return (
     <MarketingShell>
-      <main
-        id="main-content"
-        className="w-full bg-[#F7F6F2] dark:bg-surface text-[#071B33] dark:text-on-surface min-h-[calc(100vh-20rem)]"
-      >
-        <article className="max-w-7xl mx-auto px-margin-mobile lg:px-gutter py-24 lg:py-32">
-          <Link href="/store" className="font-label-md text-[#123B65] dark:text-primary uppercase tracking-wider inline-flex items-center gap-2 mb-8">
-            <span className="material-symbols-outlined text-[18px]">arrow_back</span>
-            Catalogue
-          </Link>
-          <div className="flex flex-wrap gap-2 mb-4">
-            <span className="font-label-sm text-label-sm uppercase tracking-widest text-[#123B65] dark:text-primary border border-[#123B65]/30 px-2 py-1">
-              {p.kind === "course" ? "Course" : "Resource"}
-            </span>
-            {cats.map((c) => (
-              <span key={c.id} className="font-label-sm text-[10px] uppercase tracking-wider border border-[#071B33]/15 dark:border-outline-variant/40 px-2 py-1">
-                {c.label}
-              </span>
-            ))}
-            {p.isFixture ? (
-              <span className="font-label-sm text-[10px] uppercase tracking-wider border border-amber-500/50 px-2 py-1 text-amber-900 dark:text-amber-100 bg-amber-50/90 dark:bg-amber-950/30">
-                Development fixture — not a live product
-              </span>
-            ) : null}
-          </div>
-          <h1 className="font-headline-xl text-headline-lg lg:text-headline-xl uppercase font-bold tracking-tight mb-6">{p.title}</h1>
-          <p className="font-body-lg text-body-md text-[#334155] dark:text-on-surface-variant max-w-3xl mb-10">{p.longDescription}</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div className="border border-[#071B33]/15 dark:border-primary-container/60 p-6 bg-white dark:bg-surface-container">
-              <h2 className="font-headline-sm text-headline-sm uppercase font-bold mb-4">Commercial</h2>
-              <p className="font-body-sm text-body-sm text-[#475569] dark:text-on-surface-variant mb-2">
-                <strong className="text-[#071B33] dark:text-on-surface">Price:</strong> {p.pricingLabel}
-              </p>
-              <p className="font-body-sm text-body-sm text-[#475569] dark:text-on-surface-variant">
-                <strong className="text-[#071B33] dark:text-on-surface">Format:</strong> {p.formatLabel}
-              </p>
-            </div>
-            <div className="border border-[#071B33]/15 dark:border-primary-container/60 p-6 bg-white dark:bg-surface-container">
-              <h2 className="font-headline-sm text-headline-sm uppercase font-bold mb-4">Next step</h2>
-              <p className="font-body-sm text-body-sm text-[#475569] dark:text-on-surface-variant mb-4">
-                Account creation, payment, and content unlock are handled by{" "}
-                <strong className="font-semibold">Aark Academy Learn360</strong>. This button opens the learner site in a new tab — it does not confirm purchase on its own.
-              </p>
-              <a
-                href={p.lmsEnrollmentUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 bg-[#071B33] dark:bg-primary text-white dark:text-on-primary font-label-lg uppercase tracking-wider border border-[#071B33] dark:border-[#245B91]"
-              >
-                {p.enrollmentCtaLabel}
-                <span className="material-symbols-outlined text-[18px]">open_in_new</span>
-              </a>
+      <article className="shell pt-16 pb-24 lg:pt-24 lg:pb-32">
+        <Link href="/store" className="eyebrow link-u text-muted hover:text-fg">
+          ← Catalogue
+        </Link>
+
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+          <div className="lg:col-span-5">
+            <div className="max-w-sm">
+              <Cover
+                title={displayTitle}
+                series={p.kind === "course" ? "Course" : "Resource"}
+                no="—"
+                tone={p.kind === "course" ? "ink" : "paper"}
+              />
             </div>
           </div>
-          {p.kind === "course" ? (
-            <div>
-              <h2 className="font-headline-sm text-headline-sm uppercase font-bold mb-4">Indicative outline</h2>
-              <ul className="space-y-3 border-t border-[#071B33]/10 dark:border-primary-container/40">
-                {p.syllabusHighlights.map((line) => (
-                  <li
-                    key={line}
-                    className="font-body-md text-body-md text-[#334155] dark:text-on-surface-variant pt-3 border-b border-[#071B33]/10 dark:border-primary-container/30 pb-3 flex gap-3"
-                  >
-                    <span className="font-headline-md text-[#123B65] dark:text-primary shrink-0">→</span>
-                    {line}
-                  </li>
-                ))}
-              </ul>
+          <div className="lg:col-span-7">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="eyebrow eyebrow-accent">{p.kind === "course" ? "Course" : "Resource"}</span>
+              {p.isFixture ? <FixtureMark /> : null}
             </div>
-          ) : (
-            <div>
-              <h2 className="font-headline-sm text-headline-sm uppercase font-bold mb-4">Resource type</h2>
-              <p className="font-body-md text-body-md text-[#334155] dark:text-on-surface-variant capitalize">{p.resourceType}</p>
-            </div>
-          )}
-        </article>
-      </main>
+            <h1 className="mt-5 font-display text-h1 font-semibold text-fg">{displayTitle}</h1>
+            <p className="mt-6 text-lede text-soft max-w-xl">{p.longDescription}</p>
+
+            <dl className="mt-10 grid grid-cols-2 gap-8 max-w-lg">
+              <div>
+                <dt className="eyebrow">Format</dt>
+                <dd className="mt-2 text-fg">{p.formatLabel}</dd>
+              </div>
+              <div>
+                <dt className="eyebrow">Price</dt>
+                <dd className="mt-2 text-fg">{p.pricingLabel}</dd>
+              </div>
+              {p.kind === "course" ? (
+                <div>
+                  <dt className="eyebrow">Level</dt>
+                  <dd className="mt-2 text-fg">{p.levelLabel}</dd>
+                </div>
+              ) : (
+                <div>
+                  <dt className="eyebrow">Type</dt>
+                  <dd className="mt-2 text-fg capitalize">{p.resourceType}</dd>
+                </div>
+              )}
+              <div>
+                <dt className="eyebrow">Categories</dt>
+                <dd className="mt-2 text-fg">{cats.map((c) => c.label).join(" · ")}</dd>
+              </div>
+            </dl>
+
+            <p className="mt-10 text-sm text-muted max-w-md">
+              Account creation, payment, and unlock happen on Aark Academy Learn360. The button
+              opens that site — it does not confirm a purchase here.
+            </p>
+            <a
+              href={p.lmsEnrollmentUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary mt-6"
+            >
+              {p.enrollmentCtaLabel} ↗
+            </a>
+          </div>
+        </div>
+
+        {p.kind === "course" ? (
+          <div className="mt-20 pt-12 border-t border-line">
+            <h2 className="font-heading text-h3 font-semibold text-fg">Indicative outline</h2>
+            <ol className="mt-8 divide-y divide-line border-y border-line max-w-2xl">
+              {p.syllabusHighlights.map((line, i) => (
+                <li key={line} className="py-5 grid grid-cols-[3rem_1fr] gap-4">
+                  <span className="font-mono text-accent-hot">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="text-soft leading-relaxed">{line}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        ) : null}
+      </article>
     </MarketingShell>
   );
 }

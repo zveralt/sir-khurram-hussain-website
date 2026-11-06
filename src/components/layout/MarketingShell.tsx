@@ -6,7 +6,9 @@ export function MarketingShell({ children }: { children: ReactNode }) {
   return (
     <>
       <SiteHeader />
-      <div className="pt-20">{children}</div>
+      <main id="main-content" className="pt-16 md:pt-[4.5rem]">
+        {children}
+      </main>
       <SiteFooter />
     </>
   );

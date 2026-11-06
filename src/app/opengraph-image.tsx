@@ -1,5 +1,4 @@
 import { ImageResponse } from "next/og";
-
 import { siteName, siteTagline } from "@/lib/site";
 
 export const alt = `${siteName} — ${siteTagline}`;
@@ -15,46 +14,51 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: 56,
-          background: "linear-gradient(135deg, #071B33 0%, #0d2038 42%, #123B65 100%)",
-          color: "#F7F6F2",
+          padding: 64,
+          background: "#080F2D",
+          color: "#FFFFFF",
           fontFamily: "system-ui, sans-serif",
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          <span
-            style={{
-              fontSize: 22,
-              letterSpacing: "0.35em",
-              textTransform: "uppercase",
-              color: "#a6c9fb",
-            }}
-          >
-            Academic Studio
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            fontSize: 16,
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            color: "#B9D5FF",
+          }}
+        >
+          <span>Academic Studio</span>
+          <span>2058</span>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <span style={{ fontSize: 68, lineHeight: 0.95, letterSpacing: "-0.04em", fontWeight: 700 }}>
+            Sir Khurram Hussain
           </span>
-          <span style={{ fontSize: 64, fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.04em" }}>
-            {siteName.toUpperCase()}
+          <span style={{ fontSize: 32, color: "#4169FF", fontWeight: 600 }}>
+            Clarity first. Confidence through understanding.
           </span>
-          <span style={{ fontSize: 26, color: "#c3c6d0", maxWidth: 720, lineHeight: 1.4 }}>
-            Cambridge Islamiyat &amp; Islamic Studies — digital courses and resources, with student
-            access through Aark Academy&apos;s LMS when connected.
+          <span style={{ fontSize: 22, color: "#A6B2CC", maxWidth: 740, lineHeight: 1.45 }}>
+            Cambridge O Level Islamiyat — digital courses and resources, with learner access through
+            Aark Academy.
           </span>
         </div>
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "flex-end",
-            borderTop: "1px solid rgba(166, 201, 251, 0.35)",
-            paddingTop: 28,
-            fontSize: 20,
-            color: "#83a6d6",
+            borderTop: "1px solid rgba(185,213,255,0.18)",
+            paddingTop: 24,
+            fontSize: 15,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "#A6B2CC",
           }}
         >
-          <span style={{ letterSpacing: "0.2em", textTransform: "uppercase", fontSize: 18 }}>
-            Istiqeme Technologies
-          </span>
-          <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 18 }}>KH · STUDIO</span>
+          <span>Istiqeme Technologies</span>
+          <span>Karachi</span>
         </div>
       </div>
     ),
