@@ -21,7 +21,7 @@ export function RevealObserver() {
           }
         }
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+      { rootMargin: "0px 0px -48px 0px", threshold: 0.01 },
     );
     nodes.forEach((n) => io.observe(n));
     return () => io.disconnect();

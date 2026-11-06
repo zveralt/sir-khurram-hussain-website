@@ -23,6 +23,9 @@
   --hero: #142b8c;
   --hero-fg: #ffffff;
   --plate: #dce6fb;
+  --mouse-x: 70%;
+  --mouse-y: 32%;
+  --glow-cursor: rgba(65, 105, 255, 0.14);
 }
 
 .dark {
@@ -44,6 +47,7 @@
   --hero: #080f2d;
   --hero-fg: #ffffff;
   --plate: #101d52;
+  --glow-cursor: rgba(65, 105, 255, 0.22);
 }
 
 @theme inline {
@@ -159,7 +163,7 @@
   .btn .arrow { transition: transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1); }
   .btn:hover .arrow { transform: translateX(4px); }
   .btn-primary { background: var(--accent-hot); color: #fff; }
-  .btn-primary:hover { background: #5b7cff; }
+  .btn-primary:hover { background: #5b7cff; box-shadow: 0 0 28px rgba(65, 105, 255, 0.35); }
   .btn-ghost { border: 1px solid var(--line-strong); color: var(--fg); background: transparent; }
   .btn-ghost:hover { border-color: var(--accent-hot); color: var(--accent-hot); }
   .btn-invert { background: #fff; color: var(--midnight); }
@@ -197,22 +201,10 @@
 
   .hero-surface {
     position: relative;
-    background: var(--hero);
+    background: color-mix(in srgb, var(--hero) 88%, transparent);
     color: var(--hero-fg);
     isolation: isolate;
     overflow: hidden;
-  }
-  .hero-surface::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background-image:
-      linear-gradient(rgba(185, 213, 255, 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(185, 213, 255, 0.08) 1px, transparent 1px);
-    background-size: 72px 72px;
-    mask-image: radial-gradient(ellipse 85% 80% at 78% 42%, #000 15%, transparent 78%);
-    pointer-events: none;
   }
   .hero-surface::after {
     content: "";
@@ -226,16 +218,97 @@
     pointer-events: none;
   }
 
+  .studio-grid-faint {
+    background-image:
+      linear-gradient(rgba(65, 105, 255, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(65, 105, 255, 0.07) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .dark .studio-grid-faint {
+    background-image:
+      linear-gradient(rgba(185, 213, 255, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(185, 213, 255, 0.07) 1px, transparent 1px);
+  }
+  .studio-grid-bright {
+    background-image:
+      linear-gradient(rgba(65, 105, 255, 0.28) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(65, 105, 255, 0.28) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .dark .studio-grid-bright {
+    background-image:
+      linear-gradient(rgba(185, 213, 255, 0.32) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(185, 213, 255, 0.32) 1px, transparent 1px);
+  }
+
+  .spot-surface {
+    position: relative;
+  }
+  .spot-surface::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(420px circle at var(--spot-x, 50%) var(--spot-y, 0%), var(--glow-cursor), transparent 70%);
+    opacity: 0;
+    transition: opacity 280ms ease;
+  }
+  .spot-surface:hover::before { opacity: 1; }
+
+  .tilt-card {
+    transform-style: preserve-3d;
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform 180ms ease-out;
+  }
+
+  .book-3d {
+    transform: perspective(1100px) rotateY(-12deg);
+    transform-origin: left center;
+    box-shadow:
+      12px 18px 40px -18px rgba(8, 15, 45, 0.45),
+      0 0 0 1px rgba(65, 105, 255, 0.12);
+    transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .group:hover .book-3d {
+    transform: perspective(1100px) rotateY(-18deg) translateY(-6px);
+  }
+
+  .orbit-ring {
+    animation: orbit-spin 48s linear infinite;
+  }
+  .orbit-label {
+    animation: orbit-counter 48s linear infinite;
+    transform: translate(-50%, -50%) rotate(var(--a, 0deg));
+  }
+
+  @keyframes orbit-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes orbit-counter {
+    from { transform: translate(-50%, -50%) rotate(var(--a, 0deg)); }
+    to { transform: translate(-50%, -50%) rotate(calc(var(--a, 0deg) - 360deg)); }
+  }
+
+  .path-draw {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: path-in 1.4s ease forwards;
+  }
+  @keyframes path-in {
+    to { stroke-dashoffset: 0; }
+  }
+
   .band-royal {
-    background: var(--royal);
+    background: color-mix(in srgb, var(--royal) 90%, transparent);
     color: #fff;
   }
   .band-deep {
-    background: var(--deep);
+    background: color-mix(in srgb, var(--deep) 92%, transparent);
     color: #fff;
   }
   .band-midnight {
-    background: var(--midnight);
+    background: color-mix(in srgb, var(--midnight) 92%, transparent);
     color: #fff;
   }
 
@@ -286,5 +359,7 @@
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .js-reveal [data-reveal] { opacity: 1; transform: none; transition: none; }
-  .zoom-img, .btn .arrow { transition: none; }
+  .zoom-img, .btn .arrow, .book-3d, .tilt-card { transition: none; }
+  .orbit-ring, .orbit-label, .path-draw { animation: none; }
+  .group:hover .book-3d { transform: none; }
 }

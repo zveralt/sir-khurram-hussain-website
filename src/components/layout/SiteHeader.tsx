@@ -110,7 +110,7 @@ export function SiteHeader() {
                 className="flex items-baseline justify-between py-4 font-heading text-[2rem] font-semibold leading-none text-white"
               >
                 Portal
-                <span className="font-mono text-[0.7rem] text-muted">06</span>
+                <span className="font-mono text-[0.7rem] text-muted">07</span>
               </Link>
             </li>
           </ul>

@@ -8,13 +8,15 @@ const columns = [
       { href: "/about", label: "About" },
       { href: "/teaching-philosophy", label: "Teaching philosophy" },
       { href: "/expertise", label: "Expertise" },
+      { href: "/faq", label: "Questions" },
     ],
   },
   {
     title: "Learn",
     links: [
       { href: "/store", label: "Course catalogue" },
-      { href: "/resources", label: "Library & resources" },
+      { href: "/resources", label: "Academic library" },
+      { href: "/#syllabus", label: "Syllabus map" },
       { href: "/portal/login", label: "Student portal" },
     ],
   },
@@ -22,13 +24,17 @@ const columns = [
 
 export function SiteFooter() {
   return (
-    <footer className="band-midnight">
+    <footer className="band-midnight border-t border-white/10">
       <div className="shell pt-24 pb-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14">
           <div className="lg:col-span-6">
-            <p className="font-display text-h2 text-white max-w-xl">
-              Clarity first.{" "}
-              <span className="text-accent-hot">Confidence</span> through understanding.
+            <p className="font-display text-h1 text-white max-w-[14ch]">
+              A digital academic
+              <span className="text-accent-hot"> studio.</span>
+            </p>
+            <p className="mt-6 max-w-md text-ice/80 leading-relaxed">
+              Cambridge Islamiyat, structured study, and honest labels about what is live versus
+              still being connected.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Link href="/store" className="btn btn-primary">
@@ -58,10 +64,26 @@ export function SiteFooter() {
           <div className="lg:col-span-2">
             <p className="eyebrow !text-ice/70">SKH admissions</p>
             <ul className="mt-6 space-y-3 text-[0.9375rem] text-white/80">
-              <li><a className="link-u hover:text-white" href={`tel:${skhContact.phoneTel}`}>{skhContact.phoneDisplay}</a></li>
-              <li><a className="link-u hover:text-white" href={`mailto:${skhContact.email}`}>{skhContact.email}</a></li>
-              <li><a className="link-u hover:text-white" href={skhContact.web} target="_blank" rel="noopener noreferrer">skh.com.pk ↗</a></li>
-              <li><a className="link-u hover:text-white" href={aarkLmsPublicUrl} target="_blank" rel="noopener noreferrer">Aark Academy LMS ↗</a></li>
+              <li>
+                <a className="link-u hover:text-white" href={`tel:${skhContact.phoneTel}`}>
+                  {skhContact.phoneDisplay}
+                </a>
+              </li>
+              <li>
+                <a className="link-u hover:text-white" href={`mailto:${skhContact.email}`}>
+                  {skhContact.email}
+                </a>
+              </li>
+              <li>
+                <a className="link-u hover:text-white" href={skhContact.web} target="_blank" rel="noopener noreferrer">
+                  skh.com.pk ↗
+                </a>
+              </li>
+              <li>
+                <a className="link-u hover:text-white" href={aarkLmsPublicUrl} target="_blank" rel="noopener noreferrer">
+                  Aark Academy LMS ↗
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -70,7 +92,12 @@ export function SiteFooter() {
           <p>© 2026 Sir Khurram Hussain · Academic Studio</p>
           <p>
             Designed &amp; built by{" "}
-            <a className="link-u text-ice/80 hover:text-white" href="https://www.istiqeme.net/technologies" target="_blank" rel="noopener noreferrer">
+            <a
+              className="link-u text-ice/80 hover:text-white"
+              href="https://www.istiqeme.net/technologies"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Istiqeme Technologies
             </a>
           </p>

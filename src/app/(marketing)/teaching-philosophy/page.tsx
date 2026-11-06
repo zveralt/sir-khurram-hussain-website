@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AnswerStudio } from "@/components/sections/AnswerStudio";
+import { ApproachSection } from "@/components/sections/ApproachSection";
+import { LearningJourney } from "@/components/sections/LearningJourney";
 import { MarketingShell } from "@/components/layout/MarketingShell";
 import { PageHeader } from "@/components/ui/PageHeader";
 
@@ -21,7 +24,7 @@ export default function TeachingPhilosophyPage() {
           </>
         }
       />
-      <article className="shell pb-24 lg:pb-32">
+      <article className="shell pb-8">
         <div className="max-w-2xl space-y-8 text-[1.1rem] leading-[1.75] text-soft">
           <p>
             In a published interview, Khurram Hussain described education as involving mental,
@@ -60,6 +63,9 @@ export default function TeachingPhilosophyPage() {
           </Link>
         </div>
       </article>
+      <ApproachSection />
+      <LearningJourney />
+      <AnswerStudio />
     </MarketingShell>
   );
 }

@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/expertise",
     "/resources",
     "/contact",
+    "/faq",
     "/store",
     "/portal/login",
     "/portal/dashboard",

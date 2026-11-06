@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { MarketingShell } from "@/components/layout/MarketingShell";
 import { EnrollmentSection } from "@/components/sections/EnrollmentSection";
+import { KnowledgeFaq } from "@/components/sections/KnowledgeFaq";
+import { StudioVsCampus } from "@/components/sections/StudioVsCampus";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { skhContact } from "@/lib/site";
 
@@ -58,7 +60,9 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+      <StudioVsCampus />
       <EnrollmentSection sectionId="contact-enquiry" inquirySource="contact-page" />
+      <KnowledgeFaq />
     </MarketingShell>
   );
 }

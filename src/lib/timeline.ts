@@ -1,0 +1,42 @@
+export const ACADEMIC_MILESTONES = [
+  {
+    n: "01",
+    title: "Classroom teaching — Islamiyat",
+    period: "As published on SKH",
+    body: "SKH’s public faculty listing places Sir Khurram Hussain under Islamiyat, with 18 years of teaching experience stated on that page.",
+    source: "skh.com.pk faculty listing",
+    href: "https://www.skh.com.pk/",
+  },
+  {
+    n: "02",
+    title: "Study companions & notes",
+    period: "Published resource index",
+    body: "SKH maintains a public books-and-notes index covering Qur’anic passages, seerah, hadith, caliphs, pillars, and examination review volumes.",
+    source: "skh.com.pk/booksnotes",
+    href: "https://www.skh.com.pk/booksnotes/",
+  },
+  {
+    n: "03",
+    title: "SKH Solutions",
+    period: "Karachi network",
+    body: "Founder and academic face of SKH Solutions, a Cambridge-aligned O and A Level coaching network across five Karachi campuses, with an emphasis on weekly written practice.",
+    source: "skh.com.pk",
+    href: "https://www.skh.com.pk/",
+  },
+  {
+    n: "04",
+    title: "Education as more than grades",
+    period: "Public interview",
+    body: "In a Times of Youth interview he described education as an art of learning, implementing, and understanding — broader than studying for exams.",
+    source: "Times of Youth",
+    href: "https://timesofyouth.com/exclusive-interview-of-khurram-hussain/",
+  },
+  {
+    n: "05",
+    title: "Academic Studio",
+    period: "Digital layer — in progress",
+    body: "This site is the digital discovery layer. Learner accounts, payments, and file access are intended through Aark Academy’s LMS once the catalogue is connected. It does not replace SKH campus admissions.",
+    source: "This platform",
+    href: "/store",
+  },
+] as const;
