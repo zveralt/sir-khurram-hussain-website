@@ -24,7 +24,10 @@ export function DigitalLibrary({ compact = false }: { compact?: boolean }) {
   );
 
   return (
-    <section id="library" className={`section-anchor ${compact ? "" : "border-t border-line"}`}>
+    <section
+      id="library"
+      className={`section-anchor atmosphere-grid ${compact ? "" : "border-t border-line"}`}
+    >
       <div className={`shell ${compact ? "pb-24 lg:pb-32" : "py-20 lg:py-28"}`}>
         {compact ? null : (
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8" data-reveal>

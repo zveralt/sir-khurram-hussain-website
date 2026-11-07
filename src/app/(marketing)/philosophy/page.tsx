@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "Sir Khurram Hussain on education as more than grades — sources from a public Times of Youth interview.",
 };
 
-export default function TeachingPhilosophyPage() {
+export default function PhilosophyPage() {
   return (
     <MarketingShell>
       <PageHeader

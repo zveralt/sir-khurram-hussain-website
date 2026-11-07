@@ -15,7 +15,7 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 64,
-          background: "#080F2D",
+          background: "#020817",
           color: "#FFFFFF",
           fontFamily: "system-ui, sans-serif",
         }}
@@ -27,7 +27,7 @@ export default function OpenGraphImage() {
             fontSize: 16,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
-            color: "#B9D5FF",
+            color: "#C6D8F5",
           }}
         >
           <span>Academic Studio</span>
@@ -37,7 +37,7 @@ export default function OpenGraphImage() {
           <span style={{ fontSize: 68, lineHeight: 0.95, letterSpacing: "-0.04em", fontWeight: 700 }}>
             Sir Khurram Hussain
           </span>
-          <span style={{ fontSize: 32, color: "#4169FF", fontWeight: 600 }}>
+          <span style={{ fontSize: 32, color: "#1265FF", fontWeight: 600 }}>
             Clarity first. Confidence through understanding.
           </span>
           <span style={{ fontSize: 22, color: "#A6B2CC", maxWidth: 740, lineHeight: 1.45 }}>

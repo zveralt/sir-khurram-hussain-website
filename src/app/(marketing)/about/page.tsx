@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { AcademicTimeline } from "@/components/sections/AcademicTimeline";
-import { StudioVsCampus } from "@/components/sections/StudioVsCampus";
-import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { MarketingShell } from "@/components/layout/MarketingShell";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { portraits } from "@/lib/media";
@@ -29,7 +26,7 @@ export default function AboutPage() {
         lede="Public record, cited. Nothing here is invented to fill a page."
       />
 
-      <section className="shell pb-8">
+      <section className="shell pb-24 lg:pb-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           <figure className="lg:col-span-5" data-reveal>
             <div className="geo-frame">
@@ -72,8 +69,7 @@ export default function AboutPage() {
               <strong className="text-fg font-medium">SKH Solutions</strong>, a Karachi O and A Level
               coaching network that emphasises Cambridge syllabus coverage, weekly written practice,
               and multi-campus access. SKH’s faculty listing places him under{" "}
-              <strong className="text-fg font-medium">Islamiyat</strong>, with 18 years of teaching
-              experience stated on that page.
+              <strong className="text-fg font-medium">Islamiyat</strong>.
             </p>
             <p>
               Academic Studio is the digital layer: discovery here; learner access and commerce
@@ -86,7 +82,7 @@ export default function AboutPage() {
               attribution, on the teaching philosophy page.
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
-              <Link href="/teaching-philosophy" className="btn btn-primary">
+              <Link href="/philosophy" className="btn btn-primary">
                 Teaching philosophy <span className="arrow">→</span>
               </Link>
               <Link href="/expertise" className="btn btn-ghost">
@@ -96,9 +92,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <AcademicTimeline />
-      <TestimonialsSection />
-      <StudioVsCampus />
     </MarketingShell>
   );
 }

@@ -62,9 +62,7 @@ export function ResourcesSection({ compact = false }: { compact?: boolean }) {
                 rel={v.external ? "noopener noreferrer" : undefined}
                 className="group block"
               >
-                <div className="book-3d">
-                  <Cover title={v.title} series={v.series} no={v.no} tone={v.tone} />
-                </div>
+                <Cover title={v.title} series={v.series} no={v.no} tone={v.tone} />
                 <p className="mt-6 text-sm leading-relaxed text-soft">{v.body}</p>
                 <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-fg">
                   {v.cta}

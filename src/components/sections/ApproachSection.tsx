@@ -26,7 +26,7 @@ const pillars = [
 
 export function ApproachSection() {
   return (
-    <section id="approach" className="section-anchor border-t border-line">
+    <section id="approach" className="section-anchor atmosphere-grid border-t border-line">
       <div className="shell py-20 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           <div className="lg:col-span-5" data-reveal>
@@ -39,7 +39,7 @@ export function ApproachSection() {
               lesson seen at different depths — the studio’s reading of Sir Khurram’s public
               teaching emphasis.
             </p>
-            <Link href="/teaching-philosophy" className="mt-10 inline-flex btn btn-ghost">
+            <Link href="/philosophy" className="mt-10 inline-flex btn btn-ghost">
               Teaching philosophy <span className="arrow">→</span>
             </Link>
           </div>

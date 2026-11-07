@@ -19,7 +19,7 @@ const notes = [
 
 export function AboutSection() {
   return (
-    <section id="about" className="section-anchor border-t border-line">
+    <section id="about" className="section-anchor atmosphere-grid border-t border-line">
       <div className="shell py-20 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <figure className="lg:col-span-5 group" data-reveal>

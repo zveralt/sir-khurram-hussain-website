@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { DigitalLibrary } from "@/components/sections/DigitalLibrary";
-import { ResourcesSection } from "@/components/sections/ResourcesSection";
 import { MarketingShell } from "@/components/layout/MarketingShell";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { ResourcesSection } from "@/components/sections/ResourcesSection";
 
 export const metadata: Metadata = {
   title: "Resources",
@@ -17,13 +16,12 @@ export default function ResourcesPage() {
         eyebrow="Library"
         title={
           <>
-            A curated academic{" "}
-            <span className="text-accent-hot">archive.</span>
+            Notes, worksheets,{" "}
+            <span className="text-accent-hot">study companions.</span>
           </>
         }
-        lede="Titles from SKH’s public books-and-notes index. Typographic covers only. Live files live on the LMS."
+        lede="A digital academic library. Searchable catalogue lives on the storefront; live files live on the LMS."
       />
-      <DigitalLibrary compact />
       <ResourcesSection compact />
     </MarketingShell>
   );

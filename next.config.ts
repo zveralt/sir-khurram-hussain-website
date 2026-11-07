@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [{ source: "/teaching-philosophy", destination: "/philosophy", permanent: true }];
+  },
   cacheComponents: true,
   partialPrefetching: true,
   images: {

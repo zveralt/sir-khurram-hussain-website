@@ -89,14 +89,12 @@ export function CatalogToolbar({ categories, products }: Props) {
         {filtered.map((p, i) => (
           <li key={p.id}>
             <Link href={`/store/${p.slug}`} className="group block">
-              <div className="book-3d">
-                <Cover
-                  title={p.title.replace(" (fixture)", "")}
-                  series={p.kind === "course" ? "Course" : "Resource"}
-                  no={i + 1}
-                  tone={tones[i % tones.length]}
-                />
-              </div>
+              <Cover
+                title={p.title.replace(" (fixture)", "")}
+                series={p.kind === "course" ? "Course" : "Resource"}
+                no={i + 1}
+                tone={tones[i % tones.length]}
+              />
               <div className="mt-5 flex items-center justify-between gap-3">
                 <span className="eyebrow">{p.formatLabel}</span>
                 {p.isFixture ? <FixtureMark /> : null}

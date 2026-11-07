@@ -3,7 +3,7 @@ import { FixtureMark } from "@/components/ui/FixtureMark";
 
 export function CohortsSection() {
   return (
-    <section id="cohorts" className="section-anchor band-deep">
+    <section id="cohorts" className="section-anchor atmosphere-grid band-deep">
       <div className="shell py-20 lg:py-28">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8" data-reveal>
           <div>

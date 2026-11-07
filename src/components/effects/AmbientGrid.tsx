@@ -57,24 +57,14 @@ export function AmbientGrid() {
   }, []);
 
   return (
-    <div ref={ref} aria-hidden className="pointer-events-none fixed inset-0 z-0">
-      <div className="absolute inset-0 studio-grid-faint opacity-70" />
-      <div
-        className="absolute inset-0 studio-grid-bright max-md:hidden motion-reduce:hidden [@media(hover:none)]:hidden"
-        style={{
-          WebkitMaskImage:
-            "radial-gradient(circle 240px at var(--mouse-x) var(--mouse-y), black 0%, transparent 78%)",
-          maskImage:
-            "radial-gradient(circle 240px at var(--mouse-x) var(--mouse-y), black 0%, transparent 78%)",
-        }}
-      />
-      <div
-        className="absolute inset-0 max-md:hidden motion-reduce:hidden [@media(hover:none)]:hidden"
-        style={{
-          background:
-            "radial-gradient(circle 240px at var(--mouse-x) var(--mouse-y), var(--glow-cursor), transparent 72%)",
-        }}
-      />
+    <div
+      ref={ref}
+      aria-hidden
+      className="adaptive-grid pointer-events-none fixed inset-0 z-0 motion-reduce:opacity-90"
+    >
+      <div className="absolute inset-0 studio-grid-base" />
+      <div className="absolute inset-0 studio-grid-cursor max-md:opacity-0 [@media(hover:none)]:opacity-0 motion-reduce:opacity-35" />
+      <div className="adaptive-grid__glow absolute inset-0 max-md:opacity-0 [@media(hover:none)]:opacity-0 motion-reduce:opacity-20" />
     </div>
   );
 }

@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { StudyGuideSection } from "@/components/sections/StudyGuideSection";
-import { SyllabusMap } from "@/components/sections/SyllabusMap";
 import { MarketingShell } from "@/components/layout/MarketingShell";
 import { PageHeader } from "@/components/ui/PageHeader";
 
@@ -24,7 +22,7 @@ export default function ExpertisePage() {
         }
         lede="Only subjects we can source publicly. Other SKH subjects are taught by other named specialists."
       />
-      <section className="shell pb-8">
+      <section className="shell pb-24 lg:pb-32">
         <div className="divide-y divide-line border-y border-line">
           <article className="grid grid-cols-1 md:grid-cols-12 gap-8 py-12">
             <p className="md:col-span-3 eyebrow eyebrow-accent pt-1">2058</p>
@@ -71,8 +69,6 @@ export default function ExpertisePage() {
           </article>
         </div>
       </section>
-      <SyllabusMap />
-      <StudyGuideSection />
     </MarketingShell>
   );
 }
