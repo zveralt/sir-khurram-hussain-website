@@ -9,6 +9,14 @@ import { primaryNav } from "@/lib/navigation";
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -29,7 +37,9 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="site-header fixed inset-x-0 top-0 z-50">
+      <header
+        className={`site-header fixed inset-x-0 top-0 z-50${scrolled ? " site-header--scrolled" : ""}`}
+      >
         <div className="shell flex h-16 md:h-[4.5rem] items-center gap-5 md:gap-6">
           <Link href="/" className="flex items-baseline gap-2.5 min-w-0 shrink-0" onClick={() => setOpen(false)}>
             <span className="site-header__logo font-heading text-[0.98rem] sm:text-[1.06rem] font-semibold tracking-[-0.02em]">
@@ -72,7 +82,7 @@ export function SiteHeader() {
             </Link>
             <button
               type="button"
-              className="lg:hidden inline-flex h-10 w-10 items-center justify-center"
+              className="site-header__menu-btn lg:hidden inline-flex items-center justify-center"
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? "Close menu" : "Open menu"}
