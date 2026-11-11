@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { CatalogCategory, CatalogProduct } from "@/lib/catalog/types";
 import { Cover } from "@/components/ui/Cover";
+import { Spotlight } from "@/components/ui/Spotlight";
 import { FixtureMark } from "@/components/ui/FixtureMark";
 
 type Props = {
@@ -88,20 +89,27 @@ export function CatalogToolbar({ categories, products }: Props) {
       <ul className="mt-10 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-10">
         {filtered.map((p, i) => (
           <li key={p.id}>
-            <Link href={`/store/${p.slug}`} className="group block">
-              <Cover
-                title={p.title.replace(" (fixture)", "")}
-                series={p.kind === "course" ? "Course" : "Resource"}
-                no={i + 1}
-                tone={tones[i % tones.length]}
-              />
-              <div className="mt-5 flex items-center justify-between gap-3">
-                <span className="eyebrow">{p.formatLabel}</span>
-                {p.isFixture ? <FixtureMark /> : null}
-              </div>
-              <h2 className="mt-2 font-heading text-xl font-semibold leading-snug text-fg">{p.title.replace(" (fixture)", "")}</h2>
-              <p className="mt-2 text-sm text-soft line-clamp-3">{p.shortDescription}</p>
-            </Link>
+            <Spotlight className="h-full">
+              <Link
+                href={`/store/${p.slug}`}
+                className="group card-glow block h-full rounded-[var(--spot-radius)] border border-line bg-raised p-5"
+              >
+                <Cover
+                  title={p.title.replace(" (fixture)", "")}
+                  series={p.kind === "course" ? "Course" : "Resource"}
+                  no={i + 1}
+                  tone={tones[i % tones.length]}
+                />
+                <div className="mt-5 flex items-center justify-between gap-3">
+                  <span className="eyebrow">{p.formatLabel}</span>
+                  {p.isFixture ? <FixtureMark /> : null}
+                </div>
+                <h2 className="mt-2 font-heading text-xl font-semibold leading-snug text-fg">
+                  {p.title.replace(" (fixture)", "")}
+                </h2>
+                <p className="mt-2 text-sm text-soft line-clamp-3">{p.shortDescription}</p>
+              </Link>
+            </Spotlight>
           </li>
         ))}
       </ul>

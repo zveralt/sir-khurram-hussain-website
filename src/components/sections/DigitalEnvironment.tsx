@@ -1,3 +1,4 @@
+import { Spotlight } from "@/components/ui/Spotlight";
 import { aarkLmsPublicUrl } from "@/lib/site";
 
 const items = [
@@ -44,10 +45,14 @@ export function DigitalEnvironment() {
         </div>
         <ul className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-px bg-line border border-line">
           {items.map((item, i) => (
-            <li key={item.title} className="bg-bg p-8 lg:p-10" data-reveal style={{ ["--reveal-delay" as string]: `${i * 50}ms` }}>
-              <p className="eyebrow">{item.state}</p>
-              <h3 className="mt-4 font-heading text-h3 font-semibold text-fg">{item.title}</h3>
-              <p className="mt-3 text-soft leading-relaxed">{item.body}</p>
+            <li key={item.title} data-reveal style={{ ["--reveal-delay" as string]: `${i * 50}ms` }}>
+              <Spotlight className="h-full" style={{ ["--spot-radius" as string]: "0" }}>
+                <article className="card-glow h-full bg-bg p-8 lg:p-10">
+                  <p className="eyebrow">{item.state}</p>
+                  <h3 className="mt-4 font-heading text-h3 font-semibold text-fg">{item.title}</h3>
+                  <p className="mt-3 text-soft leading-relaxed">{item.body}</p>
+                </article>
+              </Spotlight>
             </li>
           ))}
         </ul>

@@ -1,3 +1,5 @@
+import { Spotlight } from "@/components/ui/Spotlight";
+
 const principles = [
   {
     n: "01",
@@ -31,16 +33,15 @@ export function TestimonialsSection() {
         </div>
         <ol className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-10">
           {principles.map((p, i) => (
-            <li
-              key={p.n}
-              className="border border-line p-8"
-              data-reveal
-              style={{ ["--reveal-delay" as string]: `${i * 80}ms` }}
-            >
-              <span className="font-mono text-sm text-accent-hot">{p.n}</span>
-              <h3 className="mt-4 font-heading text-h3 font-semibold text-fg">{p.title}</h3>
-              <p className="mt-4 text-soft leading-relaxed">{p.body}</p>
-              <p className="mt-6 eyebrow">{p.note}</p>
+            <li key={p.n} data-reveal style={{ ["--reveal-delay" as string]: `${i * 80}ms` }}>
+              <Spotlight className="h-full">
+                <article className="surface-card card-glow border border-line p-8 h-full">
+                  <span className="font-mono text-sm text-accent-hot">{p.n}</span>
+                  <h3 className="mt-4 font-heading text-h3 font-semibold text-fg">{p.title}</h3>
+                  <p className="mt-4 text-soft leading-relaxed">{p.body}</p>
+                  <p className="mt-6 eyebrow">{p.note}</p>
+                </article>
+              </Spotlight>
             </li>
           ))}
         </ol>

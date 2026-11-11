@@ -1,9 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, Inter, Sora, Space_Grotesk } from "next/font/google";
+import { Bricolage_Grotesque, IBM_Plex_Mono, Inter, Sora, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { ButtonGlowProvider } from "@/components/effects/ButtonGlowProvider";
 import { RevealObserver } from "@/components/RevealObserver";
 import { defaultDescription, siteName, siteUrl } from "@/lib/site";
+
+const bricolageGrotesque = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-bricolage-grotesque",
+  weight: ["600", "700", "800"],
+  display: "swap",
+});
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -72,7 +80,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${sora.variable} ${inter.variable} ${ibmPlexMono.variable} h-full`}
+      className={`${bricolageGrotesque.variable} ${spaceGrotesk.variable} ${sora.variable} ${inter.variable} ${ibmPlexMono.variable} h-full`}
       suppressHydrationWarning
     >
       <body className="min-h-screen antialiased">
@@ -100,6 +108,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         {children}
+        <ButtonGlowProvider />
         <RevealObserver />
       </body>
     </html>

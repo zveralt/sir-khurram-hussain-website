@@ -1,88 +1,187 @@
+"use client";
+
+import { GraduationCap, MapPin, PlayCircle, Tag, ArrowUpRight, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { FixtureMark } from "@/components/ui/FixtureMark";
+import { Spotlight } from "@/components/ui/Spotlight";
 
 export function CohortsSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setInView(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -5% 0px" },
+    );
+    io.observe(section);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <section id="cohorts" className="section-anchor atmosphere-grid band-deep">
-      <div className="shell py-20 lg:py-28">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8" data-reveal>
-          <div>
-            <p className="eyebrow !text-ice">Programmes</p>
-            <h2 className="mt-4 font-heading text-h2 font-semibold text-white max-w-[14ch]">
-              Cambridge pathways. Digitally structured.
+    <section
+      ref={sectionRef}
+      id="cohorts"
+      className={`section-anchor programmes-premium${inView ? " programmes-premium--inview" : ""}`}
+    >
+      <div className="programmes-premium__scene" aria-hidden>
+        <div className="programmes-premium__grid" />
+        <div className="programmes-premium__glow programmes-premium__glow--blue" />
+        <div className="programmes-premium__glow programmes-premium__glow--emerald" />
+        <div className="programmes-premium__fade programmes-premium__fade--top" />
+        <div className="programmes-premium__fade programmes-premium__fade--bottom" />
+      </div>
+
+      <div className="shell relative z-[1] py-20 lg:py-28">
+        <header className="programmes-premium__header">
+          <div className="programmes-premium__header-main">
+            <p className="programmes-premium__eyebrow eyebrow">Programmes</p>
+            <h2 className="programmes-premium__title mt-4 font-display text-h2 font-semibold">
+              <span className="programmes-premium__title-line">Cambridge pathways.</span>{" "}
+              <span className="programmes-premium__title-accent">Digitally structured.</span>
             </h2>
           </div>
-          <p className="max-w-sm text-ice/85 leading-relaxed">
+          <p className="programmes-premium__lede">
             Public teaching emphasis is O Level Islamiyat. Digital listings below are{" "}
-            <span className="text-white">fixtures</span> until the LMS catalogue is connected.
+            <span className="programmes-premium__lede-emphasis">fixtures</span> until the LMS
+            catalogue is connected.
           </p>
-        </div>
+        </header>
 
-        <div className="mt-16 space-y-0 border-t border-white/15">
-          <article className="grid grid-cols-1 lg:grid-cols-12 gap-8 py-12 border-b border-white/15" data-reveal>
-            <div className="lg:col-span-1 font-mono text-lg text-accent-hot">01</div>
-            <div className="lg:col-span-7">
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                <span className="eyebrow !text-ice">O Level · 2058</span>
-                <FixtureMark className="!text-ice" />
-              </div>
-              <h3 className="mt-4 font-heading text-h3 font-semibold text-white">
-                Islamiyat — syllabus core
-              </h3>
-              <p className="mt-4 max-w-xl text-ice/85 leading-relaxed">
-                Intended shape of the flagship digital track: Qur’anic passages, seerah, hadith, and
-                pillars, taught toward Cambridge assessment objectives. Module map, batches, and
-                pricing will come from the LMS.
-              </p>
-              <dl className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-6 text-sm">
-                <div>
-                  <dt className="eyebrow !text-ice/70">Level</dt>
-                  <dd className="mt-2 text-white">O Level</dd>
-                </div>
-                <div>
-                  <dt className="eyebrow !text-ice/70">Format</dt>
-                  <dd className="mt-2 text-white">Video + notes (LMS)</dd>
-                </div>
-                <div>
-                  <dt className="eyebrow !text-ice/70">Price</dt>
-                  <dd className="mt-2 text-white">Set in LMS</dd>
-                </div>
-              </dl>
-            </div>
-            <div className="lg:col-span-4 lg:flex lg:flex-col lg:items-end lg:justify-end">
-              <Link href="/store/o-level-islamiyat-core" className="btn btn-primary w-full lg:w-auto">
-                Open listing <span className="arrow">→</span>
-              </Link>
-            </div>
-          </article>
+        <ul className="programmes-premium__cards">
+          <li className="programmes-premium__cards-item programmes-premium__cards-item--featured">
+            <Spotlight className="programmes-premium__spot" borderRadius="1.75rem">
+              <article className="programmes-premium__card programmes-premium__card--featured">
+                <span className="programmes-premium__card-pattern" aria-hidden />
+                <span className="programmes-premium__card-watermark font-display" aria-hidden>
+                  01
+                </span>
 
-          <article className="grid grid-cols-1 lg:grid-cols-12 gap-8 py-12 border-b border-white/15" data-reveal>
-            <div className="lg:col-span-1 font-mono text-lg text-accent-hot">02</div>
-            <div className="lg:col-span-7">
-              <span className="eyebrow !text-ice">In person · Karachi</span>
-              <h3 className="mt-4 font-heading text-h3 font-semibold text-white">SKH Solutions coaching</h3>
-              <p className="mt-4 max-w-xl text-ice/85 leading-relaxed">
-                SKH publishes O and A Level support across five Karachi campuses. This site does not
-                replace admissions, timetables, or fees — confirm those with SKH.
-              </p>
-            </div>
-            <div className="lg:col-span-4 lg:flex lg:flex-col lg:items-end lg:justify-end">
-              <a
-                href="https://www.skh.com.pk/contact-us/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn border border-white/25 text-white hover:border-ice w-full lg:w-auto"
-              >
-                SKH contact ↗
-              </a>
-            </div>
-          </article>
-        </div>
+                <div className="programmes-premium__card-inner">
+                  <div className="programmes-premium__card-head">
+                    <div className="programmes-premium__card-pills">
+                      <span className="programmes-premium__pill">O Level · 2058</span>
+                      <FixtureMark className="programmes-premium__fixture" />
+                    </div>
+                    <span className="programmes-premium__card-index font-display" aria-hidden>
+                      <span className="programmes-premium__card-index-rule" />
+                      01
+                    </span>
+                  </div>
 
-        <p className="mt-10 text-sm text-ice/70" data-reveal>
+                  <h3 className="programmes-premium__card-title font-display">
+                    Islamiyat — syllabus core
+                  </h3>
+                  <p className="programmes-premium__card-body">
+                    Intended shape of the flagship digital track: Qur’anic passages, seerah, hadith,
+                    and pillars, taught toward Cambridge assessment objectives. Module map, batches,
+                    and pricing will come from the LMS.
+                  </p>
+
+                  <dl className="programmes-premium__meta">
+                    <div className="programmes-premium__meta-item">
+                      <GraduationCap
+                        className="programmes-premium__meta-icon"
+                        strokeWidth={1.65}
+                        aria-hidden
+                      />
+                      <div>
+                        <dt className="programmes-premium__meta-label">Level</dt>
+                        <dd className="programmes-premium__meta-value">O Level</dd>
+                      </div>
+                    </div>
+                    <div className="programmes-premium__meta-item">
+                      <PlayCircle
+                        className="programmes-premium__meta-icon"
+                        strokeWidth={1.65}
+                        aria-hidden
+                      />
+                      <div>
+                        <dt className="programmes-premium__meta-label">Format</dt>
+                        <dd className="programmes-premium__meta-value">Video + notes (LMS)</dd>
+                      </div>
+                    </div>
+                    <div className="programmes-premium__meta-item">
+                      <Tag className="programmes-premium__meta-icon" strokeWidth={1.65} aria-hidden />
+                      <div>
+                        <dt className="programmes-premium__meta-label">Price</dt>
+                        <dd className="programmes-premium__meta-value">Set in LMS</dd>
+                      </div>
+                    </div>
+                  </dl>
+
+                  <Link
+                    href="/store/o-level-islamiyat-core"
+                    className="programmes-premium__cta programmes-premium__cta--primary btn btn-primary"
+                  >
+                    Open listing <span className="programmes-premium__cta-arrow arrow">→</span>
+                  </Link>
+                </div>
+              </article>
+            </Spotlight>
+          </li>
+
+          <li className="programmes-premium__cards-item">
+            <Spotlight className="programmes-premium__spot" borderRadius="1.75rem">
+              <article className="programmes-premium__card programmes-premium__card--secondary">
+                <span
+                  className="programmes-premium__card-pattern programmes-premium__card-pattern--emerald"
+                  aria-hidden
+                />
+                <span className="programmes-premium__card-watermark font-display" aria-hidden>
+                  02
+                </span>
+
+                <div className="programmes-premium__card-inner">
+                  <div className="programmes-premium__card-head">
+                    <div className="programmes-premium__card-pills">
+                      <span className="programmes-premium__pill">In person · Karachi</span>
+                    </div>
+                    <span className="programmes-premium__card-index font-display" aria-hidden>
+                      <span className="programmes-premium__card-index-rule" />
+                      02
+                    </span>
+                  </div>
+
+                  <div className="programmes-premium__location-tile" aria-hidden>
+                    <MapPin className="programmes-premium__location-icon" strokeWidth={1.65} />
+                  </div>
+
+                  <h3 className="programmes-premium__card-title programmes-premium__card-title--secondary font-display">
+                    SKH Solutions coaching
+                  </h3>
+                  <p className="programmes-premium__card-body">
+                    SKH publishes O and A Level support across five Karachi campuses. This site does
+                    not replace admissions, timetables, or fees — confirm those with SKH.
+                  </p>
+
+                  <a
+                    href="https://www.skh.com.pk/contact-us/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="programmes-premium__cta programmes-premium__cta--ghost btn"
+                  >
+                    SKH contact <ArrowUpRight className="programmes-premium__cta-external" aria-hidden />
+                  </a>
+                </div>
+              </article>
+            </Spotlight>
+          </li>
+        </ul>
+
+        <p className="programmes-premium__catalogue">
           Full catalogue with search and filters —{" "}
-          <Link href="/store" className="link-u text-white">
+          <Link href="/store" className="programmes-premium__catalogue-link link-u">
             /store
+            <ArrowRight className="programmes-premium__catalogue-icon" aria-hidden />
           </Link>
         </p>
       </div>

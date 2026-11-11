@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { Spotlight } from "@/components/ui/Spotlight";
 import { SKH_BOOKS_URL, SYLLABUS_EDGES, SYLLABUS_NODES, SYLLABUS_NOTE } from "@/lib/syllabus";
 
 export function SyllabusMap() {
@@ -87,34 +88,36 @@ export function SyllabusMap() {
             </ul>
           </div>
 
-          <aside className="lg:col-span-4 relative z-[1] spot-surface border border-line-strong bg-raised p-7 lg:p-8">
-            <p className="eyebrow eyebrow-accent">
-              Paper {node.paper} · {node.n}
-            </p>
-            <h3 className="mt-4 font-heading text-h3 font-semibold text-fg">{node.title}</h3>
-            <p className="mt-4 text-soft leading-relaxed">{node.intro}</p>
-            <p className="mt-8 eyebrow">SKH companions</p>
-            <ul className="mt-3 space-y-2 text-sm text-fg">
-              {node.companions.map((c) => (
-                <li key={c} className="border-b border-line pb-2">
-                  {c}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8 flex flex-col gap-3">
-              <a
-                href={SKH_BOOKS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-ghost"
-              >
-                Open SKH index ↗
-              </a>
-              <Link href="/store" className="btn btn-primary">
-                Course fixtures <span className="arrow">→</span>
-              </Link>
-            </div>
-          </aside>
+          <Spotlight className="lg:col-span-4 relative z-[1] h-full">
+            <aside className="surface-card card-glow border border-line-strong bg-raised p-7 lg:p-8 h-full">
+              <p className="eyebrow eyebrow-accent">
+                Paper {node.paper} · {node.n}
+              </p>
+              <h3 className="mt-4 font-heading text-h3 font-semibold text-fg">{node.title}</h3>
+              <p className="mt-4 text-soft leading-relaxed">{node.intro}</p>
+              <p className="mt-8 eyebrow">SKH companions</p>
+              <ul className="mt-3 space-y-2 text-sm text-fg">
+                {node.companions.map((c) => (
+                  <li key={c} className="border-b border-line pb-2">
+                    {c}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8 flex flex-col gap-3">
+                <a
+                  href={SKH_BOOKS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-ghost"
+                >
+                  Open SKH index ↗
+                </a>
+                <Link href="/store" className="btn btn-primary">
+                  Course fixtures <span className="arrow">→</span>
+                </Link>
+              </div>
+            </aside>
+          </Spotlight>
         </div>
       </div>
     </section>

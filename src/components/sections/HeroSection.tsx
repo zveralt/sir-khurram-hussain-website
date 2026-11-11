@@ -5,7 +5,7 @@ import { portraits } from "@/lib/media";
 
 export function HeroSection() {
   return (
-    <section id="top" className="section-anchor hero-campaign">
+    <section id="top" className="section-anchor hero-campaign hero-scope">
       <div className="hero-campaign__plates" aria-hidden>
         <Image
           src={portraits.heroBackground}

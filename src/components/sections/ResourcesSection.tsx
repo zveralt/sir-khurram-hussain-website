@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Cover } from "@/components/ui/Cover";
+import { Spotlight } from "@/components/ui/Spotlight";
 
 const volumes = [
   {
@@ -56,21 +57,23 @@ export function ResourcesSection({ compact = false }: { compact?: boolean }) {
         <ul className={`${compact ? "" : "mt-16 "}grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14`}>
           {volumes.map((v, i) => (
             <li key={v.title} data-reveal style={{ ["--reveal-delay" as string]: `${i * 90}ms` }}>
-              <Link
-                href={v.href}
-                target={v.external ? "_blank" : undefined}
-                rel={v.external ? "noopener noreferrer" : undefined}
-                className="group block"
-              >
-                <Cover title={v.title} series={v.series} no={v.no} tone={v.tone} />
-                <p className="mt-6 text-sm leading-relaxed text-soft">{v.body}</p>
-                <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-fg">
-                  {v.cta}
-                  <span className="arrow transition-transform duration-300 group-hover:translate-x-1">
-                    {v.external ? "↗" : "→"}
+              <Spotlight className="h-full">
+                <Link
+                  href={v.href}
+                  target={v.external ? "_blank" : undefined}
+                  rel={v.external ? "noopener noreferrer" : undefined}
+                  className="group card-glow block h-full rounded-[var(--spot-radius)] border border-line bg-raised p-5"
+                >
+                  <Cover title={v.title} series={v.series} no={v.no} tone={v.tone} />
+                  <p className="mt-6 text-sm leading-relaxed text-soft">{v.body}</p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-fg">
+                    {v.cta}
+                    <span className="arrow transition-transform duration-300 group-hover:translate-x-1">
+                      {v.external ? "↗" : "→"}
+                    </span>
                   </span>
-                </span>
-              </Link>
+                </Link>
+              </Spotlight>
             </li>
           ))}
         </ul>

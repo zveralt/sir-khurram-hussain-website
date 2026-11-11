@@ -16,7 +16,7 @@ const tones = {
 export function Cover({ title, series, no, tone = "ink", className = "" }: Props) {
   return (
     <div
-      className={`relative aspect-[4/5] w-full overflow-hidden ${tones[tone]} transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:-translate-y-1 ${className}`}
+      className={`relative aspect-[4/5] w-full overflow-hidden ${tones[tone]} ${className}`}
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-10"

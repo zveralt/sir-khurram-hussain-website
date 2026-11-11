@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { type ReactNode, useRef } from "react";
+import { Spotlight } from "@/components/ui/Spotlight";
 
 const pillars = [
   {
@@ -64,40 +64,6 @@ function ApproachIcon({ kind }: { kind: (typeof pillars)[number]["icon"] }) {
   }
 }
 
-function ApproachCard({
-  children,
-  className = "",
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
-  const ref = useRef<HTMLElement>(null);
-
-  return (
-    <article
-      ref={ref}
-      className={`approach-card ${className}`}
-      onMouseMove={(e) => {
-        const node = ref.current;
-        if (!node) return;
-        if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
-        const r = node.getBoundingClientRect();
-        const x = ((e.clientX - r.left) / r.width) * 100;
-        const y = ((e.clientY - r.top) / r.height) * 100;
-        node.style.setProperty("--spot-x", `${x}%`);
-        node.style.setProperty("--spot-y", `${y}%`);
-      }}
-      onMouseLeave={() => {
-        ref.current?.style.removeProperty("--spot-x");
-        ref.current?.style.removeProperty("--spot-y");
-      }}
-    >
-      {children}
-      <span className="approach-card__spotlight" aria-hidden />
-    </article>
-  );
-}
-
 export function ApproachSection() {
   return (
     <section id="approach" className="section-anchor approach-premium section-band atmosphere atmosphere--feature band-deep">
@@ -134,16 +100,18 @@ export function ApproachSection() {
                 data-reveal
                 style={{ ["--reveal-delay" as string]: `${160 + i * 100}ms` }}
               >
-                <ApproachCard>
-                  <span className="approach-card__num" aria-hidden>
-                    {p.n}
-                  </span>
-                  <div className="approach-card__icon-wrap">
-                    <ApproachIcon kind={p.icon} />
-                  </div>
-                  <h3 className="approach-card__title font-heading font-semibold">{p.title}</h3>
-                  <p className="approach-card__body">{p.body}</p>
-                </ApproachCard>
+                <Spotlight className="h-full" size={400}>
+                  <article className="approach-card card-glow">
+                    <span className="approach-card__num" aria-hidden>
+                      {p.n}
+                    </span>
+                    <div className="approach-card__icon-wrap">
+                      <ApproachIcon kind={p.icon} />
+                    </div>
+                    <h3 className="approach-card__title font-heading font-semibold">{p.title}</h3>
+                    <p className="approach-card__body">{p.body}</p>
+                  </article>
+                </Spotlight>
               </li>
             ))}
           </ul>
