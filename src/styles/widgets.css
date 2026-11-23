@@ -64,7 +64,7 @@
     background: var(--heading-gradient);
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
+    color: var(--accent);
   }
   .widget-section-header__lede {
     margin-top: 1rem;

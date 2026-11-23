@@ -146,7 +146,7 @@
     background: var(--heading-gradient);
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
+    color: var(--accent);
   }
   .section-premium__lede {
     max-width: 46ch;

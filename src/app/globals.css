@@ -5417,7 +5417,7 @@
     background: var(--heading-gradient);
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
+    color: var(--accent);
   }
   .teaching-premium__quote-card {
     position: relative;
@@ -5487,7 +5487,7 @@
     color: var(--fg-muted);
   }
   :root:not(.dark) .teaching-premium__quote-cite {
-    color: rgba(74, 98, 138, 0.78);
+    color: var(--fg-muted);
   }
   .teaching-premium__quote-cite cite {
     font-style: normal;
