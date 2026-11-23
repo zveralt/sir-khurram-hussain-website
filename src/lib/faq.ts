@@ -1,3 +1,5 @@
+import { siteConfig } from "@/lib/site-config";
+
 export type FaqItem = {
   id: string;
   cat: "Courses" | "Resources" | "Islamiyat" | "Digital" | "Enrolment";
@@ -10,13 +12,13 @@ export const FAQ_ITEMS: FaqItem[] = [
     id: "lms",
     cat: "Digital",
     q: "Can I log in and start a course on this website?",
-    a: "Production learner access is Aark Academy Learn360. The portal page on this site is a development preview and does not authenticate a real student. When the LMS catalogue is connected, enrolment will complete there.",
+    a: "Learner access is through Aark Academy Learn360. Use the Student login link in the header; on-site portal pages link there. When the catalogue is fully connected, enrolment completes on Learn360.",
   },
   {
     id: "prices",
     cat: "Courses",
     q: "Why don’t courses show a price?",
-    a: "Listings marked as development fixtures exist so navigation can be reviewed. Prices, batches, and availability will come from the LMS. This site does not invent commercial terms.",
+    a: "Pricing and batches publish when the LMS catalogue is connected. This site does not list fees until they are confirmed for the live catalogue.",
   },
   {
     id: "skh-vs-studio",
@@ -46,12 +48,18 @@ export const FAQ_ITEMS: FaqItem[] = [
     id: "enquiry",
     cat: "Enrolment",
     q: "What happens when I send an enquiry?",
-    a: "The form posts to an inquiry endpoint. In production it requires a configured webhook; otherwise you will see an honest error, not a fake success. It does not enrol you or take payment.",
+    a: "Your message is sent to the studio inquiry endpoint. You receive confirmation when it is delivered. It does not take payment; campus placement is through SKH admissions.",
   },
   {
     id: "video",
     cat: "Digital",
     q: "Are video lessons available now?",
-    a: "Video, notes, and worksheets are planned as LMS products. Until the catalogue is connected, treat on-site listings as labelled fixtures rather than a live classroom.",
+    a: "Video, notes, and worksheets are planned as LMS products. They appear in the catalogue when lessons go live on Learn360.",
+  },
+  {
+    id: "good-to-know",
+    cat: "Resources",
+    q: "Good to know",
+    a: siteConfig.goodToKnow,
   },
 ];

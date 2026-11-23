@@ -3,8 +3,8 @@
 import { GraduationCap, MapPin, PlayCircle, Tag, ArrowUpRight, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { FixtureMark } from "@/components/ui/FixtureMark";
 import { Spotlight } from "@/components/ui/Spotlight";
+import { hasFees } from "@/lib/site-config";
 
 export function CohortsSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -50,9 +50,8 @@ export function CohortsSection() {
             </h2>
           </div>
           <p className="programmes-premium__lede">
-            Public teaching emphasis is O Level Islamiyat. Digital listings below are{" "}
-            <span className="programmes-premium__lede-emphasis">fixtures</span> until the LMS
-            catalogue is connected.
+            Public teaching emphasis is O Level Islamiyat. Digital listings connect to the LMS
+            catalogue when live.
           </p>
         </header>
 
@@ -69,7 +68,6 @@ export function CohortsSection() {
                   <div className="programmes-premium__card-head">
                     <div className="programmes-premium__card-pills">
                       <span className="programmes-premium__pill">O Level · 2058</span>
-                      <FixtureMark className="programmes-premium__fixture" />
                     </div>
                     <span className="programmes-premium__card-index font-display" aria-hidden>
                       <span className="programmes-premium__card-index-rule" />
@@ -109,13 +107,15 @@ export function CohortsSection() {
                         <dd className="programmes-premium__meta-value">Video + notes (LMS)</dd>
                       </div>
                     </div>
-                    <div className="programmes-premium__meta-item">
-                      <Tag className="programmes-premium__meta-icon" strokeWidth={1.65} aria-hidden />
-                      <div>
-                        <dt className="programmes-premium__meta-label">Price</dt>
-                        <dd className="programmes-premium__meta-value">Set in LMS</dd>
+                    {hasFees() ? (
+                      <div className="programmes-premium__meta-item">
+                        <Tag className="programmes-premium__meta-icon" strokeWidth={1.65} aria-hidden />
+                        <div>
+                          <dt className="programmes-premium__meta-label">Price</dt>
+                          <dd className="programmes-premium__meta-value">See fees</dd>
+                        </div>
                       </div>
-                    </div>
+                    ) : null}
                   </dl>
 
                   <Link

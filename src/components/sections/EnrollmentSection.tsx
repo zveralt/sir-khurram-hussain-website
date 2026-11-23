@@ -1,19 +1,71 @@
 "use client";
 
-import { type FormEvent, useState } from "react";
+import { CheckCircle2, ChevronDown, Clock, Loader2, Mail, MessageSquare } from "lucide-react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
+import { NextBatchesCard, ENQUIRY_BATCH_STORAGE_KEY } from "@/components/sections/NextBatchesCard";
+import { ENQUIRY_COURSE_STORAGE_KEY } from "@/lib/enquiry-course";
+import { SectionScene } from "@/components/ui/SectionScene";
+import { useSectionInView } from "@/hooks/useSectionInView";
+import { hasBatches } from "@/lib/site-config";
 import { skhContact } from "@/lib/site";
 
 type Props = { sectionId?: string; inquirySource?: string };
 
-const fieldClass = "field";
-const labelClass = "eyebrow";
-
 export function EnrollmentSection({
-  sectionId = "enroll",
+  sectionId = "register",
   inquirySource = "home-enrollment-section",
 }: Props) {
+  const { sectionRef, inView } = useSectionInView();
   const [status, setStatus] = useState<"idle" | "loading" | "error" | "success">("idle");
   const [message, setMessage] = useState<string | null>(null);
+  const [course, setCourse] = useState("");
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    const applyBatch = (label: string) => {
+      setCourse("skh-campus");
+      if (messageRef.current) {
+        const prefix = `Batch: ${label}\n`;
+        if (!messageRef.current.value.startsWith(prefix)) {
+          messageRef.current.value = `${prefix}${messageRef.current.value}`.trim();
+        }
+      }
+    };
+    try {
+      const raw = sessionStorage.getItem(ENQUIRY_BATCH_STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw) as { label?: string };
+        if (parsed.label) applyBatch(parsed.label);
+      }
+    } catch {
+      /* ignore */
+    }
+    const onBatch = (e: Event) => {
+      const detail = (e as CustomEvent<{ label?: string }>).detail;
+      if (detail?.label) applyBatch(detail.label);
+    };
+    window.addEventListener("enquiry-batch-selected", onBatch);
+    return () => window.removeEventListener("enquiry-batch-selected", onBatch);
+  }, []);
+
+  useEffect(() => {
+    const applyCourse = (value: string) => setCourse(value);
+    try {
+      const raw = sessionStorage.getItem(ENQUIRY_COURSE_STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw) as { value?: string };
+        if (parsed.value) applyCourse(parsed.value);
+      }
+    } catch {
+      /* ignore */
+    }
+    const onCourse = (e: Event) => {
+      const detail = (e as CustomEvent<{ value?: string }>).detail;
+      if (detail?.value) applyCourse(detail.value);
+    };
+    window.addEventListener("enquiry-course-selected", onCourse);
+    return () => window.removeEventListener("enquiry-course-selected", onCourse);
+  }, []);
 
   async function handleEnrollmentSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -53,108 +105,159 @@ export function EnrollmentSection({
   }
 
   return (
-    <section id={sectionId} className="section-anchor atmosphere-grid border-t border-line">
-      <div className="shell py-20 lg:py-28">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20">
-          <div className="lg:col-span-5">
-            <p className="eyebrow eyebrow-accent">Enquire</p>
-            <h2 className="mt-5 font-heading text-h2 font-semibold text-fg">
-              Begin with a conversation, not a checkout.
-            </h2>
-            <p className="mt-6 text-lede text-soft max-w-md">
-              This form is an inquiry to the Academic Studio. It does not enrol you, take payment,
-              or guarantee a campus seat.
-            </p>
-            <ul className="mt-10 space-y-3 text-sm text-soft">
-              <li>
-                Digital programmes — catalogue and LMS.
+    <section
+      ref={sectionRef}
+      id={sectionId}
+      className={`section-anchor section-premium enquire-premium section-premium--deeper${
+        inView ? " section-premium--inview" : ""
+      }`}
+    >
+      <span id="enroll" className="sr-only" tabIndex={-1}>
+        Legacy anchor
+      </span>
+      <SectionScene />
+      <div className="shell section-premium__shell">
+        <div className="enquire-premium__layout">
+          <div data-premium-reveal>
+            <header className="section-premium__header section-premium__header--stacked" style={{ marginBottom: 0 }}>
+              <p className="section-premium__eyebrow eyebrow">Enquire</p>
+              <h2 className="section-premium__title mt-4 font-display font-semibold">
+                <span className="section-premium__title-line">Begin with a conversation,</span>{" "}
+                <span className="section-premium__title-accent">not a checkout.</span>
+              </h2>
+              <p className="section-premium__lede mt-5" style={{ maxWidth: "36ch" }}>
+                Send a question to the Academic Studio. SKH admissions handle campus seats and fees.
+              </p>
+            </header>
+            <ul className="enquire-premium__info-rows">
+              <li className="enquire-premium__info-row">
+                <MessageSquare className="mt-0.5 h-4 w-4 shrink-0 text-[#8fb8ff]" aria-hidden />
+                <span>Digital programmes — catalogue and LMS.</span>
               </li>
-              <li>
-                SKH campus batches —{" "}
-                <a className="link-u text-fg" href={`mailto:${skhContact.email}`}>
-                  {skhContact.email}
-                </a>
-                {" · "}
-                <a className="link-u text-fg" href={`tel:${skhContact.phoneTel}`}>
-                  {skhContact.phoneDisplay}
-                </a>
+              <li className="enquire-premium__info-row">
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[#8fb8ff]" aria-hidden />
+                <span>
+                  SKH campus batches —{" "}
+                  <a className="section-premium__link" href={`mailto:${skhContact.email}`}>
+                    {skhContact.email}
+                  </a>
+                  {" · "}
+                  <a className="section-premium__link" href={`tel:${skhContact.phoneTel}`}>
+                    {skhContact.phoneDisplay}
+                  </a>
+                </span>
               </li>
             </ul>
           </div>
 
-          <form className="lg:col-span-7 space-y-8" onSubmit={handleEnrollmentSubmit}>
-            <div>
-              <label htmlFor="enroll-name" className={labelClass}>
-                Student or parent name
-              </label>
-              <input
-                id="enroll-name"
-                className={fieldClass}
-                placeholder="Full name"
-                required
-                type="text"
-                name="name"
-                autoComplete="name"
-              />
-            </div>
-            <div>
-              <label htmlFor="enroll-email" className={labelClass}>
-                Email
-              </label>
-              <input
-                id="enroll-email"
-                className={fieldClass}
-                placeholder="name@domain.com"
-                required
-                type="email"
-                name="email"
-                autoComplete="email"
-              />
-            </div>
-            <div>
-              <label htmlFor="enroll-course" className={labelClass}>
-                Interest
-              </label>
-              <select id="enroll-course" name="course" className={fieldClass} defaultValue="" required>
-                <option value="" disabled>
-                  Select an option
-                </option>
-                <option value="lms-islamiyat">Digital: O Level Islamiyat / LMS</option>
-                <option value="skh-campus">SKH campus · Karachi coaching</option>
-                <option value="resources">Notes / worksheets</option>
-                <option value="other">Other / not sure</option>
-              </select>
-            </div>
-            <div>
-              <label htmlFor="enroll-message" className={labelClass}>
-                Message (optional)
-              </label>
-              <textarea
-                id="enroll-message"
-                name="message"
-                rows={3}
-                className={`${fieldClass} resize-y min-h-[5.5rem]`}
-                placeholder="Level, subject, campus, or timeline"
-              />
-            </div>
-            <button type="submit" className="btn btn-primary w-full sm:w-auto" disabled={status === "loading"}>
-              {status === "loading" ? "Sending…" : "Send inquiry"}
-              <span className="arrow">→</span>
-            </button>
-            <p className="text-xs text-muted">
-              We reply in business hours. Urgent SKH matters: {skhContact.email}
-            </p>
+          <div className="space-y-6">
+            {hasBatches() ? <NextBatchesCard /> : null}
             <div
-              className={
-                status === "success" || status === "error"
-                  ? `text-sm ${status === "error" ? "text-red-700 dark:text-red-300" : "text-accent"}`
-                  : "hidden"
-              }
-              role="status"
+              className="section-premium__glass-card enquire-premium__form-card"
+              data-premium-reveal
+              style={{ ["--reveal-delay" as string]: "120ms" }}
             >
-              {message}
+            {status === "success" ? (
+              <div className="enquire-premium__success" role="status">
+                <span className="enquire-premium__success-icon" aria-hidden>
+                  <CheckCircle2 className="h-6 w-6" />
+                </span>
+                <p className="text-fg font-display text-lg font-semibold">{message}</p>
+              </div>
+            ) : (
+              <form onSubmit={handleEnrollmentSubmit}>
+                <div className="enquire-premium__field">
+                  <label htmlFor="enroll-name" className="enquire-premium__field-label">
+                    Student or parent name
+                  </label>
+                  <input
+                    id="enroll-name"
+                    className={`enquire-premium__input${status === "error" ? " enquire-premium__input--error" : ""}`}
+                    placeholder="Full name"
+                    required
+                    type="text"
+                    name="name"
+                    autoComplete="name"
+                  />
+                </div>
+                <div className="enquire-premium__field">
+                  <label htmlFor="enroll-email" className="enquire-premium__field-label">
+                    Email
+                  </label>
+                  <input
+                    id="enroll-email"
+                    className={`enquire-premium__input${status === "error" ? " enquire-premium__input--error" : ""}`}
+                    placeholder="name@domain.com"
+                    required
+                    type="email"
+                    name="email"
+                    autoComplete="email"
+                  />
+                </div>
+                <div className="enquire-premium__field">
+                  <label htmlFor="enroll-course" className="enquire-premium__field-label">
+                    Interest
+                  </label>
+                  <div className="enquire-premium__select-wrap">
+                    <select
+                      id="enroll-course"
+                      name="course"
+                      className="enquire-premium__input"
+                      value={course}
+                      onChange={(e) => setCourse(e.target.value)}
+                      required
+                    >
+                      <option value="" disabled>
+                        Select an option
+                      </option>
+                      <option value="lms-islamiyat">Digital: O Level Islamiyat / LMS</option>
+                      <option value="skh-campus">SKH campus · Karachi coaching</option>
+                      <option value="resources">Notes / worksheets</option>
+                      <option value="other">Other / not sure</option>
+                    </select>
+                    <ChevronDown className="enquire-premium__select-chevron h-4 w-4" aria-hidden />
+                  </div>
+                </div>
+                <div className="enquire-premium__field">
+                  <label htmlFor="enroll-message" className="enquire-premium__field-label">
+                    Message (optional)
+                  </label>
+                  <textarea
+                    ref={messageRef}
+                    id="enroll-message"
+                    name="message"
+                    rows={3}
+                    className="enquire-premium__input resize-y min-h-[5.5rem]"
+                    placeholder="Level, subject, campus, or timeline"
+                  />
+                </div>
+                {status === "error" && message ? (
+                  <p className="mb-4 text-sm text-red-400" role="alert">
+                    {message}
+                  </p>
+                ) : null}
+                <button type="submit" className="btn btn-primary w-full sm:w-auto min-h-12" disabled={status === "loading"}>
+                  {status === "loading" ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden />
+                      Sending…
+                    </>
+                  ) : (
+                    <>
+                      Send inquiry <span className="arrow">→</span>
+                    </>
+                  )}
+                </button>
+                <p className="enquire-premium__note">
+                  <Clock className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
+                  <span>
+                    We reply in business hours. Urgent SKH matters: {skhContact.email}
+                  </span>
+                </p>
+              </form>
+            )}
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </section>

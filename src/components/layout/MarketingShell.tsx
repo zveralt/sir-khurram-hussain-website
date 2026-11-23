@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { AmbientGrid } from "@/components/effects/AmbientGrid";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 
 export function MarketingShell({ children }: { children: ReactNode }) {
   return (
@@ -13,6 +14,7 @@ export function MarketingShell({ children }: { children: ReactNode }) {
           {children}
         </main>
         <SiteFooter />
+        <WhatsAppFloat />
       </div>
     </>
   );

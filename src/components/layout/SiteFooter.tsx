@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { FooterBackToTop } from "@/components/layout/FooterBackToTop";
 import { footerLearn, footerStudio } from "@/lib/navigation";
-import { aarkLmsPublicUrl, skhContact } from "@/lib/site";
+import { aarkLmsPublicUrl, siteName, siteTagline, skhContact } from "@/lib/site";
+import { siteConfig } from "@/lib/site-config";
 
 const columns = [
   { title: "Studio", links: footerStudio },
@@ -9,31 +11,24 @@ const columns = [
 
 export function SiteFooter() {
   return (
-    <footer className="band-midnight site-footer-grid relative">
-      <div className="shell pt-24 pb-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14">
-          <div className="lg:col-span-6">
-            <p className="font-display text-h2 text-white max-w-xl">
-              Clarity first.{" "}
-              <span className="text-accent-gradient">Confidence</span> through understanding.
+    <footer className="footer-premium band-midnight relative">
+      <FooterBackToTop />
+      <div className="shell">
+        <div className="footer-premium__grid">
+          <div>
+            <p className="footer-premium__brand-name">
+              {siteName} · {siteTagline}
             </p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Link href="/store" className="btn btn-primary">
-                Explore the catalogue <span className="arrow">→</span>
-              </Link>
-              <Link href="/contact" className="btn border border-white/20 text-white hover:border-accent-hot hover:text-accent-hot">
-                Make an enquiry
-              </Link>
-            </div>
+            <p className="footer-premium__brand-desc">{siteTagline}</p>
           </div>
 
           {columns.map((c) => (
-            <div key={c.title} className="lg:col-span-2">
-              <p className="eyebrow !text-ice/70">{c.title}</p>
-              <ul className="mt-6 space-y-3 text-[0.9375rem]">
+            <div key={c.title}>
+              <p className="footer-premium__col-title">{c.title}</p>
+              <ul className="footer-premium__links">
                 {c.links.map((l) => (
                   <li key={l.href}>
-                    <Link href={l.href} className="link-u text-white/80 hover:text-white">
+                    <Link href={l.href} className="footer-premium__link">
                       {l.label}
                     </Link>
                   </li>
@@ -42,22 +37,48 @@ export function SiteFooter() {
             </div>
           ))}
 
-          <div className="lg:col-span-2">
-            <p className="eyebrow !text-ice/70">SKH admissions</p>
-            <ul className="mt-6 space-y-3 text-[0.9375rem] text-white/80">
-              <li><a className="link-u hover:text-white" href={`tel:${skhContact.phoneTel}`}>{skhContact.phoneDisplay}</a></li>
-              <li><a className="link-u hover:text-white" href={`mailto:${skhContact.email}`}>{skhContact.email}</a></li>
-              <li><a className="link-u hover:text-white" href={skhContact.web} target="_blank" rel="noopener noreferrer">skh.com.pk ↗</a></li>
-              <li><a className="link-u hover:text-white" href={aarkLmsPublicUrl} target="_blank" rel="noopener noreferrer">Aark Academy LMS ↗</a></li>
+          <div>
+            <p className="footer-premium__col-title">SKH admissions</p>
+            <ul className="footer-premium__links">
+              <li>
+                <a className="footer-premium__link" href={`tel:${skhContact.phoneTel}`}>
+                  {skhContact.phoneDisplay}
+                </a>
+              </li>
+              <li>
+                <a className="footer-premium__link" href={`mailto:${skhContact.email}`}>
+                  {skhContact.email}
+                </a>
+              </li>
+              <li>
+                <a className="footer-premium__link" href={skhContact.web} target="_blank" rel="noopener noreferrer">
+                  skh.com.pk ↗
+                </a>
+              </li>
+              <li>
+                <a className="footer-premium__link" href={aarkLmsPublicUrl} target="_blank" rel="noopener noreferrer">
+                  Aark Academy LMS ↗
+                </a>
+              </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-24 border-t border-white/10 pt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between text-xs text-ice/60 font-mono">
+        <p className="footer-premium__good-to-know mt-10 text-sm text-muted max-w-3xl leading-relaxed">
+          <span className="font-medium text-fg">Good to know — </span>
+          {siteConfig.goodToKnow}
+        </p>
+
+        <div className="footer-premium__bar">
           <p>© 2026 Sir Khurram Hussain · Academic Studio</p>
           <p>
             Designed &amp; built by{" "}
-            <a className="link-u text-ice/80 hover:text-white" href="https://www.istiqeme.net/technologies" target="_blank" rel="noopener noreferrer">
+            <a
+              className="footer-premium__link"
+              href="https://www.istiqeme.net/technologies"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Istiqeme Technologies
             </a>
           </p>

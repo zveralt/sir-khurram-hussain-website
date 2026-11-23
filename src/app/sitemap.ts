@@ -15,8 +15,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/resources",
     "/contact",
     "/store",
+    "/portal",
     "/portal/login",
-    "/portal/dashboard",
+    "/portal/topics",
   ];
   const entries: MetadataRoute.Sitemap = staticPaths.map((path) => ({
     url: `${base}${path}`,

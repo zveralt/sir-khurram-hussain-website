@@ -3,6 +3,16 @@ export type NavItem = {
   label: string;
 };
 
+/** Homepage section anchors — admissions-focused header (no layout change on target sections). */
+export const admissionsHeaderNav: NavItem[] = [
+  { href: "/#cohorts", label: "Courses" },
+  { href: "/#syllabus", label: "Syllabus" },
+  { href: "/#library", label: "Library" },
+  { href: "/#journey", label: "Lectures" },
+  { href: "/#register", label: "Fees" },
+  { href: "/#faq", label: "FAQ" },
+];
+
 export const primaryNav: NavItem[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
@@ -25,4 +35,5 @@ export const footerLearn: NavItem[] = [
   { href: "/resources", label: "Academic library" },
   { href: "/syllabus-map", label: "Syllabus map" },
   { href: "/portal/login", label: "Student portal" },
+  { href: "/portal?demo=student", label: "Portal demo" },
 ];

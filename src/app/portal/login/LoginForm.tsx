@@ -1,67 +1,83 @@
 "use client";
 
 import { type FormEvent, useState } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { PortalDemoLinks } from "@/components/portal/PortalDemoLinks";
+import { loginWithRealBackend } from "@/lib/portal/real-data-source";
 import { aarkLmsPublicUrl } from "@/lib/site";
 
-export function LoginForm() {
-  const router = useRouter();
+export function LoginForm({ backendConfigured }: { backendConfigured: boolean }) {
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [message, setMessage] = useState<string | null>(null);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!backendConfigured) return;
     setStatus("loading");
     setMessage(null);
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    try {
-      const res = await fetch("/api/auth/dev-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: String(data.get("email")),
-          displayName: String(data.get("displayName") ?? "Student"),
-        }),
-      });
-      const json = (await res.json()) as { ok?: boolean; error?: string };
-      if (!res.ok) {
-        setStatus("error");
-        setMessage(json.error ?? "Could not sign in.");
-        return;
-      }
-      router.push("/portal/dashboard");
-      router.refresh();
-    } catch {
+    const data = new FormData(e.currentTarget);
+    const result = await loginWithRealBackend(String(data.get("email")), String(data.get("password")));
+    if (!result.ok) {
       setStatus("error");
-      setMessage("Network error.");
+      setMessage(result.error ?? "Could not sign in.");
+      return;
     }
+    setStatus("idle");
+    setMessage("Signed in.");
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-8 max-w-md">
-      <div>
-        <label htmlFor="email" className="eyebrow">
-          Email
-        </label>
-        <input id="email" name="email" type="email" required autoComplete="email" className="field mt-2" />
+    <div className={`portal-login-disabled max-w-md space-y-8 ${backendConfigured ? "" : "opacity-100"}`}>
+      <form onSubmit={onSubmit} className="space-y-6">
+        <p className="text-sm text-muted leading-relaxed">
+          {backendConfigured
+            ? "Sign in with your approved student account."
+            : "Student logins open when your registration is approved."}
+        </p>
+        <div>
+          <label htmlFor="email" className="eyebrow">
+            Email
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            disabled={!backendConfigured}
+            className="field mt-2"
+          />
+        </div>
+        <div>
+          <label htmlFor="password" className="eyebrow">
+            Password
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autoComplete="current-password"
+            disabled={!backendConfigured}
+            className="field mt-2"
+          />
+        </div>
+        {message ? <p className="text-sm text-red-700 dark:text-red-300">{message}</p> : null}
+        <button type="submit" disabled={!backendConfigured || status === "loading"} className="btn btn-primary min-h-11">
+          {status === "loading" ? "Signing in…" : "Sign in"}
+        </button>
+      </form>
+
+      <div className="border-t border-line pt-6 space-y-4">
+        <p className="text-sm text-muted">Explore the portal layout with labelled demo data:</p>
+        <PortalDemoLinks />
+        <div className="flex flex-wrap gap-3">
+          <Link href="/#register" className="btn btn-ghost min-h-10">
+            Register
+          </Link>
+          <a href={aarkLmsPublicUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost min-h-10">
+            Aark Academy LMS ↗
+          </a>
+        </div>
       </div>
-      <div>
-        <label htmlFor="displayName" className="eyebrow">
-          Display name
-        </label>
-        <input id="displayName" name="displayName" type="text" className="field mt-2" />
-      </div>
-      {message ? <p className="text-sm text-red-700 dark:text-red-300">{message}</p> : null}
-      <button type="submit" disabled={status === "loading"} className="btn btn-ghost">
-        {status === "loading" ? "Signing in…" : "Dev sign-in"}
-      </button>
-      <p className="text-xs text-muted">
-        Production:{" "}
-        <a href={aarkLmsPublicUrl} className="link-u text-fg" target="_blank" rel="noopener noreferrer">
-          Open LMS
-        </a>
-      </p>
-    </form>
+    </div>
   );
 }

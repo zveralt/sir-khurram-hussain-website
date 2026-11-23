@@ -61,8 +61,8 @@ export function SyllabusPreview() {
     const el = sectionRef.current;
     if (!el) return;
     if (!("IntersectionObserver" in window)) {
-      setInView(true);
-      return;
+      const frame = requestAnimationFrame(() => setInView(true));
+      return () => cancelAnimationFrame(frame);
     }
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -77,7 +77,6 @@ export function SyllabusPreview() {
     return () => io.disconnect();
   }, []);
 
-  const highlightCategory = hoveredId ? NODE_CATEGORY[hoveredId] : legendCat;
   const dimOthers = Boolean(hoveredId || legendCat);
 
   function nodeDimmed(id: string) {

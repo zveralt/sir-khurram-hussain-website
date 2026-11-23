@@ -4,16 +4,17 @@ import { ArrowUpRight } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 import type { LibraryTitle } from "@/lib/library";
 import { SKH_BOOKS_URL } from "@/lib/library";
-import { LIBRARY_CATEGORY_KEY, motifIdForCategory } from "@/components/library/LibraryMotifs";
+import { LIBRARY_CATEGORY_KEY, LIBRARY_MOTIF_HREF } from "@/components/library/LibraryMotifs";
 
 type Props = {
   title: LibraryTitle["title"];
   series: LibraryTitle["series"];
   no: LibraryTitle["no"];
   reduceMotion: boolean;
+  onDetail?: (book: LibraryTitle) => void;
 };
 
-export function LibraryBookCover({ title, series, no, reduceMotion }: Props) {
+export function LibraryBookCover({ title, series, no, reduceMotion, onDetail }: Props) {
   const cat = LIBRARY_CATEGORY_KEY[series];
   const tiltRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -40,16 +41,12 @@ export function LibraryBookCover({ title, series, no, reduceMotion }: Props) {
 
   const resetTilt = useCallback(() => setTilt({ x: 0, y: 0 }), []);
 
-  const ariaLabel = `Open ${title} on SKH books and notes (opens in a new tab)`;
+  const book = { title, series, no };
+  const ariaLabel = onDetail
+    ? `View details for ${title}`
+    : `Open ${title} on SKH books and notes (opens in a new tab)`;
 
-  return (
-    <a
-      href={SKH_BOOKS_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="library-premium__cover-link"
-      aria-label={ariaLabel}
-    >
+  const inner = (
       <div
         className="library-premium__cover"
         data-category={cat}
@@ -73,29 +70,50 @@ export function LibraryBookCover({ title, series, no, reduceMotion }: Props) {
           <div className="library-premium__cover-spine" aria-hidden />
           <div className="library-premium__cover-sheen" aria-hidden />
           <div className="library-premium__cover-noise" aria-hidden />
-          <svg className="library-premium__cover-motif" aria-hidden>
-            <use href={motifIdForCategory(cat)} />
-          </svg>
 
-          <span className="library-premium__cover-category">
-            <span className="library-premium__cover-category-dot" aria-hidden />
-            {series}
-          </span>
-          <span className="library-premium__cover-index font-mono">{String(no).padStart(2, "0")}</span>
+          <header className="library-premium__cover-head">
+            <span className="library-premium__cover-category">
+              <span className="library-premium__cover-category-dot" aria-hidden />
+              {series}
+            </span>
+            <span className="library-premium__cover-index font-mono">{String(no).padStart(2, "0")}</span>
+          </header>
 
-          <div className="library-premium__cover-title-block">
-            <span className="library-premium__cover-title-rule" aria-hidden />
-            <p className="library-premium__cover-title font-display">{title}</p>
+          <div className="library-premium__cover-main">
+            <span className="library-premium__cover-main-spacer" aria-hidden />
+            <div className="library-premium__cover-title-block">
+              <span className="library-premium__cover-title-rule" aria-hidden />
+              <p className="library-premium__cover-title font-display">{title}</p>
+            </div>
+            <svg className="library-premium__cover-motif" aria-hidden>
+              <use href={LIBRARY_MOTIF_HREF} />
+            </svg>
           </div>
 
-          <div className="library-premium__cover-foot">
-            <span className="library-premium__cover-foot-rule" aria-hidden />
-            <span className="library-premium__cover-foot-mark font-mono">KH / 2058</span>
-          </div>
-
-          <ArrowUpRight className="library-premium__cover-external" strokeWidth={1.75} aria-hidden />
+          <footer className="library-premium__cover-foot">
+            <div className="library-premium__cover-foot-left">
+              <span className="library-premium__cover-foot-rule" aria-hidden />
+              <span className="library-premium__cover-foot-mark font-mono">KH / 2058</span>
+            </div>
+            <span className="library-premium__cover-external-badge" aria-hidden>
+              <ArrowUpRight className="library-premium__cover-external-icon" strokeWidth={1.75} />
+            </span>
+          </footer>
         </div>
       </div>
+  );
+
+  if (onDetail) {
+    return (
+      <button type="button" className="library-premium__cover-link w-full text-left" aria-label={ariaLabel} onClick={() => onDetail(book)}>
+        {inner}
+      </button>
+    );
+  }
+
+  return (
+    <a href={SKH_BOOKS_URL} target="_blank" rel="noopener noreferrer" className="library-premium__cover-link" aria-label={ariaLabel}>
+      {inner}
     </a>
   );
 }

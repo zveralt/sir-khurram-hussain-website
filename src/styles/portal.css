@@ -1,0 +1,214 @@
+@layer components {
+  .portal-root {
+    background: var(--bg);
+    color: var(--fg);
+  }
+  .portal-demo-banner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.65rem 1.25rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--widget-emerald) 40%, transparent);
+    background: color-mix(in srgb, var(--widget-emerald) 12%, var(--bg));
+  }
+  .portal-demo-banner__text {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    color: var(--fg);
+  }
+  .portal-demo-banner__exit {
+    font-family: var(--font-ibm-plex-mono), monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .portal-shell__frame {
+    display: grid;
+    min-height: calc(100dvh - 3rem);
+  }
+  @media (min-width: 1024px) {
+    .portal-shell__frame {
+      grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr);
+    }
+  }
+  .portal-shell__sidebar {
+    display: none;
+    padding: 1.5rem 1.25rem;
+    border-right: 1px solid color-mix(in srgb, var(--widget-stroke) 40%, transparent);
+    background: color-mix(in srgb, var(--widget-card) 60%, transparent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+  @media (min-width: 1024px) {
+    .portal-shell__sidebar {
+      display: block;
+    }
+  }
+  .portal-shell__main {
+    padding: 1.25rem 1rem 5.5rem;
+    min-width: 0;
+  }
+  @media (min-width: 768px) {
+    .portal-shell__main {
+      padding: 2rem 2rem 5.5rem;
+    }
+  }
+  .portal-shell__nav-link {
+    display: block;
+    padding: 0.55rem 0.75rem;
+    border-radius: 0.65rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .portal-shell__nav-link:hover,
+  .portal-shell__nav-link:focus-visible {
+    color: var(--fg);
+    background: color-mix(in srgb, var(--widget-blue) 12%, transparent);
+    outline: 2px solid var(--widget-blue);
+    outline-offset: 2px;
+  }
+  .portal-shell__nav-link.is-active {
+    color: var(--fg);
+    border: 1px solid color-mix(in srgb, var(--widget-emerald) 45%, transparent);
+    background: color-mix(in srgb, var(--widget-emerald) 8%, transparent);
+  }
+  .portal-shell__tabs {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    display: flex;
+    justify-content: space-around;
+    gap: 0.25rem;
+    padding: 0.5rem 0.75rem calc(0.5rem + env(safe-area-inset-bottom));
+    border-top: 1px solid color-mix(in srgb, var(--widget-stroke) 45%, transparent);
+    background: color-mix(in srgb, var(--widget-card) 92%, transparent);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+  @media (min-width: 1024px) {
+    .portal-shell__tabs {
+      display: none;
+    }
+    .portal-shell__main {
+      padding-bottom: 2.5rem;
+    }
+  }
+  .portal-shell__tab {
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem 0.25rem;
+    font-family: var(--font-ibm-plex-mono), monospace;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border-radius: 0.5rem;
+  }
+  .portal-shell__tab.is-active {
+    color: var(--fg);
+    background: color-mix(in srgb, var(--widget-emerald) 10%, transparent);
+  }
+  .portal-shell__tab:focus-visible {
+    outline: 2px solid var(--widget-blue);
+    outline-offset: 2px;
+  }
+  .portal-dashboard__grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .portal-dashboard__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .portal-card--wide {
+    grid-column: 1 / -1;
+  }
+  .portal-card {
+    border: 1px solid color-mix(in srgb, var(--widget-stroke) 38%, transparent);
+  }
+  .portal-lesson-state {
+    font-family: var(--font-ibm-plex-mono), monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--widget-stroke) 45%, transparent);
+  }
+  .portal-lesson-state--free {
+    border-color: color-mix(in srgb, var(--widget-emerald) 50%, transparent);
+    color: var(--widget-emerald);
+  }
+  .portal-attendance-chip {
+    font-size: 0.65rem;
+    font-family: var(--font-ibm-plex-mono), monospace;
+    padding: 0.2rem 0.45rem;
+    border-radius: 0.4rem;
+    border: 1px solid color-mix(in srgb, var(--widget-stroke) 40%, transparent);
+  }
+  .portal-attendance-chip--present {
+    border-color: color-mix(in srgb, var(--widget-emerald) 45%, transparent);
+  }
+  .portal-attendance-chip--absent {
+    opacity: 0.75;
+  }
+  .portal-progress-bar {
+    height: 0.35rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--widget-stroke) 30%, transparent);
+    overflow: hidden;
+  }
+  .portal-progress-bar span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--widget-blue), var(--widget-emerald));
+    border-radius: inherit;
+  }
+  .portal-skeleton__row {
+    height: 3.5rem;
+    border-radius: 0.75rem;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--widget-stroke) 18%, transparent) 0%,
+      color-mix(in srgb, var(--widget-stroke) 32%, transparent) 50%,
+      color-mix(in srgb, var(--widget-stroke) 18%, transparent) 100%
+    );
+    background-size: 200% 100%;
+    animation: portal-shimmer 1.2s ease-in-out infinite;
+    animation-delay: var(--row-delay, 0ms);
+  }
+  @keyframes portal-shimmer {
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: -100% 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .portal-skeleton__row {
+      animation: none;
+    }
+  }
+  .portal-login-disabled input:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+  .portal-teaser {
+    border-radius: 1.25rem;
+    border: 1px solid color-mix(in srgb, var(--widget-stroke) 40%, transparent);
+    background: var(--widget-card);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem;
+  }
+}

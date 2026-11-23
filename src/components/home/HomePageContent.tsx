@@ -1,33 +1,43 @@
-import { AboutSection } from "@/components/sections/AboutSection";
+import { CampusesSection } from "@/components/sections/CampusesSection";
+import { MeetTeacherSection } from "@/components/sections/MeetTeacherSection";
 import { AnswerStudio } from "@/components/sections/AnswerStudio";
-import { ApproachSection } from "@/components/sections/ApproachSection";
-import { CohortsSection } from "@/components/sections/CohortsSection";
-import { DigitalLibrary } from "@/components/sections/DigitalLibrary";
+import { CoursesSection } from "@/components/sections/CoursesSection";
+import { MethodSection } from "@/components/sections/MethodSection";
+import { StatsSection } from "@/components/sections/StatsSection";
+import { SyllabusSection } from "@/components/sections/SyllabusSection";
+import { StudyHubSection } from "@/components/sections/StudyHubSection";
+import { ClosingCtaSection } from "@/components/sections/ClosingCtaSection";
 import { EnrollmentSection } from "@/components/sections/EnrollmentSection";
+import { PortalTeaserSection } from "@/components/sections/PortalTeaserSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { InsightsSection } from "@/components/sections/InsightsSection";
 import { KnowledgeFaq } from "@/components/sections/KnowledgeFaq";
 import { LearningJourney } from "@/components/sections/LearningJourney";
 import { ManifestoSection } from "@/components/sections/ManifestoSection";
 import { StudioVsCampus } from "@/components/sections/StudioVsCampus";
-import { SyllabusPreview } from "@/components/sections/SyllabusPreview";
 
 export function HomePageContent() {
   return (
     <>
       <HeroSection />
-      <ApproachSection />
-      <SyllabusPreview />
+      <div className="home-rest">
+      <MethodSection />
+      <StatsSection />
+      <SyllabusSection />
       <ManifestoSection />
       <LearningJourney />
       <AnswerStudio />
-      <CohortsSection />
-      <DigitalLibrary />
-      <AboutSection />
+      <CoursesSection />
+      <StudyHubSection />
+      <MeetTeacherSection />
+      <CampusesSection />
       <InsightsSection />
       <KnowledgeFaq />
       <StudioVsCampus />
+      <PortalTeaserSection />
       <EnrollmentSection />
+      <ClosingCtaSection />
+      </div>
     </>
   );
 }

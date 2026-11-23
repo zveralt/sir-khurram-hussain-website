@@ -1,13 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ThemeToggleButton } from "@/components/ThemeToggleButton";
-import { primaryNav } from "@/lib/navigation";
+import { admissionsHeaderNav } from "@/lib/navigation";
+import { siteConfig } from "@/lib/site-config";
 
 export function SiteHeader() {
-  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -28,13 +27,6 @@ export function SiteHeader() {
     };
   }, [open]);
 
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
-
   return (
     <>
       <header
@@ -50,35 +42,31 @@ export function SiteHeader() {
             </span>
           </Link>
 
-          <nav aria-label="Primary" className="hidden lg:flex flex-1 items-center justify-center gap-4 xl:gap-7">
-            {primaryNav.map((l) => (
+          <nav aria-label="Primary" className="hidden lg:flex flex-1 items-center justify-center gap-3 xl:gap-5">
+            {admissionsHeaderNav.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                aria-current={isActive(l.href) ? "page" : undefined}
-                className="site-header__link relative whitespace-nowrap text-[0.68rem] xl:text-[0.75rem] font-medium tracking-[0.08em] uppercase"
+                className="site-header__link relative whitespace-nowrap text-[0.68rem] xl:text-[0.72rem] font-medium tracking-[0.08em] uppercase"
               >
                 {l.label}
-                {isActive(l.href) ? (
-                  <span className="site-header__link-indicator absolute -bottom-2 left-0 right-0" />
-                ) : null}
               </Link>
             ))}
           </nav>
 
-          <div className="ml-auto flex items-center gap-3 shrink-0">
+          <div className="ml-auto flex items-center gap-2.5 shrink-0">
             <ThemeToggleButton />
             <Link
-              href="/portal/login"
+              href={siteConfig.lms.studentLoginUrl}
               className="site-header__portal hidden sm:inline text-[0.75rem] font-medium uppercase tracking-[0.08em] hover:text-[var(--header-link-hover)]"
             >
-              Portal
+              Student login
             </Link>
             <Link
-              href="/store"
-              className="site-header__catalogue btn btn-primary !min-h-9 !px-4 !py-2 text-[0.68rem] !rounded-lg hidden lg:inline-flex"
+              href="/#register"
+              className="site-header__catalogue btn btn-primary !min-h-12 !px-4 !py-2 text-[0.68rem] !rounded-lg hidden lg:inline-flex"
             >
-              Catalogue <span className="arrow">→</span>
+              Register <span className="arrow">→</span>
             </Link>
             <button
               type="button"
@@ -103,20 +91,18 @@ export function SiteHeader() {
 
       <div
         id="mobile-menu"
-        className={`site-header__mobile-drawer lg:hidden fixed inset-x-0 top-16 md:top-[4.5rem] bottom-0 z-40 transition-[opacity,visibility] duration-400 ${
+        className={`site-header__mobile-drawer lg:hidden fixed inset-0 top-16 md:top-[4.5rem] z-40 transition-[opacity,visibility] duration-400 ${
           open ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
         }`}
       >
         <nav aria-label="Mobile" className="shell flex h-full flex-col pt-8 pb-10 overflow-y-auto">
           <ul className="flex-1">
-            {primaryNav.map((l, i) => (
+            {admissionsHeaderNav.map((l, i) => (
               <li key={l.href} className="border-b border-line">
                 <Link
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className={`flex items-baseline justify-between py-4 font-heading text-[2rem] font-semibold leading-none ${
-                    isActive(l.href) ? "text-accent-hot" : "text-fg"
-                  }`}
+                  className="flex items-baseline justify-between py-4 font-display text-[2rem] font-semibold leading-none text-fg"
                 >
                   {l.label}
                   <span className="font-mono text-[0.7rem] text-muted">{String(i + 1).padStart(2, "0")}</span>
@@ -125,15 +111,18 @@ export function SiteHeader() {
             ))}
             <li className="border-b border-line">
               <Link
-                href="/portal/login"
+                href={siteConfig.lms.studentLoginUrl}
                 onClick={() => setOpen(false)}
-                className="flex items-baseline justify-between py-4 font-heading text-[2rem] font-semibold leading-none text-fg"
+                className="flex items-baseline justify-between py-4 font-display text-[2rem] font-semibold leading-none text-fg"
               >
-                Portal
-                <span className="font-mono text-[0.7rem] text-muted">{String(primaryNav.length + 1).padStart(2, "0")}</span>
+                Student login
+                <span className="font-mono text-[0.7rem] text-muted">07</span>
               </Link>
             </li>
           </ul>
+          <Link href="/#register" onClick={() => setOpen(false)} className="btn btn-primary w-full min-h-12 mt-6">
+            Register <span className="arrow">→</span>
+          </Link>
         </nav>
       </div>
     </>

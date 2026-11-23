@@ -1,9 +1,9 @@
 "use client";
 
-import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { LibraryBookCover } from "@/components/library/LibraryBookCover";
 import { LibraryMotifs } from "@/components/library/LibraryMotifs";
 import { Cover } from "@/components/ui/Cover";
@@ -89,7 +89,7 @@ function DigitalLibraryCompact() {
             SKH books &amp; notes ↗
           </a>
           <Link href="/store" className="btn btn-primary">
-            Digital fixtures <span className="arrow">→</span>
+            Course catalogue <span className="arrow">→</span>
           </Link>
         </div>
       </div>
@@ -97,13 +97,20 @@ function DigitalLibraryCompact() {
   );
 }
 
-function DigitalLibraryPremium() {
+function DigitalLibraryPremium({
+  embedded = false,
+  onBookDetail,
+}: {
+  embedded?: boolean;
+  onBookDetail?: (book: LibraryTitle) => void;
+}) {
   const reduceMotion = useReducedMotion() ?? false;
   const counts = useFilterCounts();
   const [filter, setFilter] = useState<(typeof FILTERS)[number]>("All");
   const [inView, setInView] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
   const carouselRef = useRef<HTMLUListElement>(null);
+  const filterScrollRef = useRef<HTMLDivElement>(null);
   const filterRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const dragRef = useRef({ active: false, startX: 0, startScroll: 0, pointerId: 0 });
 
@@ -111,11 +118,24 @@ function DigitalLibraryPremium() {
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
   const [visibleIndex, setVisibleIndex] = useState(1);
+  const [filterFadeLeft, setFilterFadeLeft] = useState(false);
+  const [filterFadeRight, setFilterFadeRight] = useState(false);
+  const [fadingOut, setFadingOut] = useState(false);
+  const filterSeen = useRef<(typeof FILTERS)[number]>("All");
 
-  const titles = useMemo(
-    () => (filter === "All" ? LIBRARY_TITLES : LIBRARY_TITLES.filter((t) => t.series === filter)),
-    [filter],
-  );
+  const titles = useMemo(() => {
+    const list = filter === "All" ? LIBRARY_TITLES : LIBRARY_TITLES.filter((t) => t.series === filter);
+    return [...list].sort((a, b) => a.no - b.no);
+  }, [filter]);
+  const [shown, setShown] = useState(titles);
+
+  const syncFilterScroll = useCallback(() => {
+    const el = filterScrollRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setFilterFadeLeft(el.scrollLeft > 2);
+    setFilterFadeRight(max > 2 && el.scrollLeft < max - 2);
+  }, []);
 
   const syncScrollState = useCallback(() => {
     const el = carouselRef.current;
@@ -156,7 +176,7 @@ function DigitalLibraryPremium() {
           io.disconnect();
         }
       },
-      { threshold: 0.08, rootMargin: "0px 0px -5% 0px" },
+      { threshold: 0.1, rootMargin: "0px" },
     );
     io.observe(section);
     return () => io.disconnect();
@@ -175,14 +195,66 @@ function DigitalLibraryPremium() {
   }, [syncScrollState, titles.length]);
 
   useEffect(() => {
+    const el = filterScrollRef.current;
+    if (!el) return;
+    syncFilterScroll();
+    el.addEventListener("scroll", syncFilterScroll, { passive: true });
+    window.addEventListener("resize", syncFilterScroll);
+    return () => {
+      el.removeEventListener("scroll", syncFilterScroll);
+      window.removeEventListener("resize", syncFilterScroll);
+    };
+  }, [syncFilterScroll]);
+
+  useEffect(() => {
     const btn = filterRefs.current[filter];
     btn?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest", inline: "center" });
   }, [filter, reduceMotion]);
 
   useEffect(() => {
-    carouselRef.current?.scrollTo({ left: 0, behavior: reduceMotion ? "auto" : "smooth" });
-    syncScrollState();
-  }, [filter, reduceMotion, syncScrollState]);
+    if (filterSeen.current === filter) return;
+    filterSeen.current = filter;
+    const frame = requestAnimationFrame(() => {
+      setVisibleIndex(1);
+      setAtStart(true);
+    });
+
+    if (reduceMotion) {
+      const swap = requestAnimationFrame(() => setShown(titles));
+      return () => {
+        cancelAnimationFrame(frame);
+        cancelAnimationFrame(swap);
+      };
+    }
+
+    const fade = requestAnimationFrame(() => setFadingOut(true));
+    const timer = window.setTimeout(() => {
+      setShown(titles);
+      setFadingOut(false);
+    }, 180);
+    return () => {
+      cancelAnimationFrame(frame);
+      cancelAnimationFrame(fade);
+      window.clearTimeout(timer);
+    };
+  }, [filter, reduceMotion, titles]);
+
+  useLayoutEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    el.classList.add("is-resetting");
+    el.scrollLeft = 0;
+    const fits = el.scrollWidth <= el.clientWidth + 2;
+    const thumbFrac = Math.min(1, Math.max(0.1, el.clientWidth / Math.max(el.scrollWidth, 1)));
+    const id = requestAnimationFrame(() => {
+      setAtStart(true);
+      setAtEnd(fits);
+      setVisibleIndex(1);
+      setThumbStyle({ width: `${thumbFrac * 100}%`, left: "0%" });
+      el.classList.remove("is-resetting");
+    });
+    return () => cancelAnimationFrame(id);
+  }, [shown]);
 
   const scrollByCover = useCallback(
     (direction: -1 | 1) => {
@@ -239,24 +311,20 @@ function DigitalLibraryPremium() {
     syncScrollState();
   }, [syncScrollState]);
 
-  const motionTransition = reduceMotion ? { duration: 0 } : { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const };
-
-  return (
-    <section
-      ref={sectionRef}
-      id="library"
-      className={`section-anchor library-premium${inView ? " library-premium--inview" : ""}`}
-    >
-      <LibraryMotifs />
+  const inner = (
+    <>
+      {!embedded ? <LibraryMotifs /> : null}
+      {!embedded ? (
       <div className="library-premium__scene" aria-hidden>
         <div className="library-premium__grid" />
         <div className="library-premium__glow library-premium__glow--blue" />
-        <div className="library-premium__glow library-premium__glow--emerald" />
         <div className="library-premium__fade library-premium__fade--top" />
         <div className="library-premium__fade library-premium__fade--bottom" />
       </div>
+      ) : null}
 
-      <div className="shell relative z-[1] py-20 lg:py-28">
+      <div className={`${embedded ? "" : "shell relative z-[1] py-20 lg:py-28"}`}>
+        {!embedded ? (
         <header className="library-premium__header">
           <div className="library-premium__header-main">
             <p className="library-premium__eyebrow eyebrow">Academic library</p>
@@ -270,13 +338,19 @@ function DigitalLibraryPremium() {
             photographs, and files are not hosted here.
           </p>
         </header>
+        ) : null}
 
         <div
           className="library-premium__filters-shell"
           role="tablist"
           aria-label="Library categories"
         >
-          <div className="library-premium__filters-mask">
+          <div
+            ref={filterScrollRef}
+            className={`library-premium__filters-mask${
+              filterFadeLeft ? " library-premium__filters-mask--fade-left" : ""
+            }${filterFadeRight ? " library-premium__filters-mask--fade-right" : ""}`}
+          >
             <div className="library-premium__filter-track">
               {FILTERS.map((f) => {
                 const selected = filter === f;
@@ -289,7 +363,6 @@ function DigitalLibraryPremium() {
                     type="button"
                     role="tab"
                     aria-selected={selected}
-                    aria-pressed={selected}
                     onClick={() => setFilter(f)}
                     className="library-premium__filter-btn"
                   >
@@ -312,12 +385,14 @@ function DigitalLibraryPremium() {
         </div>
 
         <div className="library-premium__stage">
-          <div className="library-premium__carousel-mask">
-            <LayoutGroup>
-              <motion.ul
+          <div
+            className={`library-premium__carousel-bleed${
+              atStart ? "" : " library-premium__carousel-bleed--fade-left"
+            }${atEnd ? "" : " library-premium__carousel-bleed--fade-right"}`}
+          >
+            <ul
                 ref={carouselRef}
-                className="library-premium__carousel"
-                layout
+                className={`library-premium__carousel${fadingOut ? " is-fading-out" : ""}`}
                 tabIndex={0}
                 role="region"
                 aria-label="Academic library"
@@ -328,26 +403,18 @@ function DigitalLibraryPremium() {
                 onPointerCancel={onPointerUp}
                 onScroll={syncScrollState}
               >
-                <AnimatePresence mode="popLayout">
-                  {titles.map((t, i) => (
-                    <motion.li
-                      key={t.no}
-                      className="library-premium__slide"
-                      layout
-                      initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={reduceMotion ? undefined : { opacity: 0, scale: 0.96 }}
-                      transition={{
-                        ...motionTransition,
-                        delay: reduceMotion ? 0 : inView ? i * 0.06 : 0,
-                      }}
-                    >
-                      <LibraryBookCover title={t.title} series={t.series} no={t.no} reduceMotion={reduceMotion} />
-                    </motion.li>
-                  ))}
-                </AnimatePresence>
-              </motion.ul>
-            </LayoutGroup>
+                {shown.map((t) => (
+                  <li key={t.no} className="library-premium__slide">
+                    <LibraryBookCover
+                      title={t.title}
+                      series={t.series}
+                      no={t.no}
+                      reduceMotion={reduceMotion}
+                      onDetail={onBookDetail}
+                    />
+                  </li>
+                ))}
+              </ul>
           </div>
           <div className="library-premium__shelf" aria-hidden />
         </div>
@@ -386,6 +453,7 @@ function DigitalLibraryPremium() {
           </div>
         </div>
 
+        {!embedded ? (
         <div className="library-premium__actions">
           <a
             href={SKH_BOOKS_URL}
@@ -399,17 +467,55 @@ function DigitalLibraryPremium() {
             href="/store"
             className="library-premium__action library-premium__action--ghost btn btn-ghost"
           >
-            Digital fixtures <span className="library-premium__action-arrow arrow">→</span>
+            Course catalogue <span className="library-premium__action-arrow arrow">→</span>
           </Link>
         </div>
+        ) : (
+          <div className="library-premium__actions mt-4">
+            <a
+              href={SKH_BOOKS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary min-h-10 text-sm"
+            >
+              SKH books &amp; notes ↗
+            </a>
+          </div>
+        )}
       </div>
+    </>
+  );
+
+  if (embedded) {
+    return (
+      <div ref={sectionRef} className={`library-premium${inView ? " library-premium--inview" : ""}`}>
+        {inner}
+      </div>
+    );
+  }
+
+  return (
+    <section
+      ref={sectionRef}
+      id="library"
+      className={`section-anchor library-premium${inView ? " library-premium--inview" : ""}`}
+    >
+      {inner}
     </section>
   );
 }
 
-export function DigitalLibrary({ compact = false }: { compact?: boolean }) {
+export function DigitalLibrary({
+  compact = false,
+  embedded = false,
+  onBookDetail,
+}: {
+  compact?: boolean;
+  embedded?: boolean;
+  onBookDetail?: (book: LibraryTitle) => void;
+}) {
   if (compact) {
     return <DigitalLibraryCompact />;
   }
-  return <DigitalLibraryPremium />;
+  return <DigitalLibraryPremium embedded={embedded} onBookDetail={onBookDetail} />;
 }

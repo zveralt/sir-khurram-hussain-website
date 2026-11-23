@@ -393,19 +393,7 @@ export function AnswerStudio() {
             data-reveal
             style={{ ["--reveal-delay" as string]: "200ms" }}
           >
-            <div className="answer-studio-premium__card-top">
-              <p className="answer-studio-premium__card-readout font-mono">{progressLabel}</p>
-            </div>
-
-            <div className="answer-studio-premium__card-scaffold-slot answer-studio-premium__card-scaffold-slot--mobile">
-              <AnswerScaffold activeIndex={active} reduceMotion={Boolean(reduceMotion)} />
-            </div>
-
             <div className="answer-studio-premium__card-main">
-              <div className="answer-studio-premium__card-scaffold-slot answer-studio-premium__card-scaffold-slot--desktop">
-                <AnswerScaffold activeIndex={active} reduceMotion={Boolean(reduceMotion)} />
-              </div>
-
               <div className="answer-studio-premium__card-stack">
                 {ANSWER_STAGES.map((s, i) => {
                   const isActive = active === i;
@@ -433,12 +421,13 @@ export function AnswerStudio() {
                       }}
                       transition={{ duration: panelTransition, ease: "easeOut" }}
                     >
-                      <p className="answer-studio-premium__card-num font-display" aria-hidden>
-                        {s.n}
-                      </p>
-                      <h3 className="answer-studio-premium__card-title font-display">{s.title}</h3>
-                      <p className="answer-studio-premium__card-body">{s.body}</p>
-
+                      <div className="answer-studio-premium__card-copy">
+                        <h3 className="answer-studio-premium__card-title font-display">{s.title}</h3>
+                        <p className="answer-studio-premium__card-body">{s.body}</p>
+                      </div>
+                      <div className="answer-studio-premium__card-scaffold-slot">
+                        <AnswerScaffold activeIndex={i} reduceMotion={Boolean(reduceMotion)} />
+                      </div>
                       <div className="answer-studio-premium__example">
                         <p className="answer-studio-premium__example-label">
                           <Quote className="answer-studio-premium__example-icon" aria-hidden />
@@ -453,6 +442,12 @@ export function AnswerStudio() {
             </div>
 
             <footer className="answer-studio-premium__card-footer">
+              <div className="answer-studio-premium__card-meta">
+                <p className="answer-studio-premium__card-num font-display" aria-hidden>
+                  {ANSWER_STAGES[active]?.n}
+                </p>
+                <p className="answer-studio-premium__card-readout font-mono">{progressLabel}</p>
+              </div>
               <div className="answer-studio-premium__nav">
                 <button
                   type="button"

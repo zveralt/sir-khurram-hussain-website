@@ -1,0 +1,274 @@
+/* Scoped teacher + campuses sections — does not touch hero styles */
+
+@layer components {
+  .meet-teacher {
+    --meet-pad: clamp(3.5rem, 7vw, 6.5rem);
+    position: relative;
+    isolation: isolate;
+    overflow-x: clip;
+  }
+  .meet-teacher__layout {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: start;
+  }
+  @media (min-width: 1024px) {
+    .meet-teacher__layout {
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: clamp(2.5rem, 4vw, 4rem);
+    }
+  }
+  .meet-teacher__portrait-panel {
+    position: relative;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-radius: 1.75rem;
+    min-height: 16rem;
+    display: grid;
+    place-items: center;
+  }
+  @media (max-width: 1023px) {
+    .meet-teacher__portrait-panel {
+      min-height: 14rem;
+      max-height: 20rem;
+    }
+  }
+  .meet-teacher__caption {
+    margin-top: 0.75rem;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-align: center;
+  }
+  .meet-teacher__role {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: var(--muted);
+  }
+  .meet-teacher__panel-body {
+    margin-top: 1.25rem;
+  }
+  .meet-teacher__prose {
+    font-size: 1.02rem;
+    line-height: 1.68;
+    color: var(--text-secondary, var(--soft, rgba(255, 255, 255, 0.78)));
+  }
+  .meet-teacher__prose a {
+    color: var(--widget-blue-soft);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .meet-teacher__timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+  .meet-teacher__step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.85rem 1rem;
+    align-items: start;
+  }
+  .meet-teacher__step-num {
+    font-family: var(--font-ibm-plex-mono), monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    color: var(--widget-emerald);
+    padding-top: 0.15rem;
+  }
+  .meet-teacher__step-title {
+    font-family: var(--font-bricolage-grotesque), sans-serif;
+    font-weight: 600;
+    color: var(--fg, #fff);
+  }
+  .meet-teacher__step-body {
+    grid-column: 2;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .meet-teacher__step-duration {
+    grid-column: 2;
+    font-family: var(--font-ibm-plex-mono), monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--widget-blue-soft);
+  }
+  .meet-teacher__stats {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .meet-teacher__stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .meet-teacher__stat-text-value {
+    font-family: var(--font-bricolage-grotesque), sans-serif;
+    font-size: 1.65rem;
+    font-weight: 600;
+    line-height: 1.15;
+  }
+  .meet-teacher__quote {
+    margin-top: 1.75rem;
+    padding: 1.35rem 1.5rem;
+    border-radius: 1.25rem;
+    border: 1px solid color-mix(in srgb, var(--widget-stroke) 45%, transparent);
+    background: var(--widget-card);
+  }
+  .meet-teacher__quote-text {
+    font-family: var(--font-bricolage-grotesque), sans-serif;
+    font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--fg, #fff);
+  }
+  .meet-teacher__quote-cite {
+    margin-top: 1rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+  .meet-teacher__ctas {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .campuses-section__layout {
+    display: grid;
+    gap: 2rem;
+    align-items: stretch;
+  }
+  @media (min-width: 1024px) {
+    .campuses-section__layout {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: 2.5rem;
+    }
+  }
+  @media (max-width: 1023px) {
+    .campuses-section__map-wrap {
+      order: -1;
+      max-height: 16rem;
+    }
+  }
+  .campuses-section__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.65rem;
+  }
+  .campuses-section__row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.85rem 1rem;
+    padding: 0.85rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid transparent;
+    background: transparent;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .campuses-section__row:hover,
+  .campuses-section__row--active {
+    border-color: color-mix(in srgb, var(--widget-emerald) 40%, transparent);
+    background: color-mix(in srgb, var(--widget-emerald) 8%, transparent);
+  }
+  .campuses-section__row:focus-visible {
+    outline: 2px solid var(--widget-blue);
+    outline-offset: 2px;
+  }
+  .campuses-section__tile {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--widget-stroke) 50%, transparent);
+    background: var(--widget-card);
+    color: var(--widget-emerald);
+  }
+  .campuses-section__name {
+    font-family: var(--font-bricolage-grotesque), sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--fg, #fff);
+  }
+  .campuses-section__meta {
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: var(--muted);
+  }
+  .campuses-section__days {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.45rem;
+  }
+  .campuses-section__day {
+    font-family: var(--font-ibm-plex-mono), monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.45rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--widget-stroke) 40%, transparent);
+    color: var(--muted);
+  }
+  .campuses-section__map-card {
+    position: relative;
+    min-height: 18rem;
+    height: 100%;
+    padding: 1rem;
+    border-radius: 1.5rem;
+    overflow: hidden;
+  }
+  @media (min-width: 1024px) {
+    .campuses-section__map-card {
+      min-height: 22rem;
+    }
+  }
+  .campuses-section__map-svg {
+    width: 100%;
+    height: 100%;
+    min-height: 14rem;
+  }
+  .campuses-section__map-note {
+    position: absolute;
+    left: 1rem;
+    bottom: 0.75rem;
+    font-family: var(--font-ibm-plex-mono), monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .campuses-section__pin-label {
+    font-family: var(--font-ibm-plex-mono), monospace;
+    font-size: 6px;
+    letter-spacing: 0.08em;
+    fill: var(--muted);
+  }
+
+  .next-batches {
+    margin-bottom: 1.5rem;
+    display: grid;
+    gap: 1.25rem;
+  }
+  .next-batches__list {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .next-batches__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+}

@@ -165,7 +165,7 @@ export function LearningJourney() {
 
   return (
     <section
-      id="journey"
+      id="learning-path"
       className="section-anchor learning-journey-premium"
       style={
         {
@@ -188,7 +188,7 @@ export function LearningJourney() {
           <p className="learning-journey-premium__eyebrow eyebrow">Learning journey</p>
           <h2 className="learning-journey-premium__title mt-4 font-display text-h2 font-semibold">
             <span className="learning-journey-premium__title-line">A teaching sequence</span>{" "}
-            <span className="learning-journey-premium__title-accent">— not a live tracker.</span>
+            <span className="learning-journey-premium__title-accent">for exam readiness.</span>
           </h2>
           <p className="learning-journey-premium__lede mt-5">
             How Sir Khurram’s classroom emphasis becomes a digital study path: understanding first,
