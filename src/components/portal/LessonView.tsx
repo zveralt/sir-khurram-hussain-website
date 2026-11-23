@@ -72,7 +72,7 @@ export function LessonView({ lessonId }: { lessonId: string }) {
       <h1 className="font-display text-2xl font-semibold text-fg">{lesson.title}</h1>
 
       <GlassCard padding="md" className="portal-card mt-6">
-        <div className="aspect-video w-full overflow-hidden rounded-xl border border-line bg-[var(--midnight,#020817)]">
+        <div className="surface-dark aspect-video w-full overflow-hidden rounded-xl border border-line bg-[var(--bg)]">
           {locked ? (
             <div className="flex h-full items-center justify-center p-6 text-center text-sm text-muted">
               This demo lesson is locked. Enrol via registration when live access is enabled.

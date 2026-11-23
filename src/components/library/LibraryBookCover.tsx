@@ -48,7 +48,7 @@ export function LibraryBookCover({ title, series, no, reduceMotion, onDetail }: 
 
   const inner = (
       <div
-        className="library-premium__cover"
+        className="library-premium__cover surface-dark"
         data-category={cat}
         style={{ ["--cover-cat" as string]: `var(--cat-${cat})` }}
       >

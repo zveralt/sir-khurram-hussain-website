@@ -109,7 +109,7 @@ export function OrbitBadge({
                 cx="100"
                 cy="100"
                 r="50"
-                fill="color-mix(in srgb, var(--midnight, #020817) 75%, transparent)"
+                fill="var(--card)"
                 stroke="var(--widget-stroke)"
                 strokeWidth="1"
               />
@@ -120,7 +120,7 @@ export function OrbitBadge({
                 fontFamily="var(--font-bricolage-grotesque), sans-serif"
                 fontSize="22"
                 fontWeight="600"
-                fill="var(--fg, #fff)"
+                fill="var(--fg)"
               >
                 {initials}
               </text>

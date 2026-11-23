@@ -49,7 +49,7 @@ export function LectureVideoModal({ lesson, onClose }: Props) {
         <h3 id="lecture-modal-title" className="font-display text-lg font-semibold text-fg">
           {lesson.title}
         </h3>
-        <div className="mt-4 aspect-video w-full overflow-hidden rounded-lg border border-line bg-[var(--midnight,#020817)]">
+        <div className="surface-dark mt-4 aspect-video w-full overflow-hidden rounded-lg border border-line bg-[var(--bg)]">
           {showPlayer ? (
             <iframe
               title={lesson.title}

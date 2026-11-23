@@ -5,7 +5,7 @@ export function StudyGuideSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5" data-reveal>
             <p className="eyebrow !text-ice">Cambridge 2058</p>
-            <h2 className="mt-4 font-heading text-h2 font-semibold text-white max-w-[14ch]">
+            <h2 className="mt-4 font-heading text-h2 font-semibold text-fg max-w-[14ch]">
               A study orientation, not a specification reprint.
             </h2>
             <p className="mt-6 text-ice/85 leading-relaxed">
@@ -17,13 +17,13 @@ export function StudyGuideSection() {
           <dl className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-8">
             <div data-reveal>
               <dt className="eyebrow !text-ice">Paper 1 themes</dt>
-              <dd className="mt-4 font-heading text-xl font-semibold text-white leading-snug">
+              <dd className="mt-4 font-heading text-xl font-semibold text-fg leading-snug">
                 Qur’anic passages and history, the Prophet’s life, the first Muslim community.
               </dd>
             </div>
             <div data-reveal>
               <dt className="eyebrow !text-ice">Paper 2 themes</dt>
-              <dd className="mt-4 font-heading text-xl font-semibold text-white leading-snug">
+              <dd className="mt-4 font-heading text-xl font-semibold text-fg leading-snug">
                 Hadith and its history, the Rightly Guided Caliphs, articles of faith, pillars of Islam.
               </dd>
             </div>
