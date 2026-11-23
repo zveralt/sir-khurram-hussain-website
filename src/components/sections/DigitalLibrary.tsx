@@ -52,7 +52,7 @@ function DigitalLibraryCompact() {
               onClick={() => setFilter(f)}
               className={`rounded-full border px-3.5 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.14em] transition-colors ${
                 filter === f
-                  ? "border-accent-hot bg-accent-hot text-white"
+                  ? "border-accent-hot bg-accent-hot text-on-accent"
                   : "border-line text-muted hover:border-accent-hot hover:text-fg"
               }`}
             >

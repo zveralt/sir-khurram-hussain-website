@@ -7,9 +7,9 @@ type Props = {
 };
 
 const tones = {
-  ink: "bg-midnight text-white",
-  paper: "bg-ice text-midnight",
-  bronze: "bg-royal text-white",
+  ink: "surface-dark bg-[var(--bg)] text-fg",
+  paper: "bg-ice text-fg [--fg:#0A1530]",
+  bronze: "surface-dark bg-royal text-on-accent",
 };
 
 /** Geometric catalogue cover — typographic, never a fake product photo. */

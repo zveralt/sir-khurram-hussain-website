@@ -58,7 +58,7 @@ export function SyllabusMap() {
                     aria-label={`${n.title}, paper ${n.paper}`}
                     className={`absolute z-[1] flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border font-mono text-xs transition-shadow ${
                       on
-                        ? "border-accent-hot bg-midnight text-white shadow-[0_0_32px_rgba(18,101,255,0.4)]"
+                        ? "surface-dark border-accent-hot bg-[var(--bg)] text-fg shadow-[0_0_32px_rgba(18,101,255,0.4)]"
                         : "border-line bg-raised text-fg hover:border-accent-hot"
                     }`}
                     style={{ left: `${n.x}%`, top: `${n.y}%` }}
