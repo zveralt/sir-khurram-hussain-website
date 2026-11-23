@@ -182,6 +182,35 @@
   --input-bg: #071b3d;
   --heading-gradient: linear-gradient(110deg, #e7f0ff 0%, #8eb6ff 100%);
   --glow: rgba(18, 101, 255, 0.35);
+  --glass-bg: linear-gradient(165deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --widget-card: linear-gradient(165deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+  --card-shadow: 0 24px 56px -24px rgba(59, 130, 246, 0.28);
+  --section-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--deep) 88%, var(--midnight)) 0%,
+    color-mix(in srgb, var(--midnight) 94%, #04132f) 42%,
+    color-mix(in srgb, var(--deep) 90%, var(--midnight)) 100%
+  );
+  --section-bg-alt: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--midnight) 97%, transparent) 0%,
+    color-mix(in srgb, var(--deep) 95%, #04122c) 50%,
+    color-mix(in srgb, var(--midnight) 98%, transparent) 100%
+  );
+  --section-bg-deep: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--deep) 98%, transparent) 0%,
+    color-mix(in srgb, var(--midnight) 96%, #020817) 100%
+  );
+  --cta-bg: linear-gradient(
+    135deg,
+    color-mix(in srgb, #0a2450 92%, transparent),
+    color-mix(in srgb, var(--midnight) 96%, transparent)
+  );
+  --footer-bg: linear-gradient(180deg, transparent, color-mix(in srgb, var(--midnight) 98%, transparent));
+  --fade-from: color-mix(in srgb, var(--deep, #04132f) 88%, transparent);
+  --accent: #6ba3ff;
   --bg: #020817;
   --bg-raised: #071b3d;
   --bg-sunken: #010510;
@@ -190,7 +219,6 @@
   --muted: var(--text-muted);
   --line: var(--card-border);
   --line-strong: var(--card-hover-border);
-  --accent: #8eb6ff;
   --accent-hot: var(--primary);
   --accent-soft: rgba(18, 101, 255, 0.16);
   --ice: var(--text-secondary);
@@ -1948,7 +1976,7 @@
     --step-line: rgba(255, 255, 255, 0.1);
     --step-line-progress-start: #8fb8ff;
     --step-line-progress-end: #2563eb;
-    --card-bg: var(--card);
+    --card-bg: var(--glass-bg, var(--card));
     --glow-color: rgba(59, 130, 246, 0.35);
     --dot-complete: #3b82f6;
     --dot-upcoming: #0a1530;
@@ -1959,11 +1987,11 @@
     isolation: isolate;
     overflow: hidden;
     color: var(--fg);
-    background: var(--bg);
+    background: var(--section-bg, var(--bg));
   }
   :root:not(.dark) .learning-journey-premium {
     --step-line: rgba(18, 101, 255, 0.14);
-    --card-bg: var(--card);
+    --card-bg: var(--glass-bg, var(--card));
     --glow-color: rgba(37, 99, 235, 0.2);
     --dot-complete: #2563eb;
     --dot-upcoming: #ffffff;
@@ -1971,7 +1999,7 @@
     --dot-label-complete: var(--fg-muted);
     --dot-label-upcoming: var(--fg-muted);
     color: var(--fg);
-    background: var(--bg);
+    background: var(--section-bg, var(--bg));
   }
   .learning-journey-premium__scene {
     position: absolute;
@@ -2566,22 +2594,22 @@
     --step-line: rgba(255, 255, 255, 0.1);
     --step-line-progress-start: #8fb8ff;
     --step-line-progress-end: #2563eb;
-    --card-bg: var(--card);
+    --card-bg: var(--glass-bg, var(--card));
     --glow-color: rgba(59, 130, 246, 0.32);
     --accent-gold: #c9a24b;
     position: relative;
     isolation: isolate;
     overflow: hidden;
     color: var(--fg);
-    background: var(--bg);
+    background: var(--section-bg, var(--bg));
   }
   :root:not(.dark) .answer-studio-premium {
     --step-line: rgba(18, 101, 255, 0.14);
-    --card-bg: var(--card);
+    --card-bg: var(--glass-bg, var(--card));
     --glow-color: rgba(37, 99, 235, 0.18);
     --accent-gold: #a67c1a;
     color: var(--fg);
-    background: var(--bg);
+    background: var(--section-bg, var(--bg));
   }
   .answer-studio-premium__scene {
     position: absolute;
@@ -3307,7 +3335,7 @@
 
   /* —— Programmes / cohorts —— */
   .programmes-premium {
-    --card-bg: var(--card);
+    --card-bg: var(--glass-bg, var(--card));
     --glow-blue: rgba(59, 130, 246, 0.34);
     --glow-emerald: rgba(63, 191, 154, 0.1);
     --accent-secondary: #3fbf9a;
@@ -3320,10 +3348,10 @@
     isolation: isolate;
     overflow: hidden;
     color: var(--fg);
-    background: var(--bg);
+    background: var(--section-bg, var(--bg));
   }
   :root:not(.dark) .programmes-premium {
-    --card-bg: var(--card);
+    --card-bg: var(--glass-bg, var(--card));
     --glow-blue: rgba(37, 99, 235, 0.16);
     --glow-emerald: rgba(15, 143, 107, 0.12);
     --accent-secondary: #0f8f6b;
@@ -3332,7 +3360,7 @@
     --accent-secondary-glow: rgba(15, 143, 107, 0.14);
     --accent-secondary-icon: #0f8f6b;
     color: var(--fg);
-    background: var(--bg);
+    background: var(--section-bg, var(--bg));
   }
   .programmes-premium__scene {
     position: absolute;
@@ -3922,7 +3950,7 @@
     overflow-x: clip;
     overflow-y: visible;
     color: var(--fg);
-    background: var(--bg);
+    background: var(--section-bg, var(--bg));
   }
   @media (min-width: 768px) {
     .library-premium {
@@ -3932,7 +3960,7 @@
   :root:not(.dark) .library-premium {
     --filter-active: #2563eb;
     color: var(--fg);
-    background: var(--bg);
+    background: var(--section-bg, var(--bg));
   }
   .library-premium__motifs-defs {
     position: absolute;
@@ -4194,7 +4222,7 @@
     left: 0;
     width: 32px;
     z-index: 3;
-    background: linear-gradient(90deg, var(--card), transparent);
+    background: linear-gradient(90deg, var(--fade-from, var(--card)), transparent);
     transition: opacity 0.2s ease-out;
   }
   .library-premium__carousel-bleed--fade-right::after {
@@ -4205,7 +4233,7 @@
     right: 0;
     width: 32px;
     z-index: 3;
-    background: linear-gradient(270deg, var(--card), transparent);
+    background: linear-gradient(270deg, var(--fade-from, var(--card)), transparent);
     transition: opacity 0.2s ease-out;
   }
   .library-premium__carousel {
@@ -4686,7 +4714,7 @@
     isolation: isolate;
     overflow: hidden;
     color: var(--fg);
-    background: var(--bg);
+    background: var(--section-bg, var(--bg));
   }
   :root:not(.dark) .syllabus-map-premium {
     --orbit-color: rgba(6, 43, 131, 0.1);
@@ -4694,7 +4722,7 @@
     --cat-line-strong: rgba(18, 101, 255, 0.42);
     --cat-line-fade: rgba(18, 101, 255, 0);
     color: var(--fg);
-    background: var(--bg);
+    background: var(--section-bg, var(--bg));
   }
   .syllabus-map-premium__scene {
     position: absolute;
@@ -5262,11 +5290,11 @@
     isolation: isolate;
     overflow: hidden;
     color: var(--fg);
-    background: var(--bg);
+    background: var(--section-bg, var(--bg));
   }
   .dark .teaching-premium {
     color: var(--fg);
-    background: var(--bg);
+    background: var(--section-bg, var(--bg));
   }
   :root:not(.dark) .teaching-premium {
     --quote-card-bg: linear-gradient(165deg, rgba(255, 255, 255, 0.92) 0%, rgba(244, 248, 255, 0.88) 100%);
@@ -5456,7 +5484,7 @@
     font-size: 0.75rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(198, 216, 245, 0.58);
+    color: var(--fg-muted);
   }
   :root:not(.dark) .teaching-premium__quote-cite {
     color: rgba(74, 98, 138, 0.78);

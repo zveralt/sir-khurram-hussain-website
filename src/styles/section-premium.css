@@ -2,7 +2,7 @@
 
 @layer components {
   .section-premium {
-    --card-bg: var(--card);
+    --card-bg: var(--glass-bg, var(--card));
     --glow-blue: rgba(59, 130, 246, 0.14);
     --glow-emerald: rgba(63, 191, 154, 0.1);
     --accent-secondary: #3fbf9a;
@@ -17,18 +17,18 @@
     color: var(--fg);
   }
   :root:not(.dark) .section-premium {
-    --card-bg: var(--card);
+    --card-bg: var(--glass-bg, var(--card));
     --glow-blue: rgba(37, 99, 235, 0.12);
     color: var(--fg);
   }
   .section-premium--alt {
-    background: var(--bg);
+    background: var(--section-bg-alt, var(--bg));
   }
   :root:not(.dark) .section-premium--alt {
     background: var(--bg);
   }
   .section-premium--deeper {
-    background: var(--bg);
+    background: var(--section-bg-deep, var(--bg));
   }
   .section-premium__scene {
     position: absolute;
@@ -185,11 +185,11 @@
   .section-premium__glass-card {
     position: relative;
     border-radius: var(--radius);
-    border: 1px solid var(--card-border);
+    border: 1px solid var(--glass-border, var(--card-border));
     background: var(--card-bg);
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
-    box-shadow: var(--shadow);
+    box-shadow: var(--card-shadow, var(--shadow));
     transition:
       transform 0.3s ease-out,
       border-color 0.3s ease-out,
@@ -810,7 +810,7 @@
     border-radius: 1.25rem;
     border: 1px solid var(--card-border);
     padding: clamp(3rem, 7vw, 5.5rem) clamp(1.5rem, 4vw, 3.5rem);
-    background: var(--bg);
+    background: var(--cta-bg, var(--bg));
     box-shadow: var(--shadow);
   }
   @media (min-width: 1024px) {
@@ -869,7 +869,7 @@
   .footer-premium {
     position: relative;
     border-top: 1px solid var(--card-border);
-    background: var(--bg);
+    background: var(--footer-bg, var(--bg));
   }
   .footer-premium__grid {
     display: grid;

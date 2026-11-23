@@ -284,6 +284,11 @@ const COLLECT = `() => {
       cs.webkitBackgroundClip === "text" ||
       cs.backgroundClip === "text";
     if (needsPixels) {
+      let solid = null;
+      if (fg.a >= 0.2) {
+        const pair = effectiveBackground(el, fg);
+        solid = ratioOf(pair.foreground, pair.background);
+      }
       failures.push({
         id,
         selector: selectorFor(el),
@@ -291,6 +296,7 @@ const COLLECT = `() => {
         ratio: null,
         kind: "pixels",
         min,
+        solid,
         x: Math.max(0, rect.x),
         y: Math.max(0, rect.y),
         w: Math.min(rect.width, 480),
@@ -408,7 +414,8 @@ async function main() {
               const png = decodePng(buffer);
               const background = sampleBackground(png);
               const worst = textContrast(png, background);
-              if (worst != null && worst + 0.05 < item.min) {
+              const solidOk = typeof item.solid === "number" && item.solid + 0.05 >= item.min;
+              if (!solidOk && worst != null && worst + 0.05 < item.min) {
                 rows.push({
                   route,
                   theme,
