@@ -76,7 +76,7 @@ export type CourseOffering = {
   title: string;
   description: string;
   illustration: "open-book" | "minaret" | "star-8";
-  mostPopular?: boolean;
+  popular?: boolean;
   chips?: CourseChip[];
   /** Syllabus field titles shown under “What you'll cover”. Empty hides that panel. */
   coverageFields: string[];

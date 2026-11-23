@@ -100,7 +100,9 @@ function SyllabusTopicCard({ node }: { node: SyllabusNode }) {
     <GlassCard className="syllabus-topic-card" padding="md">
       <div className="flex items-start justify-between gap-2">
         <span className="syllabus-topic-card__index">{node.n}</span>
-        <span className="syllabus-topic-card__count">{chipCount} topics</span>
+        <span className="syllabus-topic-card__count">
+          {chipCount} {chipCount === 1 ? "topic" : "topics"}
+        </span>
       </div>
       <h3 className="syllabus-topic-card__title">{node.title}</h3>
       <p className="syllabus-topic-card__intro">{node.intro}</p>

@@ -19,7 +19,6 @@ export function SiteFooter() {
             <p className="footer-premium__brand-name">
               {siteName} · {siteTagline}
             </p>
-            <p className="footer-premium__brand-desc">{siteTagline}</p>
           </div>
 
           {columns.map((c) => (

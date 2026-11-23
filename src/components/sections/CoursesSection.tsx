@@ -51,7 +51,7 @@ function CourseCard({ course }: { course: ReturnType<typeof getCourseOfferings>[
         <span className="course-card__watermark" aria-hidden>
           {course.numeral}
         </span>
-        {course.mostPopular ? <span className="course-card__badge">Most popular</span> : null}
+        {course.popular ? <span className="course-card__badge">Most popular</span> : null}
         <CourseIllustration kind={course.illustration} />
         <p className="course-card__code">{course.codeLine}</p>
         <h3 className="course-card__title">{course.title}</h3>

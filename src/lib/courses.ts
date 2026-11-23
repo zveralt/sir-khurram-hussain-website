@@ -14,7 +14,6 @@ export const DEFAULT_COURSES: CourseOffering[] = [
     description:
       "Flagship digital track toward Cambridge assessment objectives: Qur’anic passages, seerah, hadith, and pillars. Module map, batches, and pricing publish through the LMS when live.",
     illustration: "open-book",
-    mostPopular: true,
     coverageFields: ISLAMIYAT_COVERAGE,
     registerCourseValue: "lms-islamiyat",
   },

@@ -22,14 +22,37 @@
     position: relative;
     padding: clamp(1.25rem, 3vw, 2rem);
     border-radius: 1.75rem;
-    min-height: 16rem;
     display: grid;
     place-items: center;
+    align-self: center;
+  }
+  .meet-teacher__portrait-panel .widget-orbit-badge {
+    position: static;
+  }
+  .meet-teacher__portrait-panel .widget-orbit-badge > .absolute {
+    animation: none;
+  }
+  .meet-teacher__portrait-panel .widget-orbit-badge > .absolute:nth-child(1) {
+    left: 0.85rem;
+    top: 0.85rem;
+    right: auto;
+    bottom: auto;
+  }
+  .meet-teacher__portrait-panel .widget-orbit-badge > .absolute:nth-child(2) {
+    left: auto;
+    right: 0.85rem;
+    top: auto;
+    bottom: 0.85rem;
+  }
+  .meet-teacher__portrait-panel .widget-orbit-badge > .absolute:nth-child(3) {
+    left: 0.85rem;
+    right: auto;
+    top: auto;
+    bottom: 0.85rem;
   }
   @media (max-width: 1023px) {
     .meet-teacher__portrait-panel {
-      min-height: 14rem;
-      max-height: 20rem;
+      max-height: none;
     }
   }
   .meet-teacher__caption {
