@@ -14,7 +14,7 @@ export function ClosingCtaSection() {
       aria-labelledby="closing-cta-heading"
     >
       <div className="shell">
-        <div className="closing-cta-premium__band" data-premium-reveal>
+        <div className="closing-cta-premium__band surface-dark" data-premium-reveal>
           <svg className="closing-cta-premium__star" aria-hidden>
             <use href={LIBRARY_MOTIF_HREF} />
           </svg>
@@ -26,7 +26,7 @@ export function ClosingCtaSection() {
             <Link href="/store" className="btn btn-primary">
               Explore the catalogue <span className="arrow">→</span>
             </Link>
-            <Link href="/contact" className="btn btn-ghost" style={{ borderColor: "rgba(255,255,255,0.18)" }}>
+            <Link href="/contact" className="btn btn-ghost">
               Make an enquiry
             </Link>
           </div>

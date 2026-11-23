@@ -131,11 +131,11 @@ export function EnrollmentSection({
             </header>
             <ul className="enquire-premium__info-rows">
               <li className="enquire-premium__info-row">
-                <MessageSquare className="mt-0.5 h-4 w-4 shrink-0 text-[#8fb8ff]" aria-hidden />
+                <MessageSquare className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden />
                 <span>Digital programmes — catalogue and LMS.</span>
               </li>
               <li className="enquire-premium__info-row">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[#8fb8ff]" aria-hidden />
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden />
                 <span>
                   SKH campus batches —{" "}
                   <a className="section-premium__link" href={`mailto:${skhContact.email}`}>

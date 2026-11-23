@@ -212,7 +212,7 @@ function CompactFaq({
               type="button"
               onClick={() => setCat(c)}
               className={`rounded-full border px-3 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.14em] ${
-                cat === c ? "border-accent-hot bg-accent-hot text-white" : "border-line text-muted hover:border-accent-hot"
+                cat === c ? "border-accent-hot bg-accent-hot text-on-accent" : "border-line text-muted hover:border-accent-hot"
               }`}
             >
               {c} {counts[c]}
