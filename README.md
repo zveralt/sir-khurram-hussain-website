@@ -17,6 +17,12 @@ Original Stitch assets and `code.html` are kept under `stitch-export/` for refer
 
 ## Environment
 
+- `NEXT_PUBLIC_SITE_URL` — public origin for metadata, sitemap, and canonical URLs, with no trailing slash.
+- `ENQUIRY_WEBHOOK_URL` — where `POST /api/enquiry` delivers inquiries; production returns 503 when this is unset.
+- `ENQUIRY_WEBHOOK_SECRET` — optional secret sent as `X-Webhook-Secret` with each enquiry.
+- `NEWSLETTER_WEBHOOK_URL` — where `POST /api/newsletter` delivers signups; the footer form is hidden when this is unset.
+- `NEWSLETTER_WEBHOOK_SECRET` — optional secret sent as `X-Webhook-Secret` with each signup.
+
 Copy `.env.example` to `.env.local` and set the public site URL for production metadata (Open Graph, canonical URL, sitemap):
 
 ```bash

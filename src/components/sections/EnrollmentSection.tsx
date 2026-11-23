@@ -7,6 +7,7 @@ import { ENQUIRY_COURSE_STORAGE_KEY } from "@/lib/enquiry-course";
 import { SectionScene } from "@/components/ui/SectionScene";
 import { useSectionInView } from "@/hooks/useSectionInView";
 import { hasBatches } from "@/lib/site-config";
+import { DeliveryFallback } from "@/components/forms/DeliveryFallback";
 import { skhContact } from "@/lib/site";
 
 type Props = { sectionId?: string; inquirySource?: string };
@@ -18,6 +19,7 @@ export function EnrollmentSection({
   const { sectionRef, inView } = useSectionInView();
   const [status, setStatus] = useState<"idle" | "loading" | "error" | "success">("idle");
   const [message, setMessage] = useState<string | null>(null);
+  const [showFallback, setShowFallback] = useState(false);
   const [course, setCourse] = useState("");
   const messageRef = useRef<HTMLTextAreaElement>(null);
 
@@ -71,6 +73,7 @@ export function EnrollmentSection({
     e.preventDefault();
     setStatus("loading");
     setMessage(null);
+    setShowFallback(false);
     const form = e.currentTarget;
     const data = new FormData(form);
     const payload = {
@@ -89,7 +92,12 @@ export function EnrollmentSection({
       const json = (await res.json()) as { ok?: boolean; error?: string; message?: string };
       if (!res.ok) {
         setStatus("error");
-        setMessage(json.error ?? "Something went wrong.");
+        if (res.status === 503) {
+          setShowFallback(true);
+          setMessage(null);
+        } else {
+          setMessage(json.error ?? "Something went wrong.");
+        }
         return;
       }
       setStatus("success");
@@ -231,8 +239,13 @@ export function EnrollmentSection({
                     placeholder="Level, subject, campus, or timeline"
                   />
                 </div>
+                {status === "error" && showFallback ? (
+                  <div className="mb-4">
+                    <DeliveryFallback />
+                  </div>
+                ) : null}
                 {status === "error" && message ? (
-                  <p className="mb-4 text-sm text-red-400" role="alert">
+                  <p className="mb-4 text-sm text-fg" role="alert">
                     {message}
                   </p>
                 ) : null}

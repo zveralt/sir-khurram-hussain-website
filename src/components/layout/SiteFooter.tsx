@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FooterBackToTop } from "@/components/layout/FooterBackToTop";
 import { footerLearn, footerStudio } from "@/lib/navigation";
 import { aarkLmsPublicUrl, siteName, siteTagline, skhContact } from "@/lib/site";
+import { FooterNewsletterForm } from "@/components/layout/FooterNewsletterForm";
 import { siteConfig } from "@/lib/site-config";
 
 const columns = [
@@ -10,8 +11,10 @@ const columns = [
 ];
 
 export function SiteFooter() {
+  const newsletterEnabled = Boolean(process.env.NEWSLETTER_WEBHOOK_URL);
+
   return (
-    <footer className="footer-premium band-midnight relative">
+    <footer className="footer-premium relative">
       <FooterBackToTop />
       <div className="shell">
         <div className="footer-premium__grid">
@@ -19,6 +22,7 @@ export function SiteFooter() {
             <p className="footer-premium__brand-name">
               {siteName} · {siteTagline}
             </p>
+            {newsletterEnabled ? <FooterNewsletterForm /> : null}
           </div>
 
           {columns.map((c) => (
