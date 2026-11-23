@@ -3,7 +3,7 @@
 :root {
   --widget-glow: rgba(63, 191, 154, 0.2);
   --widget-stroke: rgba(79, 140, 255, 0.42);
-  --widget-card: linear-gradient(165deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+  --widget-card: var(--card);
   --widget-emerald: #3fbf9a;
   --widget-blue: #2563eb;
   --widget-blue-soft: #8fb8ff;
@@ -12,7 +12,9 @@
 :root:not(.dark) {
   --widget-glow: rgba(15, 143, 107, 0.16);
   --widget-stroke: rgba(37, 99, 235, 0.35);
-  --widget-card: linear-gradient(165deg, rgba(255, 255, 255, 0.96) 0%, rgba(238, 244, 255, 0.92) 100%);
+  --widget-card: var(--card);
+  --widget-blue: #062b83;
+  --widget-blue-soft: #0753c7;
 }
 
 @layer components {
@@ -55,10 +57,10 @@
     font-weight: 600;
     line-height: 1.1;
     text-wrap: balance;
-    color: var(--text-primary, var(--fg));
+    color: var(--fg);
   }
   .widget-section-header__title-gradient {
-    background: linear-gradient(110deg, var(--widget-blue-soft) 0%, var(--widget-blue) 100%);
+    background: var(--heading-gradient);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -112,8 +114,8 @@
     height: 3rem;
     border-radius: 50%;
     border: 1px solid color-mix(in srgb, var(--widget-stroke) 70%, transparent);
-    background: color-mix(in srgb, var(--midnight, #020817) 88%, transparent);
-    color: var(--widget-emerald);
+    background: var(--card);
+    color: var(--accent);
     opacity: 0;
     visibility: hidden;
     transform: translateY(6px);
@@ -128,10 +130,6 @@
     outline: 2px solid var(--widget-blue);
     outline-offset: 2px;
   }
-  :root:not(.dark) .widget-scroll-top {
-    background: rgba(255, 255, 255, 0.94);
-    color: #0f8f6b;
-  }
 
   .widget-keyboard-search {
     position: relative;
@@ -142,8 +140,8 @@
     padding: 0.75rem 1rem 0.75rem 2.5rem;
     border-radius: 0.75rem;
     border: 1px solid color-mix(in srgb, var(--widget-stroke) 50%, transparent);
-    background: color-mix(in srgb, var(--midnight, #020817) 40%, transparent);
-    color: inherit;
+    background: var(--input-bg);
+    color: var(--fg);
   }
   .widget-keyboard-search__input:focus-visible {
     outline: 2px solid var(--widget-blue);
@@ -168,14 +166,14 @@
     padding: 0.2rem;
     border-radius: 999px;
     border: 1px solid color-mix(in srgb, var(--widget-stroke) 40%, transparent);
-    background: color-mix(in srgb, var(--midnight, #020817) 35%, transparent);
+    background: var(--surface);
   }
   .widget-segmented__indicator {
     position: absolute;
     top: 0.2rem;
     bottom: 0.2rem;
     border-radius: 999px;
-    background: linear-gradient(110deg, var(--widget-blue-soft), var(--widget-blue));
+    background: var(--accent-hot);
     transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), width 0.28s cubic-bezier(0.22, 1, 0.36, 1);
     z-index: 0;
   }
@@ -191,7 +189,7 @@
     color: var(--muted);
   }
   .widget-segmented__btn[aria-checked="true"] {
-    color: #fff;
+    color: var(--on-accent);
   }
   .widget-segmented__btn:focus-visible {
     outline: 2px solid var(--widget-blue);

@@ -122,7 +122,7 @@
     padding: 1.15rem;
     border-radius: 1.1rem;
     border: 1px solid color-mix(in srgb, var(--widget-stroke) 40%, transparent);
-    background: color-mix(in srgb, var(--midnight, #020817) 30%, transparent);
+    background: var(--card);
   }
   @media (min-width: 768px) {
     .study-hub__featured {
@@ -159,7 +159,7 @@
     position: fixed;
     inset: 0;
     z-index: 70;
-    background: rgba(2, 8, 23, 0.72);
+    background: color-mix(in srgb, var(--background) 72%, transparent);
     display: grid;
     place-items: center;
     padding: 1rem;
@@ -187,11 +187,11 @@
   }
   .study-hub__panel--stack {
     border-radius: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 24px 48px -32px rgba(2, 8, 23, 0.55);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow);
   }
   :root:not(.dark) .study-hub__panel--stack {
-    border-color: rgba(2, 8, 23, 0.1);
+    border-color: var(--card-border);
     box-shadow: 0 18px 40px -28px rgba(18, 101, 255, 0.2);
   }
   .study-hub__books-embed .library-premium__carousel-bleed {
