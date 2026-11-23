@@ -262,6 +262,7 @@
     outline-offset: 2px;
   }
   .segment-control__btn[aria-selected="true"] {
+    background: var(--accent-hot);
     color: var(--on-accent);
   }
   .segment-control__btn[aria-selected="true"] .segment-control__label,
@@ -637,12 +638,12 @@
     font-size: 0.65rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(143, 184, 255, 0.92);
+    color: var(--accent);
     background: rgba(18, 101, 255, 0.08);
   }
   .two-doors-premium__pill--emerald {
     border-color: var(--accent-secondary-border);
-    color: rgba(127, 224, 192, 0.92);
+    color: var(--widget-emerald);
     background: var(--accent-secondary-soft);
   }
   .two-doors-premium__card-title {
@@ -772,7 +773,7 @@
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
-    color: rgba(143, 184, 255, 0.7);
+    color: var(--fg-muted);
   }
   .enquire-premium__note {
     display: flex;
@@ -886,7 +887,7 @@
     font-size: 0.65rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: rgba(143, 184, 255, 0.72);
+    color: var(--fg-muted);
   }
   .footer-premium__links {
     margin-top: 1rem;

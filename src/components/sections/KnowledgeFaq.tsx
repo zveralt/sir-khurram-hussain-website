@@ -233,7 +233,7 @@ function CompactFaq({
                   className="flex w-full items-start justify-between gap-6 py-6 text-left"
                 >
                   <span className="font-heading text-xl font-semibold text-fg">{item.q}</span>
-                  <span className="mt-1 font-mono text-xs text-accent-hot">{isOpen ? "–" : "+"}</span>
+                  <span className="mt-1 font-mono text-xs text-accent">{isOpen ? "–" : "+"}</span>
                 </button>
               </h3>
               {isOpen ? <p className="pb-6 max-w-prose text-soft leading-relaxed">{item.a}</p> : null}

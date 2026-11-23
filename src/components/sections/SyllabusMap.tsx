@@ -77,7 +77,7 @@ export function SyllabusMap() {
                     onClick={() => setActive(n.id)}
                     aria-pressed={n.id === active}
                     className={`flex w-full items-baseline justify-between gap-4 py-4 text-left ${
-                      n.id === active ? "text-accent-hot" : "text-fg"
+                      n.id === active ? "text-accent" : "text-fg"
                     }`}
                   >
                     <span className="font-heading text-lg font-semibold">{n.title}</span>

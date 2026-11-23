@@ -8,8 +8,8 @@ export default function PortalLayout({ children }: { children: ReactNode }) {
         Skip to content
       </a>
       <main id="main-content">{children}</main>
-      <footer className="shell py-6 border-t border-line text-center text-xs text-muted">
-        <Link href="/" className="link-u">
+      <footer className="shell py-6 border-t border-line text-center text-xs">
+        <Link href="/" className="link-u text-fg">
           Back to marketing site
         </Link>
       </footer>

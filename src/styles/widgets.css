@@ -15,6 +15,7 @@
   --widget-card: var(--card);
   --widget-blue: #062b83;
   --widget-blue-soft: #0753c7;
+  --widget-emerald: #0c7a58;
 }
 
 @layer components {
@@ -189,6 +190,7 @@
     color: var(--muted);
   }
   .widget-segmented__btn[aria-checked="true"] {
+    background: var(--accent-hot);
     color: var(--on-accent);
   }
   .widget-segmented__btn:focus-visible {
