@@ -488,7 +488,12 @@ function DigitalLibraryPremium({
 
   if (embedded) {
     return (
-      <div ref={sectionRef} className={`library-premium${inView ? " library-premium--inview" : ""}`}>
+      <div
+        ref={(node) => {
+          sectionRef.current = node;
+        }}
+        className={`library-premium${inView ? " library-premium--inview" : ""}`}
+      >
         {inner}
       </div>
     );
