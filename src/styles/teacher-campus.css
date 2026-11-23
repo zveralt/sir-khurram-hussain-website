@@ -49,7 +49,7 @@
   .meet-teacher__prose {
     font-size: 1.02rem;
     line-height: 1.68;
-    color: var(--text-secondary, var(--soft, rgba(255, 255, 255, 0.78)));
+    color: var(--fg-muted);
   }
   .meet-teacher__prose a {
     color: var(--widget-blue-soft);

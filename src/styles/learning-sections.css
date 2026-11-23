@@ -83,7 +83,7 @@
     padding: 0.85rem 1rem;
     border-radius: 0.75rem;
     border: 1px solid color-mix(in srgb, var(--widget-stroke) 35%, transparent);
-    background: color-mix(in srgb, var(--midnight, #020817) 35%, transparent);
+    background: var(--surface);
     max-height: 0;
     opacity: 0;
     overflow: hidden;
